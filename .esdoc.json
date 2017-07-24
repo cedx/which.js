@@ -1,0 +1,15 @@
+{
+  "title": "Which for JS",
+
+  "source": "lib",
+  "destination": "doc/api",
+
+  "excludes": ["index\\.js$"],
+  "manual": {"changelog": ["CHANGELOG.md"]},
+  "plugins": [{"name": "esdoc-node"}],
+
+  "test": {
+    "source": "test",
+    "type": "mocha"
+  }
+}
