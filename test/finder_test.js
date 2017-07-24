@@ -56,14 +56,14 @@ describe('Finder', () => {
     it('should return the path of the `executable.cmd` file on Windows', done => {
       new Finder('test/fixtures').find('executable').toArray().subscribe(executables => {
         expect(executables).to.be.an('array').and.have.lengthOf(Finder.isWindows ? 1 : 0);
-        if (Finder.isWindows) expect(executables[0]).to.contain('\\test\\fixtures\\executable.cmd');
+        if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
       }, done, done);
     });
 
     it('should return the path of the `executable.sh` file on POSIX', done => {
       new Finder('test/fixtures').find('executable.sh').toArray().subscribe(executables => {
         expect(executables).to.be.an('array').and.have.lengthOf(Finder.isWindows ? 0 : 1);
-        if (!Finder.isWindows) expect(executables[0]).to.contain('/test/fixtures/executable.sh');
+        if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
       }, done, done);
     });
   });
