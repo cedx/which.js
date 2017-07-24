@@ -15,7 +15,63 @@ $ npm install --save @cedx/which
 ```
 
 ## Usage
-TODO
+This package has an API based on [Observables](http://reactivex.io/intro.html).
+
+It provides a single function, `which()`, allowing to locate a command in the system path:
+
+```javascript
+const {which} = require('@cedx/which');
+
+which('foobar').subscribe(
+  path => {
+    // "path" is the absolute path to the executable.
+    console.log(`The "foobar" command is located at: ${path}`);
+  },
+  error => {
+    // The command was not found on the system path.
+    console.log('The "foobar" command is not found.');
+  }
+);
+```
+
+### Options
+The `which\which()` accepts three parameters:
+
+- `command: string`: The command to be resolved.
+- `all boolean = false`: A value indicating whether to return all executables found, instead of just the first one.
+- `options: object = {}`: The options to be passed to the underlying finder.
+
+If you pass the `true` value as the second parameter, the function will return an array of all paths found, instead of only the first path found:
+
+```javascript
+which('foobar', true).subscribe(paths => {
+  console.log('The "foobar" command is located at:');
+  for (let path of paths) console.log(path);
+});
+```
+
+You can pass an options object as the third parameter:
+
+- `path: string|string[]`: The system path, provided as a string or an array of directories. Defaults to the `PATH` environment variable.
+- `extensions: string|string[]`: The executable file extensions, provided as a string or an array of file extensions. Defaults to the `PATHEXT` environment variable.
+- `pathSeparator: string`: The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
+
+The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension:
+
+```javascript
+let options = {extensions: '.FOO;.EXE;.CMD'};
+which('foobar', false, options).subscribe(path =>
+  console.log(`The "foobar" command is located at: ${path}`);
+);
+```
+
+### Promise support
+If you require it, an `Observable` can be converted to a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) by using the `toPromise()` method:
+
+```javascript
+let path = await which('foobar').toPromise();
+console.log(`The "foobar" command is located at: ${path}`);
+```
 
 ## See also
 - [API reference](https://cedx.github.io/which.js)
