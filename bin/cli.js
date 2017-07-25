@@ -9,11 +9,13 @@ const {Application} = require('../lib');
  */
 function main() {
   process.title = 'Which.js';
-  return (new Application).run();
+  return (new Application).run()
+    .catch(() => process.exit(1))
+    .map(status => process.exit(status));
 }
 
 // Start the application.
 if (module === require.main) main().subscribe({error: err => {
   console.error(err);
-  process.exit(1);
+  process.exit(3);
 }});
