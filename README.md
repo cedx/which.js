@@ -35,7 +35,7 @@ which('foobar').subscribe(
 ```
 
 ### Options
-The `which\which()` accepts three parameters:
+The `which\which()` function accepts three parameters:
 
 - `command: string`: The command to be resolved.
 - `all boolean = false`: A value indicating whether to return all executables found, instead of just the first one.
