@@ -15,7 +15,7 @@ describe('Finder', () => {
    * @test {Finder#constructor}
    */
   describe('#constructor()', () => {
-    it('should be the value of the `PATH` environment variable by default', () => {
+    it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
       let pathEnv = 'PATH' in process.env ? process.env.PATH : '';
       let paths = pathEnv.length ? pathEnv.split(delimiter) : [];
       expect((new Finder).path).to.have.ordered.members(paths);
@@ -27,7 +27,7 @@ describe('Finder', () => {
       expect(finder.path).to.have.ordered.members(paths);
     });
 
-    it('should be the value of the `PATHEXT` environment variable by default', () => {
+    it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
       let pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
       let extensions = pathExt.length ? pathExt.split(delimiter) : [];
       expect((new Finder).extensions).to.have.ordered.members(extensions);
@@ -39,7 +39,7 @@ describe('Finder', () => {
       expect(finder.extensions).to.have.ordered.members(extensions);
     });
 
-    it('should be the value of the `path.delimiter` constant by default', () => {
+    it('should set the `pathSeparator` property to the value of the `path.delimiter` constant by default', () => {
       expect((new Finder).pathSeparator).to.equal(delimiter);
     });
 
