@@ -38,7 +38,7 @@ which('foobar').subscribe(
 The `which\which()` function accepts three parameters:
 
 - `command: string`: The command to be resolved.
-- `all boolean = false`: A value indicating whether to return all executables found, instead of just the first one.
+- `all: boolean = false`: A value indicating whether to return all executables found, instead of just the first one.
 - `options: object = {}`: The options to be passed to the underlying finder.
 
 If you pass the `true` value as the second parameter, the function will return an array of all paths found, instead of only the first path found:
