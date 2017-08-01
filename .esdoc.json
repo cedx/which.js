@@ -1,15 +1,19 @@
 {
-  "title": "Which for JS",
-
   "source": "lib",
   "destination": "doc/api",
-
   "excludes": ["index\\.js$"],
-  "manual": {"changelog": ["CHANGELOG.md"]},
-  "plugins": [{"name": "esdoc-node"}],
-
-  "test": {
-    "source": "test",
-    "type": "mocha"
-  }
+  "plugins": [
+    {"name": "esdoc-node"},
+    {"name": "esdoc-standard-plugin", "option": {
+      "accessor": {"access": ["public", "protected"]},
+      "manual": {"files": ["CHANGELOG.md"]},
+      "test": {"source": "test"},
+      "brand": {
+        "description": "Find the instances of an executable in the system path, implemented in JavaScript.",
+        "logo": "web/favicon.ico",
+        "repository": "https://github.com/cedx/which.js",
+        "title": "Which for JS"
+      }
+    }}
+  ]
 }
