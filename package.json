@@ -34,6 +34,7 @@
     "find",
     "observable",
     "path",
+    "reactivex",
     "rxjs",
     "system",
     "utility",
