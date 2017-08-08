@@ -17,14 +17,13 @@ describe('Finder', () => {
   describe('#constructor()', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
       let pathEnv = 'PATH' in process.env ? process.env.PATH : '';
-      let paths = pathEnv.length ? pathEnv.split(delimiter) : [];
-      expect((new Finder).path).to.have.ordered.members(paths);
+      let path = pathEnv.length ? pathEnv.split(delimiter) : [];
+      expect((new Finder).path).to.have.ordered.members(path);
     });
 
     it('should split the input path using the path separator', () => {
-      let paths = ['/usr/local/bin', '/usr/bin'];
-      let finder = new Finder(paths.join(delimiter));
-      expect(finder.path).to.have.ordered.members(paths);
+      let path = ['/usr/local/bin', '/usr/bin'];
+      expect(new Finder(path.join(delimiter)).path).to.have.ordered.members(path);
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
@@ -35,8 +34,7 @@ describe('Finder', () => {
 
     it('should split the extension list using the path separator', () => {
       let extensions = ['.EXE', '.CMD', '.BAT'];
-      let finder = new Finder('', extensions.join(delimiter));
-      expect(finder.extensions).to.have.ordered.members(extensions);
+      expect(new Finder('', extensions.join(delimiter)).extensions).to.have.ordered.members(extensions);
     });
 
     it('should set the `pathSeparator` property to the value of the `path.delimiter` constant by default', () => {
