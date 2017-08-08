@@ -42,8 +42,7 @@ describe('Finder', () => {
     });
 
     it('should properly set the path separator', () => {
-      let finder = new Finder('', '', '#');
-      expect(finder.pathSeparator).to.equal('#');
+      expect(new Finder('', '', '#').pathSeparator).to.equal('#');
     });
   });
 
