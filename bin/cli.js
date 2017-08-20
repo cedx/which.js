@@ -11,7 +11,7 @@ function main() {
   process.title = 'Which.js';
   return (new Application).run()
     .catch(() => process.exit(1))
-    .map(status => process.exit(status));
+    .map(process.exit);
 }
 
 // Start the application.
