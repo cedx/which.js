@@ -17,5 +17,5 @@ function main() {
 // Start the application.
 if (module === require.main) main().subscribe({error: err => {
   console.error(err);
-  process.exit(3);
+  process.exit(2);
 }});
