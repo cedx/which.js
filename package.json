@@ -3,7 +3,7 @@
   "bugs": "https://github.com/cedx/which.js/issues",
   "description": "Find the instances of an executable in the system path.",
   "homepage": "https://github.com/cedx/which.js",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "main": "./lib/index",
   "name": "@cedx/which",
   "repository": "cedx/which.js",

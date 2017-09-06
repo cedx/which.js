@@ -109,4 +109,4 @@ $ which --all node
 - [Continuous integration](https://travis-ci.org/cedx/which.js)
 
 ## License
-[Which for JS](https://github.com/cedx/which.js) is distributed under the Apache License, version 2.0.
+[Which for JS](https://github.com/cedx/which.js) is distributed under the MIT License.
