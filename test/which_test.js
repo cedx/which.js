@@ -17,7 +17,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows()) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect(true).to.not.be.ok;
       else expect(true).to.be.ok;
     }
   });
@@ -33,7 +33,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows()) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect(true).to.not.be.ok;
       else expect(true).to.be.ok;
     }
   });
@@ -46,7 +46,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows()) expect(true).to.be.ok;
+      if (Finder.isWindows) expect(true).to.be.ok;
       else expect(true).to.not.be.ok;
     }
   });
@@ -62,7 +62,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows()) expect(true).to.be.ok;
+      if (Finder.isWindows) expect(true).to.be.ok;
       else expect(true).to.not.be.ok;
     }
   });
