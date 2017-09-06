@@ -5,17 +5,14 @@ const {Application} = require('../lib');
 
 /**
  * Application entry point.
- * @return {Observable} Completes when the program is terminated.
  */
-function main() {
+async function main() {
   process.title = 'Which.js';
-  return (new Application).run()
-    .catch(() => process.exit(1))
-    .do(process.exit);
+  process.exit(await (new Application).run());
 }
 
 // Start the application.
-if (module === require.main) main().subscribe({error: err => {
+if (module === require.main) main().catch(err => {
   console.error(err);
   process.exit(2);
-}});
+});

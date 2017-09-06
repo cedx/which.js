@@ -3,7 +3,7 @@
 const {expect} = require('chai');
 const {stat} = require('fs');
 const {delimiter} = require('path');
-const {Observable} = require('rxjs');
+const {promisify} = require('util');
 const {Finder} = require('../lib');
 
 /**
@@ -50,18 +50,16 @@ describe('Finder', () => {
    * @test {Finder#find}
    */
   describe('#find()', () => {
-    it('should return the path of the `executable.cmd` file on Windows', done => {
-      new Finder('test/fixtures').find('executable').toArray().subscribe(executables => {
-        expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
-        if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
-      }, done, done);
+    it('should return the path of the `executable.cmd` file on Windows', async () => {
+      let executables = await new Finder('test/fixtures').find('executable');
+      expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
+      if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
     });
 
-    it('should return the path of the `executable.sh` file on POSIX', done => {
-      new Finder('test/fixtures').find('executable.sh').toArray().subscribe(executables => {
-        expect(executables).to.have.lengthOf(Finder.isWindows ? 0 : 1);
-        if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
-      }, done, done);
+    it('should return the path of the `executable.sh` file on POSIX', async () => {
+      let executables = await new Finder('test/fixtures').find('executable.sh');
+      expect(executables).to.have.lengthOf(Finder.isWindows ? 0 : 1);
+      if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
     });
   });
 
@@ -69,25 +67,16 @@ describe('Finder', () => {
    * @test {Finder#isExecutable}
    */
   describe('#isExecutable()', () => {
-    it('should return `false` for a non-executable file', done => {
-      (new Finder).isExecutable(__filename).subscribe(
-        isExecutable => expect(isExecutable).to.be.false,
-        done, done
-      );
+    it('should return `false` for a non-executable file', async () => {
+      expect(await (new Finder).isExecutable(__filename)).to.be.false;
     });
 
-    it('should return `false` for a POSIX executable, when test is run on Windows', done => {
-      (new Finder).isExecutable('test/fixtures/executable.sh').subscribe(
-        isExecutable => expect(isExecutable).to.not.equal(Finder.isWindows),
-        done, done
-      );
+    it('should return `false` for a POSIX executable, when test is run on Windows', async () => {
+      expect(await (new Finder).isExecutable('test/fixtures/executable.sh')).to.not.equal(Finder.isWindows);
     });
 
-    it('should return `false` for a Windows executable, when test is run on POSIX', done => {
-      (new Finder).isExecutable('test/fixtures/executable.cmd').subscribe(
-        isExecutable => expect(isExecutable).to.equal(Finder.isWindows),
-        done, done
-      );
+    it('should return `false` for a Windows executable, when test is run on POSIX', async () => {
+      expect(await (new Finder).isExecutable('test/fixtures/executable.cmd')).to.equal(Finder.isWindows);
     });
   });
 
@@ -123,16 +112,16 @@ describe('Finder', () => {
    * @test {Finder#_checkFilePermissions}
    */
   (Finder.isWindows ? describe.skip : describe)('#_checkFilePermissions()', () => {
-    const getStats = Observable.bindNodeCallback(stat);
+    const getStats = promisify(stat);
 
-    it('it should return `false` if the file is not executable at all', done => {
-      getStats('test/fixtures/not_executable.sh')
-        .subscribe(fileStats => expect((new Finder)._checkFilePermissions(fileStats)).to.be.false, done, done);
+    it('it should return `false` if the file is not executable at all', async () => {
+      let fileStats = await getStats('test/fixtures/not_executable.sh');
+      expect((new Finder)._checkFilePermissions(fileStats)).to.be.false;
     });
 
-    it('it should return `true` if the file is executable by everyone', done => {
-      getStats('test/fixtures/executable.sh')
-        .subscribe(fileStats => expect((new Finder)._checkFilePermissions(fileStats)).to.be.true, done, done);
+    it('it should return `true` if the file is executable by everyone', async () => {
+      let fileStats = await getStats('test/fixtures/executable.sh');
+      expect((new Finder)._checkFilePermissions(fileStats)).to.be.true;
     });
   });
 });

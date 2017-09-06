@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
 
 ## Version 2.0.0
+- Breaking change: converted the `Observable`-based API to an `async/await`-based one.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Version 1.1.0

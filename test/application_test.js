@@ -13,11 +13,11 @@ describe('Application', () => {
    * @test {Application#run}
    */
   describe('#run()', () => {
-    it('should return `0` if everything went fine', done => {
+    it('should return `0` if everything went fine', async () => {
       process.env.PATH = join('test', 'fixtures') + delimiter + process.env.PATH;
 
       let args = ['/usr/local/bin/node', __filename, '--silent', Finder.isWindows ? 'executable.cmd' : 'executable.sh'];
-      (new Application).run(args).subscribe(status => expect(status).to.equal(0), done, done);
+      expect(await (new Application).run(args)).to.equal(0);
     });
   });
 });
