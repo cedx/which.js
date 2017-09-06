@@ -15,24 +15,24 @@ $ npm install --save @cedx/which
 ```
 
 ## Usage
-This package has an API based on [Observables](http://reactivex.io/intro.html).
-
-It provides a single function, `which()`, allowing to locate a command in the system path:
+This package provides a single function, `which()`, allowing to locate a command in the system path:
 
 ```javascript
 const {which} = require('@cedx/which');
 
-which('foobar').subscribe(
-  path => {
-    // "path" is the absolute path to the executable.
-    console.log(`The "foobar" command is located at: ${path}`);
-  },
-  error => {
-    // The command was not found on the system path.
-    console.log('The "foobar" command is not found.');
-  }
-);
+try {
+  // "path" is the absolute path to the executable.
+  let path = await which('foobar');
+  console.log(`The "foobar" command is located at: ${path}`);
+}
+
+catch (err) {
+  // The command was not found on the system path.
+  console.log('The "foobar" command is not found.');
+}
 ```
+
+The function throws an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) if it could not locate the specified command.
 
 ### Options
 The `which()` function accepts three parameters:
@@ -44,10 +44,9 @@ The `which()` function accepts three parameters:
 If you pass the `true` value as the second parameter, the function will return an array of all paths found, instead of only the first path found:
 
 ```javascript
-which('foobar', true).subscribe(paths => {
-  console.log('The "foobar" command is located at:');
-  for (let path of paths) console.log(path);
-});
+let paths = await which('foobar', true);
+console.log('The "foobar" command is located at:');
+for (let path of paths) console.log(path);
 ```
 
 You can pass an options object as the third parameter:
@@ -60,9 +59,8 @@ The `extensions` option is only meaningful on the Windows platform, where the ex
 
 ```javascript
 let options = {extensions: '.FOO;.EXE;.CMD'};
-which('foobar', false, options).subscribe(path =>
-  console.log(`The "foobar" command is located at: ${path}`);
-);
+let path = await which('foobar', false, options);
+console.log(`The "foobar" command is located at: ${path}`);
 ```
 
 ### Promise support
