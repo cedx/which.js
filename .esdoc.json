@@ -10,7 +10,7 @@
       "test": {"source": "test"},
       "brand": {
         "description": "Find the instances of an executable in the system path, implemented in JavaScript.",
-        "logo": "web/favicon.ico",
+        "logo": "www/favicon.ico",
         "repository": "https://github.com/cedx/which.js",
         "title": "Which for JS"
       }
