@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
 
 ## Version 2.0.2
+- Fixed a bug: with the `all` parameter set to `false`, no instance was returned.
 
 ## Version 2.0.1
 - Code optimization: even with the `all` parameter set to `false`, all instances of a command were searched.
