@@ -32,7 +32,7 @@ catch (err) {
 }
 ```
 
-The function throws an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) if it could not locate the specified command.
+The function returns a [`Promise<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) specifying the path of the first instance of the executables found. If the command could not be located, an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) is thrown.
 
 ### Options
 The `which()` function accepts three parameters:
