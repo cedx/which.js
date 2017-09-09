@@ -1,8 +1,10 @@
 # Changelog
 This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
 
+## Version 2.0.2
+
 ## Version 2.0.1
-- Fixed a regression: even with the `all` parameter set to `false`, all instances of a command were searched.
+- Code optimization: even with the `all` parameter set to `false`, all instances of a command were searched.
 
 ## Version 2.0.0
 - Breaking change: converted the [`Observable`](http://reactivex.io/intro.html)-based API to an `async/await`-based one.
