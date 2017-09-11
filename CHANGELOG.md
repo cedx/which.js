@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
 
 ## Version 3.0.0
+- Breaking change: merged the `all` and `options` parameters of the `which()` function.
 - Updated the package dependencies.
 
 ## Version 2.0.2
