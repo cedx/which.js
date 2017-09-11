@@ -58,7 +58,7 @@ The `extensions` option is only meaningful on the Windows platform, where the ex
 which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 ```
 
-### `onError: function(string) => any = null`
+### `onError: function(command: string) => *`
 By default, when the specified command cannot be located, an `Error` is thrown. You can disable this exception by providing your own error handler:
 
 ```javascript

@@ -7,7 +7,6 @@ const {version: pkgVersion} = require('../package.json');
 
 /**
  * Application entry point.
- * @return {Promise<number>} The application exit code.
  */
 async function main() {
   process.title = 'Which.js';
@@ -23,29 +22,24 @@ async function main() {
 
   if (!program.executable) {
     program.outputHelp();
-    return 64;
+    process.exit(64);
   }
 
-  try {
-    let executables = await which(program.executable, {all: program.all});
-    if (!program.silent) {
-      if (!Array.isArray(executables)) executables = [executables];
-      for (let path of executables) console.log(path);
-    }
+  let executables = await which(program.executable, {
+    all: program.all,
+    onError: () => process.exit(1)
+  });
 
-    return 0;
+  if (!program.silent) {
+    if (!Array.isArray(executables)) executables = [executables];
+    for (let path of executables) console.log(path);
   }
 
-  catch (err) {
-    return 1;
-  }
+  process.exit(0);
 }
 
 // Start the application.
-if (module === require.main) main().then(
-  code => process.exit(code),
-  err => {
-    console.error(err);
-    process.exit(2);
-  }
-);
+if (module === require.main) main().catch(err => {
+  console.error(err);
+  process.exit(2);
+});
