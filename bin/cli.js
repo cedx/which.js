@@ -12,7 +12,6 @@ const {version: pkgVersion} = require('../package.json');
 async function main() {
   process.title = 'Which.js';
 
-  // Parse the command line arguments.
   program.name('which')
     .description('Find the instances of an executable in the system path.')
     .version(pkgVersion, '-v, --version')
@@ -22,7 +21,6 @@ async function main() {
     .action(command => program.executable = command)
     .parse(process.argv);
 
-  // Run the program.
   if (!program.executable) {
     program.outputHelp();
     return 64;
@@ -45,7 +43,7 @@ async function main() {
 
 // Start the application.
 if (module === require.main) main().then(
-  status => process.exit(status),
+  code => process.exit(code),
   err => {
     console.error(err);
     process.exit(2);
