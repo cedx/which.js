@@ -35,40 +35,53 @@ catch (err) {
 The function returns a [`Promise<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) specifying the path of the first instance of the executables found. If the command could not be located, an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) is thrown.
 
 ### Options
-The `which()` function accepts three parameters:
+The behavior of the `which()` function can be customized using the following optional named parameters.
 
-- `command: string`: The command to be resolved.
-- `all: boolean = false`: A value indicating whether to return all executables found, instead of just the first one.
-- `options: object = {}`: The options to be passed to the underlying finder.
+### `all: boolean = false`
+A value indicating whether to return all executables found, instead of just the first one.
 
-If you pass the `true` value as the second parameter, the function will return an array of all paths found, instead of only the first path found:
+If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
 
 ```javascript
-let paths = await which('foobar', true);
-console.log('The "foobar" command is located at:');
+let paths = await which('foobar', {all: true});
+
+console.log('The "foobar" command was found at these locations:');
 for (let path of paths) console.log(path);
 ```
 
-You can pass an options object as the third parameter:
-
-- `path: string|string[]`: The system path, provided as a string or an array of directories. Defaults to the `PATH` environment variable.
-- `extensions: string|string[]`: The executable file extensions, provided as a string or an array of file extensions. Defaults to the `PATHEXT` environment variable.
-- `pathSeparator: string`: The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
+### `extensions: string|string[] = ""`
+The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
 The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension:
 
 ```javascript
-let options = {extensions: '.FOO;.EXE;.CMD'};
-let path = await which('foobar', false, options);
-console.log(`The "foobar" command is located at: ${path}`);
+which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 ```
 
-### Promise support
-If you require it, an `Observable` can be converted to a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) by using the `toPromise()` method:
+### `onError: function(string) => any = null`
+By default, when the specified command cannot be located, an `Error` is thrown. You can disable this exception by providing your own error handler:
 
 ```javascript
-let path = await which('foobar').toPromise();
-console.log(`The "foobar" command is located at: ${path}`);
+let path = await which('foobar', {onError: () => ''});
+
+if (!path.length) console.log('The "foobar" command is not found.');
+else console.log(`The "foobar" command is located at: ${path}`);
+```
+
+When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `Error`.
+
+### `path: string|string[] = ""`
+The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
+
+```javascript
+which('foobar', {path: ['/usr/local/bin', '/usr/bin']});
+```
+
+### `pathSeparator: string = ""`
+The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
+
+```javascript
+which('foobar', {pathSeparator: '#'});
 ```
 
 ## Command line interface
