@@ -7,11 +7,9 @@ const {Finder, which} = require('../lib');
  * @test {which}
  */
 describe('which()', () => {
-  let options = {path: 'test/fixtures'};
-
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
-      let executable = await which('executable', Object.assign({all: false}, options));
+      let executable = await which('executable', {all: false, path: 'test/fixtures'});
       if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
       else expect(true).to.not.be.ok;
     }
@@ -24,7 +22,7 @@ describe('which()', () => {
 
   it('should return all the paths of the `executable.cmd` file on Windows', async () => {
     try {
-      let executables = await which('executable', Object.assign({all: true}, options));
+      let executables = await which('executable', {all: true, path: 'test/fixtures'});
       if (!Finder.isWindows) expect(true).to.not.be.ok;
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
@@ -40,7 +38,7 @@ describe('which()', () => {
 
   it('should return the path of the `executable.sh` file on POSIX', async () => {
     try {
-      let executable = await which('executable.sh', Object.assign({all: false}, options));
+      let executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
       if (Finder.isWindows) expect(true).to.not.be.ok;
       else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
     }
@@ -53,7 +51,7 @@ describe('which()', () => {
 
   it('should return all the paths of the `executable.sh` file on POSIX', async () => {
     try {
-      let executables = await which('executable.sh', Object.assign({all: true}, options));
+      let executables = await which('executable.sh', {all: true, path: 'test/fixtures'});
       if (Finder.isWindows) expect(true).to.not.be.ok;
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
