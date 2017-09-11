@@ -4,6 +4,7 @@ This file contains highlights of what changes on each version of the [Which for 
 ## Version 3.0.0
 - Breaking change: changed the signature of the `Finder` class constructor.
 - Breaking change: merged the `all` and `options` parameters of the `which()` function.
+- Added the `onError` option.
 - Updated the package dependencies.
 
 ## Version 2.0.2

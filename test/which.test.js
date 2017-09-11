@@ -66,4 +66,15 @@ describe('which()', () => {
       else expect(true).to.not.be.ok;
     }
   });
+
+  it('should return the value of the `onError` handler', async () => {
+    let executable = await which('executable', {all: false, onError: () => 'foo', path: 'test/fixtures'});
+    if (!Finder.isWindows) expect(executable).to.equal('foo');
+
+    let executables = await which('executable.sh', {all: true, onError: () => ['foo'], path: 'test/fixtures'});
+    if (Finder.isWindows) {
+      expect(executables).to.be.an('array').and.have.lengthOf(1);
+      expect(executables[0]).to.equal('foo');
+    }
+  });
 });
