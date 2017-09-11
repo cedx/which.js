@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
 
 ## Version 3.0.0
+- Breaking change: changed the signature of the `Finder` class constructor.
 - Breaking change: merged the `all` and `options` parameters of the `which()` function.
 - Updated the package dependencies.
 

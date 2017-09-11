@@ -23,7 +23,7 @@ describe('Finder', () => {
 
     it('should split the input path using the path separator', () => {
       let path = ['/usr/local/bin', '/usr/bin'];
-      expect(new Finder(path.join(delimiter)).path).to.have.ordered.members(path);
+      expect(new Finder({path: path.join(delimiter)}).path).to.have.ordered.members(path);
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
@@ -34,7 +34,7 @@ describe('Finder', () => {
 
     it('should split the extension list using the path separator', () => {
       let extensions = ['.EXE', '.CMD', '.BAT'];
-      expect(new Finder('', extensions.join(delimiter)).extensions).to.have.ordered.members(extensions);
+      expect(new Finder({extensions: extensions.join(delimiter)}).extensions).to.have.ordered.members(extensions);
     });
 
     it('should set the `pathSeparator` property to the value of the `path.delimiter` constant by default', () => {
@@ -42,7 +42,7 @@ describe('Finder', () => {
     });
 
     it('should properly set the path separator', () => {
-      expect(new Finder('', '', '#').pathSeparator).to.equal('#');
+      expect(new Finder({pathSeparator: '#'}).pathSeparator).to.equal('#');
     });
   });
 
@@ -51,13 +51,13 @@ describe('Finder', () => {
    */
   describe('#find()', () => {
     it('should return the path of the `executable.cmd` file on Windows', async () => {
-      let executables = await new Finder('test/fixtures').find('executable');
+      let executables = await new Finder({path: 'test/fixtures'}).find('executable');
       expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
       if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
     });
 
     it('should return the path of the `executable.sh` file on POSIX', async () => {
-      let executables = await new Finder('test/fixtures').find('executable.sh');
+      let executables = await new Finder({path: 'test/fixtures'}).find('executable.sh');
       expect(executables).to.have.lengthOf(Finder.isWindows ? 0 : 1);
       if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
     });
@@ -85,7 +85,7 @@ describe('Finder', () => {
    */
   describe('#_checkFileExtension()', () => {
     it('should return `false` if the file has not an executable file extension', () => {
-      let finder = new Finder('', ['.EXE', '.CMD', '.BAT']);
+      let finder = new Finder({extensions: ['.EXE', '.CMD', '.BAT']});
       expect(finder._checkFileExtension('')).to.be.false;
       expect(finder._checkFileExtension('exe.')).to.be.false;
       expect(finder._checkFileExtension('foo.bar')).to.be.false;
@@ -97,7 +97,7 @@ describe('Finder', () => {
     });
 
     it('should return `true` if the file has an executable file extension', () => {
-      let finder = new Finder('', ['.EXE', '.CMD', '.BAT']);
+      let finder = new Finder({extensions: ['.EXE', '.CMD', '.BAT']});
       expect(finder._checkFileExtension('.exe')).to.be.true;
       expect(finder._checkFileExtension('foo.exe')).to.be.true;
       expect(finder._checkFileExtension('/home/logger.bat')).to.be.true;
