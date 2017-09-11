@@ -9,8 +9,10 @@ const {version: pkgVersion} = require('../package.json');
  * Application entry point.
  */
 async function main() {
+  // Initialize the application.
   process.title = 'Which.js';
 
+  // Parse the command line arguments.
   program.name('which')
     .description('Find the instances of an executable in the system path.')
     .version(pkgVersion, '-v, --version')
@@ -25,11 +27,8 @@ async function main() {
     process.exit(64);
   }
 
-  let executables = await which(program.executable, {
-    all: program.all,
-    onError: () => process.exit(1)
-  });
-
+  // Run the program.
+  let executables = await which(program.executable, {all: program.all, onError: () => process.exit(1)});
   if (!program.silent) {
     if (!Array.isArray(executables)) executables = [executables];
     for (let path of executables) console.log(path);
