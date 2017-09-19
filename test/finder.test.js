@@ -10,6 +10,7 @@ const {Finder} = require('../lib');
  * @test {Finder}
  */
 describe('Finder', () => {
+  const onPosixIt = Finder.isWindows ? it.skip : it;
 
   /**
    * @test {Finder#constructor}
@@ -111,15 +112,15 @@ describe('Finder', () => {
   /**
    * @test {Finder#_checkFilePermissions}
    */
-  (Finder.isWindows ? describe.skip : describe)('#_checkFilePermissions()', () => {
+  describe('#_checkFilePermissions()', () => {
     const getStats = promisify(stat);
 
-    it('it should return `false` if the file is not executable at all', async () => {
+    onPosixIt('should return `false` if the file is not executable at all', async () => {
       let fileStats = await getStats('test/fixtures/not_executable.sh');
       expect((new Finder)._checkFilePermissions(fileStats)).to.be.false;
     });
 
-    it('it should return `true` if the file is executable by everyone', async () => {
+    onPosixIt('should return `true` if the file is executable by everyone', async () => {
       let fileStats = await getStats('test/fixtures/executable.sh');
       expect((new Finder)._checkFilePermissions(fileStats)).to.be.true;
     });
