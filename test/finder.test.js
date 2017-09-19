@@ -10,7 +10,6 @@ const {Finder} = require('../lib');
  * @test {Finder}
  */
 describe('Finder', () => {
-  const onPosixIt = Finder.isWindows ? it.skip : it;
 
   /**
    * @test {Finder#constructor}
@@ -114,6 +113,7 @@ describe('Finder', () => {
    */
   describe('#_checkFilePermissions()', () => {
     const getStats = promisify(stat);
+    const onPosixIt = Finder.isWindows ? it.skip : it;
 
     onPosixIt('should return `false` if the file is not executable at all', async () => {
       let fileStats = await getStats('test/fixtures/not_executable.sh');
