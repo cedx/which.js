@@ -4,10 +4,13 @@
   "description": "Find the instances of an executable in the system path.",
   "homepage": "https://github.com/cedx/which.js",
   "license": "MIT",
-  "main": "./lib/index",
+  "main": "./lib/index.js",
   "name": "@cedx/which",
   "repository": "cedx/which.js",
-  "version": "3.0.0",
+  "version": "3.1.0",
+  "bin": {
+    "which": "./bin/cli.js"
+  },
   "dependencies": {
     "commander": "^2.11.0"
   },
