@@ -18,7 +18,7 @@ describe('Finder', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
       let pathEnv = 'PATH' in process.env ? process.env.PATH : '';
       let path = pathEnv.length ? pathEnv.split(delimiter) : [];
-      expect((new Finder).path).to.have.ordered.members(path);
+      expect(new Finder().path).to.have.ordered.members(path);
     });
 
     it('should split the input path using the path separator', () => {
@@ -29,7 +29,7 @@ describe('Finder', () => {
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
       let pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
       let extensions = pathExt.length ? pathExt.split(delimiter) : [];
-      expect((new Finder).extensions).to.have.ordered.members(extensions);
+      expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
 
     it('should split the extension list using the path separator', () => {
@@ -38,7 +38,7 @@ describe('Finder', () => {
     });
 
     it('should set the `pathSeparator` property to the value of the `path.delimiter` constant by default', () => {
-      expect((new Finder).pathSeparator).to.equal(delimiter);
+      expect(new Finder().pathSeparator).to.equal(delimiter);
     });
 
     it('should properly set the path separator', () => {
@@ -68,15 +68,15 @@ describe('Finder', () => {
    */
   describe('#isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
-      expect(await (new Finder).isExecutable(__filename)).to.be.false;
+      expect(await new Finder().isExecutable(__filename)).to.be.false;
     });
 
     it('should return `false` for a POSIX executable, when test is run on Windows', async () => {
-      expect(await (new Finder).isExecutable('test/fixtures/executable.sh')).to.not.equal(Finder.isWindows);
+      expect(await new Finder().isExecutable('test/fixtures/executable.sh')).to.not.equal(Finder.isWindows);
     });
 
     it('should return `false` for a Windows executable, when test is run on POSIX', async () => {
-      expect(await (new Finder).isExecutable('test/fixtures/executable.cmd')).to.equal(Finder.isWindows);
+      expect(await new Finder().isExecutable('test/fixtures/executable.cmd')).to.equal(Finder.isWindows);
     });
   });
 
@@ -117,12 +117,12 @@ describe('Finder', () => {
 
     onPosixIt('should return `false` if the file is not executable at all', async () => {
       let fileStats = await getStats('test/fixtures/not_executable.sh');
-      expect((new Finder)._checkFilePermissions(fileStats)).to.be.false;
+      expect(new Finder()._checkFilePermissions(fileStats)).to.be.false;
     });
 
     onPosixIt('should return `true` if the file is executable by everyone', async () => {
       let fileStats = await getStats('test/fixtures/executable.sh');
-      expect((new Finder)._checkFilePermissions(fileStats)).to.be.true;
+      expect(new Finder()._checkFilePermissions(fileStats)).to.be.true;
     });
   });
 });
