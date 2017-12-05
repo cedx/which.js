@@ -24,21 +24,23 @@ async function main() {
 
   if (!program.executable) {
     program.outputHelp();
-    process.exit(64);
+    process.exitCode = 64;
+    return;
   }
 
   // Run the program.
-  let executables = await which(program.executable, {all: program.all, onError: () => process.exit(1)});
+  let executables = await which(program.executable, {all: program.all});
   if (!program.silent) {
     if (!Array.isArray(executables)) executables = [executables];
     for (let path of executables) console.log(path);
   }
-
-  process.exit(0);
 }
 
 // Start the application.
 if (module === require.main) main().catch(err => {
-  console.error(err);
-  process.exit(2);
+  if (err.name == 'FileSystemException') process.exitCode = 1;
+  else {
+    console.error(err);
+    process.exitCode = 2;
+  }
 });
