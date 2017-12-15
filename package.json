@@ -9,7 +9,7 @@
   "repository": "cedx/which.js",
   "version": "3.1.0",
   "bin": {
-    "which": "./bin/cli.js"
+    "which": "./bin/which.js"
   },
   "dependencies": {
     "commander": "^2.12.2"
