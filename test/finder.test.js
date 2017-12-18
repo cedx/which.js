@@ -4,7 +4,7 @@ const {expect} = require('chai');
 const {stat} = require('fs');
 const {delimiter} = require('path');
 const {promisify} = require('util');
-const {Finder} = require('../lib');
+const {Finder} = require('../lib/index.js');
 
 /**
  * @test {Finder}

@@ -2,7 +2,7 @@
 'use strict';
 
 const program = require('commander');
-const {which} = require('../lib');
+const {which} = require('../lib/index.js');
 const {version: pkgVersion} = require('../package.json');
 
 /**
