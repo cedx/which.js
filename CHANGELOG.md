@@ -1,5 +1,7 @@
 # Changelog
-This file contains highlights of what changes on each version of the [Which for JS](https://github.com/cedx/which.js) library.
+
+## Version [3.2.0](https://github.com/cedx/which.js/compare/v3.1.0...v3.2.0)
+- Added a user guide based on [MkDocs](http://www.mkdocs.org).
 
 ## Version [3.1.0](https://github.com/cedx/which.js/compare/v3.0.0...v3.1.0)
 - Updated the package dependencies.
