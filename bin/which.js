@@ -38,7 +38,7 @@ async function main() {
 
 // Start the application.
 if (module === require.main) main().catch(err => {
-  if (err.name == 'FileSystemException') process.exitCode = 1;
+  if (err.name == 'FileSystemError') process.exitCode = 1;
   else {
     console.error(err);
     process.exitCode = 2;
