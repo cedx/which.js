@@ -22,11 +22,11 @@
     "esdoc": "^1.0.4",
     "esdoc-node": "^1.0.2",
     "esdoc-standard-plugin": "^1.0.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.0",
     "mocha": "^4.0.1",
     "nsp": "^3.1.0",
     "nyc": "^11.4.1"
+    "gulp": "^4.0.0",
+    "gulp-eslint": "^4.0.2",
   },
   "engines": {
     "node": ">=8.9.0"
