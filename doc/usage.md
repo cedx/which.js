@@ -1,0 +1,115 @@
+path: blob/master/lib
+source: which.js
+
+# Usage
+
+## Find the instances of an executable
+This package provides a single function, `which()`, allowing to locate a command in the system path:
+
+```js
+const {which} = require('@cedx/which');
+
+async function main() {
+  try {
+    // `path` is the absolute path to the executable.
+    let path = await which('foobar');
+    console.log(`The command "foobar" is located at: ${path}`);
+  }
+
+  catch (err) {
+    // `err` is an instanceof `FinderError`.
+    console.log(`The command "${err.command}" was not found.`);
+  }
+}
+```
+
+The function returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with the absolute path of the first instance of the executables found. If the command could not be located, the promise rejects with a `FinderError`.
+
+## Options
+The behavior of the `which()` function can be customized using the following optional parameters.
+
+### **all**: boolean = `false`
+A value indicating whether to return all executables found, instead of just the first one.
+
+If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
+
+```js
+const {which} = require('@cedx/which');
+
+async function main() {
+  let paths = await which('foobar', {all: true});
+  console.log('The command "foobar" was found at these locations:');
+  for (let path of paths) console.log(path);
+}
+```
+
+### **extensions**: string | string[] = `""`
+The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
+
+The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension:
+
+```js
+which('foobar', {extensions: '.FOO;.EXE;.CMD'});
+which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
+```
+
+### **onError**: function(command: string): *
+By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
+
+```js
+const {which} = require('@cedx/which');
+
+async function main() {
+  let path = await which('foobar', {onError: command => ''});
+  if (!path.length) console.log('The command "foobar" was not found');
+  else console.log(`The command "foobar" is located at: ${path}`);
+}
+```
+
+When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `Error`.
+
+### **path**: string | string[] = `""`
+The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
+
+```js
+which('foobar', {path: '/usr/local/bin:/usr/bin'});
+which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
+```
+
+### **pathSeparator**: string = `""`
+The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
+
+```js
+which('foobar', {pathSeparator: '#'});
+// For example: "/usr/local/bin#/usr/bin"
+```
+
+## Command line interface
+From a command prompt, install the `which` executable:
+
+```shell
+npm install --global @cedx/which
+```
+
+Then use it to find the instances of an executable command:
+
+```shell
+which --help
+
+  Usage: which [options] <command>
+
+  Find the instances of an executable in the system path.
+
+  Options:
+
+    -v, --version  output the version number
+    -a, --all      list all instances of executables found (instead of just the first one)
+    -s, --silent   silence the output, just return the exit code (0 if any executable is found, otherwise 1)
+    -h, --help     output usage information
+```
+
+For example:
+
+```shell
+which --all node
+```
