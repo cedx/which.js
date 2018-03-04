@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('chai');
-const {Finder, which} = require('../lib/index.js');
+const {Finder, FinderError, which} = require('../lib/index.js');
 
 /**
  * @test {which}
@@ -16,7 +16,7 @@ describe('which()', () => {
 
     catch (err) {
       if (Finder.isWindows) expect(true).to.not.be.ok;
-      else expect(true).to.be.ok;
+      else expect(err).to.be.an.instanceof(FinderError);
     }
   });
 
@@ -32,7 +32,7 @@ describe('which()', () => {
 
     catch (err) {
       if (Finder.isWindows) expect(true).to.not.be.ok;
-      else expect(true).to.be.ok;
+      else expect(err).to.be.an.instanceof(FinderError);
     }
   });
 
@@ -44,7 +44,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows) expect(true).to.be.ok;
+      if (Finder.isWindows) expect(err).to.be.an.instanceof(FinderError);
       else expect(true).to.not.be.ok;
     }
   });
@@ -60,7 +60,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows) expect(true).to.be.ok;
+      if (Finder.isWindows) expect(err).to.be.an.instanceof(FinderError);
       else expect(true).to.not.be.ok;
     }
   });
