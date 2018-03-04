@@ -2,6 +2,7 @@
 
 ## Version [3.2.0](https://github.com/cedx/which.js/compare/v3.1.0...v3.2.0)
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
+- Added the `FinderError` class.
 - Updated the build system to [Gulp](https://gulpjs.com) version 4.
 - Updated the package dependencies.
 

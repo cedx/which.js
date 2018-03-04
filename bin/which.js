@@ -2,7 +2,7 @@
 'use strict';
 
 const program = require('commander');
-const {which} = require('../lib/index.js');
+const {FinderError, which} = require('../lib/index.js');
 const {version: pkgVersion} = require('../package.json');
 
 /**
@@ -38,7 +38,7 @@ async function main() {
 
 // Start the application.
 if (module === require.main) main().catch(err => {
-  if (err.name == 'FileSystemError') process.exitCode = 1;
+  if (err instanceof FinderError) process.exitCode = 1;
   else {
     console.error(err);
     process.exitCode = 2;
