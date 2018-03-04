@@ -34,7 +34,7 @@ describe('Finder', () => {
 
     it('should split the extension list using the path separator', () => {
       let extensions = ['.EXE', '.CMD', '.BAT'];
-      expect(new Finder({extensions: extensions.join(delimiter)}).extensions).to.have.ordered.members(extensions);
+      expect(new Finder({extensions: extensions.join(delimiter)}).extensions).to.have.ordered.members(['.exe', '.cmd', '.bat']);
     });
 
     it('should set the `pathSeparator` property to the value of the `path.delimiter` constant by default', () => {
@@ -92,7 +92,7 @@ describe('Finder', () => {
       expect(finder._checkFileExtension('/home/logger.txt')).to.be.false;
       expect(finder._checkFileExtension('C:\\Program Files\\FooBar\\FooBar.dll')).to.be.false;
 
-      finder.extensions = ['.BAR'];
+      finder.extensions = ['.bar'];
       expect(finder._checkFileExtension('foo.exe')).to.be.false;
     });
 
@@ -103,8 +103,8 @@ describe('Finder', () => {
       expect(finder._checkFileExtension('/home/logger.bat')).to.be.true;
       expect(finder._checkFileExtension('C:\\Program Files\\FooBar\\FooBar.cmd')).to.be.true;
 
-      finder.extensions = ['.BAR'];
-      expect(finder._checkFileExtension('foo.bar')).to.be.true;
+      finder.extensions = ['.bar'];
+      expect(finder._checkFileExtension('foo.BAR')).to.be.true;
     });
   });
 
