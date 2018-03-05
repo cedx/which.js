@@ -3,7 +3,7 @@
 
 const program = require('commander');
 const {FinderError, which} = require('../lib/index.js');
-const {version: pkgVersion} = require('../package.json');
+const pkg = require('../package.json');
 
 /**
  * Application entry point.
@@ -15,7 +15,7 @@ async function main() {
   // Parse the command line arguments.
   program.name('which')
     .description('Find the instances of an executable in the system path.')
-    .version(pkgVersion, '-v, --version')
+    .version(pkg.version, '-v, --version')
     .option('-a, --all', 'list all instances of executables found (instead of just the first one)')
     .option('-s, --silent', 'silence the output, just return the exit code (0 if any executable is found, otherwise 1)')
     .arguments('<command>')
