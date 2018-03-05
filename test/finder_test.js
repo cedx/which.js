@@ -28,7 +28,7 @@ describe('Finder', () => {
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
       let pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
-      let extensions = pathExt.length ? pathExt.split(delimiter) : [];
+      let extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
       expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
 
