@@ -28,7 +28,7 @@ The function returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/
 ## Options
 The behavior of the `which()` function can be customized using the following optional parameters.
 
-### **all**: boolean = `false`
+### **all**: boolean
 A value indicating whether to return all executables found, instead of just the first one.
 
 If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
@@ -43,7 +43,7 @@ async function main() {
 }
 ```
 
-### **extensions**: string | string[] = `""`
+### **extensions**: string | string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
 ```js
@@ -69,7 +69,7 @@ async function main() {
 
 When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `FinderError`.
 
-### **path**: string | string[] = `""`
+### **path**: string | string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
 ```js
@@ -77,7 +77,7 @@ which('foobar', {path: '/usr/local/bin:/usr/bin'});
 which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ```
 
-### **pathSeparator**: string = `""`
+### **pathSeparator**: string
 The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
 
 ```js
