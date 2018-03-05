@@ -17,8 +17,8 @@ async function main() {
   }
 
   catch (err) {
-    // `err` is an instanceof `FinderError`.
-    console.log(`The command "${err.command}" was not found.`);
+    // `err` is an instance of `FinderError`.
+    console.log(`The command "${err.command}" was not found`);
   }
 }
 ```
@@ -46,12 +46,13 @@ async function main() {
 ### **extensions**: string | string[] = `""`
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension:
-
 ```js
 which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ```
+
+!!! tip
+    The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension.
 
 ### **onError**: function(command: string): *
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
@@ -66,7 +67,7 @@ async function main() {
 }
 ```
 
-When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `Error`.
+When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `FinderError`.
 
 ### **path**: string | string[] = `""`
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
@@ -90,6 +91,9 @@ From a command prompt, install the `which` executable:
 ```shell
 npm install --global @cedx/which
 ```
+
+!!! tip
+    Consider adding the [`npm install --global`](https://docs.npmjs.com/files/folders) executables directory to your system path.
 
 Then use it to find the instances of an executable command:
 
