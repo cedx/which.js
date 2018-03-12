@@ -11,11 +11,11 @@ describe('which()', () => {
     try {
       let executable = await which('executable', {all: false, path: 'test/fixtures'});
       if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
-      else expect(true).to.not.be.ok;
+      else expect.fail('Error not thrown');
     }
 
     catch (err) {
-      if (Finder.isWindows) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect.fail(err.message);
       else expect(err).to.be.an.instanceof(FinderError);
     }
   });
@@ -23,7 +23,7 @@ describe('which()', () => {
   it('should return all the paths of the `executable.cmd` file on Windows', async () => {
     try {
       let executables = await which('executable', {all: true, path: 'test/fixtures'});
-      if (!Finder.isWindows) expect(true).to.not.be.ok;
+      if (!Finder.isWindows) expect.fail('Error not thrown');
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
         expect(executables[0]).to.be.a('string').and.match(/\\test\\fixtures\\executable\.cmd$/);
@@ -31,7 +31,7 @@ describe('which()', () => {
     }
 
     catch (err) {
-      if (Finder.isWindows) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect.fail(err.message);
       else expect(err).to.be.an.instanceof(FinderError);
     }
   });
@@ -39,20 +39,20 @@ describe('which()', () => {
   it('should return the path of the `executable.sh` file on POSIX', async () => {
     try {
       let executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
-      if (Finder.isWindows) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect.fail('Error not thrown');
       else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
     }
 
     catch (err) {
       if (Finder.isWindows) expect(err).to.be.an.instanceof(FinderError);
-      else expect(true).to.not.be.ok;
+      else expect.fail(err.message);
     }
   });
 
   it('should return all the paths of the `executable.sh` file on POSIX', async () => {
     try {
       let executables = await which('executable.sh', {all: true, path: 'test/fixtures'});
-      if (Finder.isWindows) expect(true).to.not.be.ok;
+      if (Finder.isWindows) expect.fail('Error not thrown');
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
         expect(executables[0]).to.be.a('string').and.match(/\/test\/fixtures\/executable\.sh$/);
@@ -61,7 +61,7 @@ describe('which()', () => {
 
     catch (err) {
       if (Finder.isWindows) expect(err).to.be.an.instanceof(FinderError);
-      else expect(true).to.not.be.ok;
+      else expect.fail(err.message);
     }
   });
 
