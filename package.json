@@ -7,7 +7,7 @@
   "main": "./lib/index.js",
   "name": "@cedx/which",
   "repository": "cedx/which.js",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "bin": {
     "which": "./bin/which.js"
   },
