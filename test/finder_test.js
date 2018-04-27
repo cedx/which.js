@@ -1,9 +1,8 @@
 'use strict';
 
 const {expect} = require('chai');
-const {stat} = require('fs');
+const {stat} = require('fs/promises');
 const {delimiter} = require('path');
-const {promisify} = require('util');
 const {Finder} = require('../lib/index.js');
 
 /**
@@ -68,7 +67,7 @@ describe('Finder', () => {
    */
   describe('#isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
-      expect(await new Finder().isExecutable(__filename)).to.be.false;
+      expect(await new Finder().isExecutable(`${__dirname}/../AUTHORS.txt`)).to.be.false;
     });
 
     it('should return `false` for a POSIX executable, when test is run on Windows', async () => {
@@ -112,16 +111,15 @@ describe('Finder', () => {
    * @test {Finder#_checkFilePermissions}
    */
   describe('#_checkFilePermissions()', () => {
-    const getStats = promisify(stat);
     const onPosixIt = Finder.isWindows ? it.skip : it;
 
     onPosixIt('should return `false` if the file is not executable at all', async () => {
-      let fileStats = await getStats('test/fixtures/not_executable.sh');
+      let fileStats = await stat('test/fixtures/not_executable.sh');
       expect(new Finder()._checkFilePermissions(fileStats)).to.be.false;
     });
 
     onPosixIt('should return `true` if the file is executable by everyone', async () => {
-      let fileStats = await getStats('test/fixtures/executable.sh');
+      let fileStats = await stat('test/fixtures/executable.sh');
       expect(new Finder()._checkFilePermissions(fileStats)).to.be.true;
     });
   });
