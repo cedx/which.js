@@ -1,5 +1,6 @@
 # Changelog
 
+## Version [4.0.0](https://github.com/cedx/which.js/compare/v3.2.1...v4.0.0)
 ## Version [3.2.1](https://github.com/cedx/which.js/compare/v3.2.0...v3.2.1)
 - Fixed [issue #1](https://github.com/cedx/which.js/issues/1): the `which()` function can return duplicates.
 
