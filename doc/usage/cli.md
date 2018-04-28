@@ -29,4 +29,5 @@ For example:
 
 ```shell
 which --all node
+# /usr/bin/node
 ```
