@@ -1,7 +1,7 @@
 # See also
 
 ## Development
-- [API reference](https://cedx.github.io/which.js/api)
+- [API reference](https://dev.belin.io/which.js/api)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
 
 ## Testing
@@ -9,5 +9,5 @@
 - [Code coverage](https://coveralls.io/github/cedx/which.js)
 
 ## Other implementations
-- Dart: [Where.dart](https://cedx.github.io/where.dart)
-- PHP: [Which for PHP](https://cedx.github.io/which.php)
+- Dart: [Where.dart](https://dev.belin.io/where.dart)
+- PHP: [Which for PHP](https://dev.belin.io/which.php)

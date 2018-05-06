@@ -2,7 +2,7 @@
   "author": "Cédric Belin <cedric@belin.io>",
   "bugs": "https://github.com/cedx/which.js/issues",
   "description": "Find the instances of an executable in the system path.",
-  "homepage": "https://cedx.github.io/which.js",
+  "homepage": "https://dev.belin.io/which.js",
   "license": "MIT",
   "main": "./lib/index.js",
   "name": "@cedx/which",
