@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [4.0.1](https://github.com/cedx/which.js/compare/v4.0.0...v4.0.1)
+- Updated the usage of the `fs` promises API.
+- Updated the package dependencies.
+
 ## Version [4.0.0](https://github.com/cedx/which.js/compare/v3.2.1...v4.0.0)
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
 - Updated the package dependencies.
