@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('chai');
-const {stat} = require('fs/promises');
+const {promises} = require('fs');
 const {delimiter} = require('path');
 const {Finder} = require('../lib/index.js');
 
@@ -114,12 +114,12 @@ describe('Finder', () => {
     const onPosixIt = Finder.isWindows ? it.skip : it;
 
     onPosixIt('should return `false` if the file is not executable at all', async () => {
-      let fileStats = await stat('test/fixtures/not_executable.sh');
+      let fileStats = await promises.stat('test/fixtures/not_executable.sh');
       expect(new Finder()._checkFilePermissions(fileStats)).to.be.false;
     });
 
     onPosixIt('should return `true` if the file is executable by everyone', async () => {
-      let fileStats = await stat('test/fixtures/executable.sh');
+      let fileStats = await promises.stat('test/fixtures/executable.sh');
       expect(new Finder()._checkFilePermissions(fileStats)).to.be.true;
     });
   });
