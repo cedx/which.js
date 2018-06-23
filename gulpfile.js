@@ -69,6 +69,11 @@ gulp.task('upgrade', async () => {
 gulp.task('watch', () => gulp.watch(['lib/**/*.js', 'test/**/*.js'], gulp.task('test')));
 
 /**
+ * Runs the default tasks.
+ */
+gulp.task('default', gulp.task('test'));
+
+/**
  * Spawns a new process using the specified command.
  * @param {string} command The command to run.
  * @param {string[]} [args] The command arguments.
