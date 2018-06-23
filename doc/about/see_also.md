@@ -5,7 +5,7 @@
 - [npm package](https://www.npmjs.com/package/@cedx/which)
 
 ## Testing
-- [Continuous integration](https://travis-ci.org/cedx/which.js)
+- [Continuous integration](https://travis-ci.com/cedx/which.js)
 - [Code coverage](https://coveralls.io/github/cedx/which.js)
 
 ## Other implementations
