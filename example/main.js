@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {which} = require('@cedx/which');
 
 /**
