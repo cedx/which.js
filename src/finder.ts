@@ -51,9 +51,7 @@ export class Finder {
     }
 
     this.extensions = extensions.map(extension => extension.toLowerCase());
-    console.log(this.extensions);
     this.path = path.map(directory => directory.replace(/^"+|"+$/g, ''));
-    console.log(this.path);
   }
 
   /**

@@ -8,6 +8,7 @@ const {Finder} = require('../lib/index.js');
  * @test {Finder}
  */
 describe('Finder', () => {
+  /* tslint:disable: no-unused-expression */
 
   /**
    * @test {Finder#constructor}

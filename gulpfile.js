@@ -4,13 +4,23 @@ const {david} = require('@cedx/gulp-david');
 const {spawn} = require('child_process');
 const del = require('del');
 const gulp = require('gulp');
-const eslint = require('gulp-eslint');
 const {normalize} = require('path');
+
+/**
+ * The file patterns providing the list of source files.
+ * @type {string[]}
+ */
+const existingSources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.js'];
+
+/**
+ * Builds the project.
+ */
+gulp.task('build', () => _exec('node_modules/.bin/tsc'));
 
 /**
  * Deletes all generated files and reset any saved state.
  */
-gulp.task('clean', () => del(['.nyc_output', 'doc/api', 'var/**/*', 'web']));
+gulp.task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
 
 /**
  * Sends the results of the code coverage.
@@ -34,26 +44,19 @@ gulp.task('doc', gulp.series('doc:api', 'doc:web'));
 /**
  * Fixes the coding standards issues.
  */
-gulp.task('fix:js', () => gulp.src(['*.js', 'bin/*.js', 'example/*.js', 'lib/**/*.js', 'test/**/*.js'], {base: '.'})
-  .pipe(eslint({fix: true}))
-  .pipe(gulp.dest('.'))
-);
-
+gulp.task('fix:js', () => _exec('node_modules/.bin/tslint', ['--fix', ...existingSources]));
 gulp.task('fix:security', () => _exec('npm', ['audit', 'fix']));
 gulp.task('fix', gulp.series('fix:js', 'fix:security'));
 
 /**
  * Performs static analysis of source code.
  */
-gulp.task('lint', () => gulp.src(['*.js', 'bin/*.js', 'example/*.js', 'lib/**/*.js', 'test/**/*.js'])
-  .pipe(eslint())
-  .pipe(eslint.format())
-);
+gulp.task('lint', () => _exec('node_modules/.bin/tslint', existingSources));
 
 /**
  * Runs the unit tests.
  */
-gulp.task('test', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha')]));
+gulp.task('test', gulp.series('build', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha')])));
 
 /**
  * Upgrades the project to the latest revision.
@@ -69,12 +72,15 @@ gulp.task('upgrade', async () => {
 /**
  * Watches for file changes.
  */
-gulp.task('watch', () => gulp.watch(['lib/**/*.js', 'test/**/*.js'], gulp.task('test')));
+gulp.task('watch', () => gulp.watch(['src/**/*.ts', 'test/**/*.js'], gulp.series(
+  gulp.task('build'),
+  gulp.task('test'),
+)));
 
 /**
  * Runs the default tasks.
  */
-gulp.task('default', gulp.task('test'));
+gulp.task('default', gulp.task('build'));
 
 /**
  * Spawns a new process using the specified command.
