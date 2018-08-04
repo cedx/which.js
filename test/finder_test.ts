@@ -1,8 +1,7 @@
-'use strict';
-
-const {expect} = require('chai');
-const {delimiter} = require('path');
-const {Finder} = require('../lib/index.js');
+import {expect} from 'chai';
+import 'mocha';
+import {delimiter} from 'path';
+import {Finder} from '../lib';
 
 /**
  * @test {Finder}

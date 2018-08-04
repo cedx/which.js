@@ -7,6 +7,7 @@
   "main": "./lib/index.js",
   "name": "@cedx/which",
   "repository": "cedx/which.js",
+  "types": "./lib/index.d.ts",
   "version": "4.0.1",
   "bin": {
     "which": "./bin/which.js"
@@ -23,10 +24,14 @@
     "esdoc-standard-plugin": "^1.0.0",
     "esdoc-typescript-plugin": "^1.0.1",
     "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
+    "source-map-support": "^0.5.6",
+    "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^10.5.6"
   },
   "engines": {
@@ -42,6 +47,6 @@
   "scripts": {
     "coverage": "coveralls var/lcov.info",
     "prepare": "tsc",
-    "test": "nyc mocha"
+    "test": "nyc mocha test/**/*.ts"
   }
 }
