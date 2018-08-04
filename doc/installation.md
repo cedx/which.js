@@ -31,8 +31,8 @@ npm install @cedx/which
 ```
 
 ### 2. Import it
-Now in your [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) code, you can use:
+Now in your [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) or [TypeScript](https://www.typescriptlang.org) code, you can use:
 
-```js
-const {which} = require('@cedx/which');
+```ts
+import {which} from '@cedx/which';
 ```

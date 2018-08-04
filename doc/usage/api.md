@@ -1,16 +1,16 @@
-path: blob/master/lib
-source: which.js
+path: blob/master/src
+source: which.ts
 
 # Application programming interface
 This package provides a single function, `which()`, allowing to locate a command in the system path:
 
-```js
-const {which} = require('@cedx/which');
+```ts
+import {which} from '@cedx/which';
 
-async function main() {
+async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
-    let path = await which('foobar');
+    const path: string = await which('foobar');
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
@@ -21,7 +21,7 @@ async function main() {
 }
 ```
 
-The function returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with the absolute path of the first instance of the executables found. If the command could not be located, the promise rejects with a `FinderError`.
+The function returns a [`Promise<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with the absolute path of the first instance of the executables found. If the command could not be located, the promise rejects with a `FinderError`.
 
 ## Options
 The behavior of the `which()` function can be customized using the following optional parameters.
@@ -31,20 +31,20 @@ A value indicating whether to return all executables found, instead of just the 
 
 If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
 
-```js
-const {which} = require('@cedx/which');
+```ts
+import {which} from '@cedx/which';
 
-async function main() {
-  let paths = await which('foobar', {all: true});
+async function main(): Promise<void> {
+  const paths = await which('foobar', {all: true});
   console.log('The command "foobar" was found at these locations:');
-  for (let path of paths) console.log(path);
+  for (const path of paths) console.log(path);
 }
 ```
 
 ### **extensions**: string | string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```js
+```ts
 which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ```
@@ -55,11 +55,11 @@ which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ### **onError**: function(command: string): *
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
 
-```js
-const {which} = require('@cedx/which');
+```ts
+import {which} from '@cedx/which';
 
-async function main() {
-  let path = await which('foobar', {onError: command => ''});
+async function main(): Promise<void> {
+  const path = await which('foobar', {onError: command => ''});
   if (!path.length) console.log('The command "foobar" was not found');
   else console.log(`The command "foobar" is located at: ${path}`);
 }
@@ -70,7 +70,7 @@ When an `onError` handler is provided, it is called with the command as argument
 ### **path**: string | string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
-```js
+```ts
 which('foobar', {path: '/usr/local/bin:/usr/bin'});
 which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ```
@@ -78,7 +78,7 @@ which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ### **pathSeparator**: string
 The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
 
-```js
+```ts
 which('foobar', {pathSeparator: '#'});
 // For example: "/usr/local/bin#/usr/bin"
 ```
