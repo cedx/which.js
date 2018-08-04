@@ -1,7 +1,7 @@
 {
   "all": true,
   "cache": true,
-  "include": ["lib/**/*.js"],
+  "include": ["src/**/*.ts"],
   "report-dir": "var",
   "reporter": ["lcovonly"]
 }

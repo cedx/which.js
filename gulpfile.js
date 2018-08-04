@@ -4,18 +4,28 @@ const {david} = require('@cedx/gulp-david');
 const {spawn} = require('child_process');
 const del = require('del');
 const gulp = require('gulp');
+const typescript = require('gulp-typescript');
 const {normalize} = require('path');
+
+/**
+ * The TypeScript project supporting incremental compilation.
+ * @type {compile.Project}
+ */
+const project = typescript.createProject('tsconfig.json');
 
 /**
  * The file patterns providing the list of source files.
  * @type {string[]}
  */
-const existingSources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.js'];
+const sources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.ts'];
 
 /**
  * Builds the project.
  */
-gulp.task('build', () => _exec('node_modules/.bin/tsc'));
+gulp.task('build', () => gulp.src('src/**/*.ts')
+  .pipe(project())
+  .pipe(gulp.dest('lib'))
+);
 
 /**
  * Deletes all generated files and reset any saved state.
@@ -44,19 +54,19 @@ gulp.task('doc', gulp.series('doc:api', 'doc:web'));
 /**
  * Fixes the coding standards issues.
  */
-gulp.task('fix:js', () => _exec('node_modules/.bin/tslint', ['--fix', ...existingSources]));
+gulp.task('fix:js', () => _exec('node_modules/.bin/tslint', ['--fix', ...sources]));
 gulp.task('fix:security', () => _exec('npm', ['audit', 'fix']));
 gulp.task('fix', gulp.series('fix:js', 'fix:security'));
 
 /**
  * Performs static analysis of source code.
  */
-gulp.task('lint', () => _exec('node_modules/.bin/tslint', existingSources));
+gulp.task('lint', () => _exec('node_modules/.bin/tslint', sources));
 
 /**
  * Runs the unit tests.
  */
-gulp.task('test', gulp.series('build', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha')])));
+gulp.task('test', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha'), 'test/**/*.ts']));
 
 /**
  * Upgrades the project to the latest revision.
@@ -72,10 +82,10 @@ gulp.task('upgrade', async () => {
 /**
  * Watches for file changes.
  */
-gulp.task('watch', () => gulp.watch(['src/**/*.ts', 'test/**/*.js'], gulp.series(
-  gulp.task('build'),
-  gulp.task('test'),
-)));
+gulp.task('watch', () => {
+  gulp.watch('src/**/*.ts', gulp.task('build'));
+  gulp.watch('test/**/*.ts', gulp.task('test'));
+});
 
 /**
  * Runs the default tasks.
@@ -89,7 +99,7 @@ gulp.task('default', gulp.task('build'));
  * @param {Object} [options] The settings to customize how the process is spawned.
  * @return {Promise} Completes when the command is finally terminated.
  */
-async function _exec(command, args = [], options = {shell: true, stdio: 'inherit'}) {
+function _exec(command, args = [], options = {shell: true, stdio: 'inherit'}) {
   return new Promise((resolve, reject) => spawn(normalize(command), args, options)
     .on('close', code => code ? reject(new Error(`${command}: ${code}`)) : resolve())
   );

@@ -8,7 +8,7 @@ async function main(): Promise<void> {
 
   try {
     // `path` is the absolute path to the executable.
-    const path: string = await which('foobar');
+    const path = await which('foobar');
     console.log(`The command "foobar" is located at: ${path}`);
   }
 

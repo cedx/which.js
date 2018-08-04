@@ -1,7 +1,6 @@
-'use strict';
-
-const {expect} = require('chai');
-const {Finder, FinderError, which} = require('../lib/index.js');
+import {expect} from 'chai';
+import 'mocha';
+import {Finder, FinderError, which} from '../src';
 
 /**
  * @test {which}
@@ -11,7 +10,7 @@ describe('which()', () => {
 
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
-      const executable = await which('executable', {all: false, path: 'test/fixtures'});
+      const executable = await which('executable', {all: false, path: 'test/fixtures'}) as string;
       if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
       else expect.fail('Error not thrown');
     }
@@ -40,7 +39,7 @@ describe('which()', () => {
 
   it('should return the path of the `executable.sh` file on POSIX', async () => {
     try {
-      const executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
+      const executable = await which('executable.sh', {all: false, path: 'test/fixtures'}) as string;
       if (Finder.isWindows) expect.fail('Error not thrown');
       else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
     }
