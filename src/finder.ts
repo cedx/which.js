@@ -1,67 +1,64 @@
-const {promises} = require('fs');
-const {delimiter, extname, join, resolve} = require('path');
+import {promises, Stats} from 'fs';
+import {delimiter, extname, join, resolve} from 'path';
 
 /**
  * Finds the instances of an executable in the system path.
  */
-class Finder {
+export class Finder {
+
+  /**
+   * The list of executable file extensions.
+   */
+  public extensions: string[];
+
+  /**
+   * The list of system paths.
+   */
+  public path: string[];
+
+  /**
+   * The character used to separate paths in the system path.
+   */
+  public pathSeparator: string;
 
   /**
    * Value indicating whether the current platform is Windows.
-   * @type {boolean}
    */
-  static get isWindows() {
+  static get isWindows(): boolean {
     if (process.platform == 'win32') return true;
     return process.env.OSTYPE == 'cygwin' || process.env.OSTYPE == 'msys';
   }
 
   /**
-   * Initializes a new instance of the class from the following options:
-   * - `extensions`: A string, or a list of strings, specifying the executable file extensions. Defaults to the `PATHEXT` environment variable.
-   * - `path`: A string, or a list of strings, specifying the system path. Defaults to the `PATH` environment variable.
-   * - `pathSeparator`: The character used to separate paths in the system path. Defaults to the `path.delimiter` constant.
-   *
-   * @param {Object} [options] An object specifying values used to initialize this instance.
+   * Creates a new finder.
+   * @param [options] An object specifying values used to initialize this instance.
    */
-  constructor({extensions = '', path = '', pathSeparator = ''} = {}) {
-    if (!pathSeparator.length) pathSeparator = Finder.isWindows ? ';' : delimiter;
+  constructor(options: FinderOptions = {}) {
+    // tslint:disable-next-line: prefer-const
+    let {extensions = '', path = '', pathSeparator = ''} = options;
 
     if (!Array.isArray(path)) path = path.toString().split(pathSeparator).filter(item => item.length > 0);
     if (!path.length) {
-      let pathEnv = process.env.PATH;
+      const pathEnv = process.env.PATH;
       if (typeof pathEnv == 'string' && pathEnv.length) path = pathEnv.split(pathSeparator);
     }
 
     if (!Array.isArray(extensions)) extensions = extensions.toString().split(pathSeparator).filter(item => item.length > 0);
     if (!extensions.length && Finder.isWindows) {
-      let pathExt = process.env.PATHEXT;
+      const pathExt = process.env.PATHEXT;
       extensions = typeof pathExt == 'string' && pathExt.length ? pathExt.split(pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
     }
 
-    /**
-     * The list of executable file extensions.
-     * @type {string[]}
-     */
     this.extensions = extensions.map(extension => extension.toLowerCase());
-
-    /**
-     * The list of system paths.
-     * @type {string[]}
-     */
     this.path = path.map(directory => directory.replace(/^"+|"+$/g, ''));
-
-    /**
-     * The character used to separate paths in the system path.
-     * @type {string}
-     */
-    this.pathSeparator = pathSeparator;
+    this.pathSeparator = pathSeparator.length ? pathSeparator : (Finder.isWindows ? ';' : delimiter);
   }
 
   /**
    * The class name.
    * @type {string}
    */
-  get [Symbol.toStringTag]() {
+  get [Symbol.toStringTag](): string {
     return 'Finder';
   }
 
@@ -71,9 +68,9 @@ class Finder {
    * @param {boolean} [all] Value indicating whether to return all executables found, or just the first one.
    * @return {Promise<string[]>} The paths of the executables found, or an empty array if the command was not found.
    */
-  async find(command, all = true) {
-    let executables = [];
-    for (let path of this.path) {
+  public async find(command: string, all: boolean = true): Promise<string[]> {
+    const executables = [];
+    for (const path of this.path) {
       executables.push(...await this._findExecutables(path, command, all));
       if (!all && executables.length) return executables;
     }
@@ -86,9 +83,9 @@ class Finder {
    * @param {string} file The path of the file to be checked.
    * @return {Promise<boolean>} `true` if the specified file is executable, otherwise `false`.
    */
-  async isExecutable(file) {
+  public async isExecutable(file: string): Promise<boolean> {
     try {
-      let fileStats = await promises.stat(file);
+      const fileStats = await promises.stat(file);
       if (!fileStats.isFile()) return false;
       return Finder.isWindows ? this._checkFileExtension(file) : this._checkFilePermissions(fileStats);
     }
@@ -102,11 +99,11 @@ class Finder {
    * Returns a string representation of this object.
    * @return {string} The string representation of this object.
    */
-  toString() {
-    let values = [];
+  public toString(): string {
+    const values = [];
     if (this.path.length) values.push(`path: "${this.path.join(this.pathSeparator)}"`);
     if (this.extensions.length) values.push(`extensions: "${this.extensions.join(this.pathSeparator)}"`);
-    return `Finder(${values.join(', ')})`;
+    return `${this[Symbol.toStringTag]}(${values.join(', ')})`;
   }
 
   /**
@@ -114,7 +111,7 @@ class Finder {
    * @param {string} file The path of the file to be checked.
    * @return {boolean} Value indicating whether the specified file is executable.
    */
-  _checkFileExtension(file) {
+  private _checkFileExtension(file: string): boolean {
     return this.extensions.includes(extname(file).toLowerCase()) || this.extensions.includes(file.toLowerCase());
   }
 
@@ -123,17 +120,17 @@ class Finder {
    * @param {Stats} fileStats A reference to the file to be checked.
    * @return {boolean} Value indicating whether the specified file is executable.
    */
-  _checkFilePermissions(fileStats) {
+  private _checkFilePermissions(fileStats: Stats): boolean {
     // Others.
-    let perms = fileStats.mode;
+    const perms = fileStats.mode;
     if (perms & 0o001) return true;
 
     // Group.
-    let gid = typeof process.getgid == 'function' ? process.getgid() : -1;
+    const gid = typeof process.getgid == 'function' ? process.getgid() : -1;
     if (perms & 0o010) return gid == fileStats.gid;
 
     // Owner.
-    let uid = typeof process.getuid == 'function' ? process.getuid() : -1;
+    const uid = typeof process.getuid == 'function' ? process.getuid() : -1;
     if (perms & 0o100) return uid == fileStats.uid;
 
     // Root.
@@ -147,10 +144,10 @@ class Finder {
    * @param {boolean} [all] Value indicating whether to return all executables found, or just the first one.
    * @return {Promise<string[]>} The paths of the executables found, or an empty array if the command was not found.
    */
-  async _findExecutables(directory, command, all = true) {
-    let executables = [];
-    for (let extension of [''].concat(this.extensions)) {
-      let resolvedPath = resolve(join(directory, command) + extension.toLowerCase());
+  private async _findExecutables(directory: string, command: string, all: boolean = true): Promise<string[]> {
+    const executables = [];
+    for (const extension of [''].concat(this.extensions)) {
+      const resolvedPath = resolve(join(directory, command) + extension.toLowerCase());
       if (await this.isExecutable(resolvedPath)) {
         executables.push(resolvedPath);
         if (!all) return executables;
@@ -164,48 +161,48 @@ class Finder {
 /**
  * An exception caused by a `Finder` in a command lookup.
  */
-class FinderError extends Error {
+export class FinderError extends Error {
 
   /**
    * Creates a new finder error.
-   * @param {string} command The looked up command.
-   * @param {Finder} finder The finder used to lookup the command.
-   * @param {string} [message] A message describing the error.
+   * @param command The looked up command.
+   * @param finder The finder used to lookup the command.
+   * @param [message] A message describing the error.
    */
-  constructor(command, finder, message = '') {
+  constructor(public command: string, public finder: Finder, message: string = '') {
     super(message);
-
-    /**
-     * The looked up command.
-     * @type {string}
-     */
-    this.command = command;
-
-    /**
-     * The finder used to lookup the command.
-     * @type {Finder}
-     */
-    this.finder = finder;
-
-    /**
-     * The error name.
-     * @type {string}
-     */
     this.name = 'FinderError';
   }
 
   /**
    * Returns a string representation of this object.
-   * @return {string} The string representation of this object.
+   * @return The string representation of this object.
    */
-  toString() {
-    let values = [`"${this.command}"`];
+  public toString(): string {
+    const values = [`"${this.command}"`];
     if (this.finder.path.length) values.push(`finder: "${this.finder.path.join(this.finder.pathSeparator)}"`);
     if (this.message.length) values.push(`message: "${this.message}"`);
     return `FinderError(${values.join(', ')})`;
   }
 }
 
-// Module exports.
-exports.Finder = Finder;
-exports.FinderError = FinderError;
+/**
+ * Defines the options of a `Finder` instance.
+ */
+export interface FinderOptions {
+
+  /**
+   * The list of executable file extensions.
+   */
+  extensions?: string | string[];
+
+  /**
+   * The list of system paths.
+   */
+  path?: string | string[];
+
+  /**
+   * The character used to separate paths in the system path.
+   */
+  pathSeparator?: string;
+}

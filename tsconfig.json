@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "lib",
+    "target": "es2017"
+  },
+  "exclude": ["lib", "node_modules"],
+  "include": ["src/**/*"]
+}
