@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "module": "commonjs",
     "outDir": "lib",
+    "removeComments": true,
     "target": "es2017"
   },
-  "exclude": ["lib", "node_modules"],
   "include": ["src/**/*"]
 }

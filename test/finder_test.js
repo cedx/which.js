@@ -1,7 +1,6 @@
 'use strict';
 
 const {expect} = require('chai');
-const {promises} = require('fs');
 const {delimiter} = require('path');
 const {Finder} = require('../lib/index.js');
 
@@ -15,24 +14,24 @@ describe('Finder', () => {
    */
   describe('#constructor()', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
-      let pathEnv = 'PATH' in process.env ? process.env.PATH : '';
-      let path = pathEnv.length ? pathEnv.split(delimiter) : [];
+      const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
+      const path = pathEnv.length ? pathEnv.split(delimiter) : [];
       expect(new Finder().path).to.have.ordered.members(path);
     });
 
     it('should split the input path using the path separator', () => {
-      let path = ['/usr/local/bin', '/usr/bin'];
+      const path = ['/usr/local/bin', '/usr/bin'];
       expect(new Finder({path: path.join(delimiter)}).path).to.have.ordered.members(path);
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
-      let pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
-      let extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
+      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
+      const extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
       expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
 
     it('should split the extension list using the path separator', () => {
-      let extensions = ['.EXE', '.CMD', '.BAT'];
+      const extensions = ['.EXE', '.CMD', '.BAT'];
       expect(new Finder({extensions: extensions.join(delimiter)}).extensions).to.have.ordered.members(['.exe', '.cmd', '.bat']);
     });
 
@@ -50,13 +49,13 @@ describe('Finder', () => {
    */
   describe('#find()', () => {
     it('should return the path of the `executable.cmd` file on Windows', async () => {
-      let executables = await new Finder({path: 'test/fixtures'}).find('executable');
+      const executables = await new Finder({path: 'test/fixtures'}).find('executable');
       expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
       if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
     });
 
     it('should return the path of the `executable.sh` file on POSIX', async () => {
-      let executables = await new Finder({path: 'test/fixtures'}).find('executable.sh');
+      const executables = await new Finder({path: 'test/fixtures'}).find('executable.sh');
       expect(executables).to.have.lengthOf(Finder.isWindows ? 0 : 1);
       if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
     });
@@ -76,51 +75,6 @@ describe('Finder', () => {
 
     it('should return `false` for a Windows executable, when test is run on POSIX', async () => {
       expect(await new Finder().isExecutable('test/fixtures/executable.cmd')).to.equal(Finder.isWindows);
-    });
-  });
-
-  /**
-   * @test {Finder#_checkFileExtension}
-   */
-  describe('#_checkFileExtension()', () => {
-    it('should return `false` if the file has not an executable file extension', () => {
-      let finder = new Finder({extensions: ['.EXE', '.CMD', '.BAT']});
-      expect(finder._checkFileExtension('')).to.be.false;
-      expect(finder._checkFileExtension('exe.')).to.be.false;
-      expect(finder._checkFileExtension('foo.bar')).to.be.false;
-      expect(finder._checkFileExtension('/home/logger.txt')).to.be.false;
-      expect(finder._checkFileExtension('C:\\Program Files\\FooBar\\FooBar.dll')).to.be.false;
-
-      finder.extensions = ['.bar'];
-      expect(finder._checkFileExtension('foo.exe')).to.be.false;
-    });
-
-    it('should return `true` if the file has an executable file extension', () => {
-      let finder = new Finder({extensions: ['.EXE', '.CMD', '.BAT']});
-      expect(finder._checkFileExtension('.exe')).to.be.true;
-      expect(finder._checkFileExtension('foo.exe')).to.be.true;
-      expect(finder._checkFileExtension('/home/logger.bat')).to.be.true;
-      expect(finder._checkFileExtension('C:\\Program Files\\FooBar\\FooBar.cmd')).to.be.true;
-
-      finder.extensions = ['.bar'];
-      expect(finder._checkFileExtension('foo.BAR')).to.be.true;
-    });
-  });
-
-  /**
-   * @test {Finder#_checkFilePermissions}
-   */
-  describe('#_checkFilePermissions()', () => {
-    const onPosixIt = Finder.isWindows ? it.skip : it;
-
-    onPosixIt('should return `false` if the file is not executable at all', async () => {
-      let fileStats = await promises.stat('test/fixtures/not_executable.sh');
-      expect(new Finder()._checkFilePermissions(fileStats)).to.be.false;
-    });
-
-    onPosixIt('should return `true` if the file is executable by everyone', async () => {
-      let fileStats = await promises.stat('test/fixtures/executable.sh');
-      expect(new Finder()._checkFilePermissions(fileStats)).to.be.true;
     });
   });
 });

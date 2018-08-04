@@ -36,27 +36,28 @@ export class Finder {
   constructor(options: FinderOptions = {}) {
     // tslint:disable-next-line: prefer-const
     let {extensions = '', path = '', pathSeparator = ''} = options;
+    this.pathSeparator = pathSeparator.length ? pathSeparator : (Finder.isWindows ? ';' : delimiter);
 
-    if (!Array.isArray(path)) path = path.toString().split(pathSeparator).filter(item => item.length > 0);
+    if (!Array.isArray(path)) path = path.split(pathSeparator).filter(item => item.length > 0);
     if (!path.length) {
       const pathEnv = process.env.PATH;
-      if (typeof pathEnv == 'string' && pathEnv.length) path = pathEnv.split(pathSeparator);
+      if (pathEnv) path = pathEnv.split(pathSeparator);
     }
 
-    if (!Array.isArray(extensions)) extensions = extensions.toString().split(pathSeparator).filter(item => item.length > 0);
+    if (!Array.isArray(extensions)) extensions = extensions.split(pathSeparator).filter(item => item.length > 0);
     if (!extensions.length && Finder.isWindows) {
       const pathExt = process.env.PATHEXT;
-      extensions = typeof pathExt == 'string' && pathExt.length ? pathExt.split(pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
+      extensions = pathExt ? pathExt.split(pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
     }
 
     this.extensions = extensions.map(extension => extension.toLowerCase());
+    console.log(this.extensions);
     this.path = path.map(directory => directory.replace(/^"+|"+$/g, ''));
-    this.pathSeparator = pathSeparator.length ? pathSeparator : (Finder.isWindows ? ';' : delimiter);
+    console.log(this.path);
   }
 
   /**
    * The class name.
-   * @type {string}
    */
   get [Symbol.toStringTag](): string {
     return 'Finder';
@@ -64,9 +65,9 @@ export class Finder {
 
   /**
    * Finds the instances of an executable in the system path.
-   * @param {string} command The command to be resolved.
-   * @param {boolean} [all] Value indicating whether to return all executables found, or just the first one.
-   * @return {Promise<string[]>} The paths of the executables found, or an empty array if the command was not found.
+   * @param command The command to be resolved.
+   * @param [all] Value indicating whether to return all executables found, or just the first one.
+   * @return The paths of the executables found, or an empty array if the command was not found.
    */
   public async find(command: string, all: boolean = true): Promise<string[]> {
     const executables = [];
@@ -80,8 +81,8 @@ export class Finder {
 
   /**
    * Gets a value indicating whether the specified file is executable.
-   * @param {string} file The path of the file to be checked.
-   * @return {Promise<boolean>} `true` if the specified file is executable, otherwise `false`.
+   * @param file The path of the file to be checked.
+   * @return `true` if the specified file is executable, otherwise `false`.
    */
   public async isExecutable(file: string): Promise<boolean> {
     try {
@@ -97,7 +98,7 @@ export class Finder {
 
   /**
    * Returns a string representation of this object.
-   * @return {string} The string representation of this object.
+   * @return The string representation of this object.
    */
   public toString(): string {
     const values = [];
@@ -108,8 +109,8 @@ export class Finder {
 
   /**
    * Checks that the specified file is executable according to the executable file extensions.
-   * @param {string} file The path of the file to be checked.
-   * @return {boolean} Value indicating whether the specified file is executable.
+   * @param file The path of the file to be checked.
+   * @return Value indicating whether the specified file is executable.
    */
   private _checkFileExtension(file: string): boolean {
     return this.extensions.includes(extname(file).toLowerCase()) || this.extensions.includes(file.toLowerCase());
@@ -117,8 +118,8 @@ export class Finder {
 
   /**
    * Checks that the specified file is executable according to its permissions.
-   * @param {Stats} fileStats A reference to the file to be checked.
-   * @return {boolean} Value indicating whether the specified file is executable.
+   * @param fileStats A reference to the file to be checked.
+   * @return Value indicating whether the specified file is executable.
    */
   private _checkFilePermissions(fileStats: Stats): boolean {
     // Others.
@@ -126,11 +127,11 @@ export class Finder {
     if (perms & 0o001) return true;
 
     // Group.
-    const gid = typeof process.getgid == 'function' ? process.getgid() : -1;
+    const gid = process.getgid ? process.getgid() : -1;
     if (perms & 0o010) return gid == fileStats.gid;
 
     // Owner.
-    const uid = typeof process.getuid == 'function' ? process.getuid() : -1;
+    const uid = process.getuid ? process.getuid() : -1;
     if (perms & 0o100) return uid == fileStats.uid;
 
     // Root.
@@ -139,10 +140,10 @@ export class Finder {
 
   /**
    * Finds the instances of an executable in the specified directory.
-   * @param {string} directory The directory path.
-   * @param {string} command The command to be resolved.
-   * @param {boolean} [all] Value indicating whether to return all executables found, or just the first one.
-   * @return {Promise<string[]>} The paths of the executables found, or an empty array if the command was not found.
+   * @param directory The directory path.
+   * @param command The command to be resolved.
+   * @param [all] Value indicating whether to return all executables found, or just the first one.
+   * @return The paths of the executables found, or an empty array if the command was not found.
    */
   private async _findExecutables(directory: string, command: string, all: boolean = true): Promise<string[]> {
     const executables = [];

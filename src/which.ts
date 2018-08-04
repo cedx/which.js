@@ -13,7 +13,7 @@ export async function which(command: string, options: WhichOptions = {}): Promis
   const finder = new Finder({extensions, path, pathSeparator});
   const executables = await finder.find(command, all);
   if (!executables.length) {
-    if (typeof onError == 'function') return onError(command);
+    if (onError) return onError(command);
     throw new FinderError(command, finder, `Command "${command}" not found`);
   }
 

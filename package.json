@@ -41,6 +41,7 @@
   ],
   "scripts": {
     "coverage": "coveralls var/lcov.info",
+    "prepare": "tsc",
     "test": "nyc mocha"
   }
 }
