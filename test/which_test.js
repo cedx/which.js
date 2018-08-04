@@ -9,7 +9,7 @@ const {Finder, FinderError, which} = require('../lib/index.js');
 describe('which()', () => {
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
-      let executable = await which('executable', {all: false, path: 'test/fixtures'});
+      const executable = await which('executable', {all: false, path: 'test/fixtures'});
       if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
       else expect.fail('Error not thrown');
     }
@@ -22,7 +22,7 @@ describe('which()', () => {
 
   it('should return all the paths of the `executable.cmd` file on Windows', async () => {
     try {
-      let executables = await which('executable', {all: true, path: 'test/fixtures'});
+      const executables = await which('executable', {all: true, path: 'test/fixtures'});
       if (!Finder.isWindows) expect.fail('Error not thrown');
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
@@ -38,7 +38,7 @@ describe('which()', () => {
 
   it('should return the path of the `executable.sh` file on POSIX', async () => {
     try {
-      let executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
+      const executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
       if (Finder.isWindows) expect.fail('Error not thrown');
       else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
     }
@@ -51,7 +51,7 @@ describe('which()', () => {
 
   it('should return all the paths of the `executable.sh` file on POSIX', async () => {
     try {
-      let executables = await which('executable.sh', {all: true, path: 'test/fixtures'});
+      const executables = await which('executable.sh', {all: true, path: 'test/fixtures'});
       if (Finder.isWindows) expect.fail('Error not thrown');
       else {
         expect(executables).to.be.an('array').and.have.lengthOf(1);
@@ -66,10 +66,10 @@ describe('which()', () => {
   });
 
   it('should return the value of the `onError` handler', async () => {
-    let executable = await which('executable', {all: false, onError: () => 'foo', path: 'test/fixtures'});
+    const executable = await which('executable', {all: false, onError: () => 'foo', path: 'test/fixtures'});
     if (!Finder.isWindows) expect(executable).to.equal('foo');
 
-    let executables = await which('executable.sh', {all: true, onError: () => ['foo'], path: 'test/fixtures'});
+    const executables = await which('executable.sh', {all: true, onError: () => ['foo'], path: 'test/fixtures'});
     if (Finder.isWindows) {
       expect(executables).to.be.an('array').and.have.lengthOf(1);
       expect(executables[0]).to.equal('foo');

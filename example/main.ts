@@ -1,13 +1,13 @@
-/* eslint-disable no-unused-vars */
-const {which} = require('@cedx/which');
+/* tslint:disable: no-console */
+import {which} from '@cedx/which';
 
 /**
  * Finds the instances of an executable.
  */
-async function main() {
+async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
-    let path = await which('foobar');
+    const path: string = await which('foobar');
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
