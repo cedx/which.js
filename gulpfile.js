@@ -1,17 +1,9 @@
 'use strict';
 
-const {david} = require('@cedx/gulp-david');
 const {spawn} = require('child_process');
 const del = require('del');
 const gulp = require('gulp');
-const typescript = require('gulp-typescript');
 const {normalize} = require('path');
-
-/**
- * The TypeScript project supporting incremental compilation.
- * @type {compile.Project}
- */
-const project = typescript.createProject('tsconfig.json');
 
 /**
  * The file patterns providing the list of source files.
@@ -22,10 +14,7 @@ const sources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.t
 /**
  * Builds the project.
  */
-gulp.task('build', () => gulp.src('src/**/*.ts')
-  .pipe(project())
-  .pipe(gulp.dest('lib'))
-);
+gulp.task('build', () => _exec('node_modules/.bin/tsc'));
 
 /**
  * Deletes all generated files and reset any saved state.
@@ -38,13 +27,6 @@ gulp.task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web'
 gulp.task('coverage', () => _exec('node_modules/.bin/coveralls', ['var/lcov.info']));
 
 /**
- * Checks the package dependencies.
- */
-gulp.task('deps:outdated', () => gulp.src('package.json').pipe(david()));
-gulp.task('deps:security', () => _exec('npm', ['audit']));
-gulp.task('deps', gulp.series('deps:outdated', 'deps:security'));
-
-/**
  * Builds the documentation.
  */
 gulp.task('doc:api', () => _exec('node_modules/.bin/esdoc'));
@@ -54,9 +36,7 @@ gulp.task('doc', gulp.series('doc:api', 'doc:web'));
 /**
  * Fixes the coding standards issues.
  */
-gulp.task('fix:js', () => _exec('node_modules/.bin/tslint', ['--fix', ...sources]));
-gulp.task('fix:security', () => _exec('npm', ['audit', 'fix']));
-gulp.task('fix', gulp.series('fix:js', 'fix:security'));
+gulp.task('fix', () => _exec('node_modules/.bin/tslint', ['--fix', ...sources]));
 
 /**
  * Performs static analysis of source code.
