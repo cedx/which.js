@@ -2,7 +2,7 @@
 'use strict';
 
 const program = require('commander');
-const {FinderError, which} = require('../lib/index.js');
+const {FinderError, which} = require('../lib');
 const pkg = require('../package.json');
 
 /**
