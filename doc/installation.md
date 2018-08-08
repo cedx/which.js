@@ -14,7 +14,7 @@ node --version
 # v10.8.0
 
 npm --version
-# 6.1.0
+# 6.2.0
 ```
 
 !!! info
