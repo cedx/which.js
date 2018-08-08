@@ -52,7 +52,7 @@ which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 !!! tip
     The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension.
 
-### **onError**: function(command: string): *
+### **onError**: (command: string) => any
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
 
 ```ts
