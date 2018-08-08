@@ -57,7 +57,7 @@ export class Finder {
   /**
    * The class name.
    */
-  get [Symbol.toStringTag](): string {
+  public get [Symbol.toStringTag](): string {
     return 'Finder';
   }
 
