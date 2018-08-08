@@ -23,7 +23,7 @@ export async function which(command: string, options: WhichOptions = {}): Promis
 /**
  * Defines the options of the `which()` function.
  */
-interface WhichOptions extends FinderOptions {
+export interface WhichOptions extends FinderOptions {
 
   /**
    * Value indicating whether to return an array of all executables found, instead of just the first one.
