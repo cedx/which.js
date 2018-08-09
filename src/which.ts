@@ -4,7 +4,7 @@ import {Finder, FinderError, FinderOptions} from './finder';
  * Finds the first instance of an executable in the system path.
  * Rejects with a `FinderError` if the command was not found.
  * @param command The command to be resolved.
- * @param [options] The options to be passed to the finder.
+ * @param options The options to be passed to the finder.
  * @return A string, or an array of strings, specifying the path(s) of the found executable(s).
  */
 export async function which(command: string, options: Partial<WhichOptions> = {}): Promise<string | string[]> {

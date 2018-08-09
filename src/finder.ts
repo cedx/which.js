@@ -31,7 +31,7 @@ export class Finder {
 
   /**
    * Creates a new finder.
-   * @param [options] An object specifying values used to initialize this instance.
+   * @param options An object specifying values used to initialize this instance.
    */
   constructor(options: Partial<FinderOptions> = {}) {
     // tslint:disable-next-line: prefer-const
@@ -64,7 +64,7 @@ export class Finder {
   /**
    * Finds the instances of an executable in the system path.
    * @param command The command to be resolved.
-   * @param [all] Value indicating whether to return all executables found, or just the first one.
+   * @param all Value indicating whether to return all executables found, or just the first one.
    * @return The paths of the executables found, or an empty array if the command was not found.
    */
   public async find(command: string, all: boolean = true): Promise<string[]> {
@@ -140,7 +140,7 @@ export class Finder {
    * Finds the instances of an executable in the specified directory.
    * @param directory The directory path.
    * @param command The command to be resolved.
-   * @param [all] Value indicating whether to return all executables found, or just the first one.
+   * @param all Value indicating whether to return all executables found, or just the first one.
    * @return The paths of the executables found, or an empty array if the command was not found.
    */
   private async _findExecutables(directory: string, command: string, all: boolean = true): Promise<string[]> {
@@ -166,7 +166,7 @@ export class FinderError extends Error {
    * Creates a new finder error.
    * @param command The looked up command.
    * @param finder The finder used to lookup the command.
-   * @param [message] A message describing the error.
+   * @param message A message describing the error.
    */
   constructor(public command: string, public finder: Finder, message: string = '') {
     super(message);
