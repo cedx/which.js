@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import 'mocha';
 import {delimiter} from 'path';
-import {Finder} from '../lib';
+import {Finder} from '../src';
 
 /**
  * @test {Finder}
