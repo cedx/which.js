@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import 'mocha';
-import {Finder, FinderError, which} from '../lib';
+import {Finder, FinderError, which} from '../src';
 
 /**
  * @test {which}
