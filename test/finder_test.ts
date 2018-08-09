@@ -14,7 +14,7 @@ describe('Finder', () => {
    */
   describe('#constructor()', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
-      const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
+      const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
       const path = pathEnv.length ? pathEnv.split(delimiter) : [];
       expect(new Finder().path).to.have.ordered.members(path);
     });
@@ -25,7 +25,7 @@ describe('Finder', () => {
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
-      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
+      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT! : '';
       const extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
       expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
