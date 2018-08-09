@@ -46,7 +46,7 @@
   ],
   "scripts": {
     "coverage": "coveralls var/lcov.info",
-    "prepare": "tsc",
+    "prepublishOnly": "tsc",
     "test": "nyc mocha test/**/*.ts"
   }
 }

@@ -33,7 +33,7 @@ export class Finder {
    * Creates a new finder.
    * @param [options] An object specifying values used to initialize this instance.
    */
-  constructor(options: FinderOptions = {}) {
+  constructor(options: Partial<FinderOptions> = {}) {
     // tslint:disable-next-line: prefer-const
     let {extensions = '', path = '', pathSeparator = ''} = options;
     this.pathSeparator = pathSeparator.length ? pathSeparator : (Finder.isWindows ? ';' : delimiter);
@@ -57,7 +57,7 @@ export class Finder {
   /**
    * The class name.
    */
-  public get [Symbol.toStringTag](): string {
+  get [Symbol.toStringTag](): string {
     return 'Finder';
   }
 
@@ -193,15 +193,15 @@ export interface FinderOptions {
   /**
    * The list of executable file extensions.
    */
-  extensions?: string | string[];
+  extensions: string | string[];
 
   /**
    * The list of system paths.
    */
-  path?: string | string[];
+  path: string | string[];
 
   /**
    * The character used to separate paths in the system path.
    */
-  pathSeparator?: string;
+  pathSeparator: string;
 }

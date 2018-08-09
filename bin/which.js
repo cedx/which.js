@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+/* tslint:disable: no-console */
 const program = require('commander');
 const {FinderError, which} = require('../lib');
 const pkg = require('../package.json');
