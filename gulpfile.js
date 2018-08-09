@@ -46,7 +46,7 @@ gulp.task('lint', () => _exec('node_modules/.bin/tslint', sources));
 /**
  * Runs the unit tests.
  */
-gulp.task('test', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha'), 'test/**/*.ts']));
+gulp.task('test', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha')]));
 
 /**
  * Upgrades the project to the latest revision.
