@@ -89,7 +89,7 @@ export class Finder {
       return Finder.isWindows ? this._checkFileExtension(file) : this._checkFilePermissions(fileStats);
     }
 
-    catch (err) {
+    catch {
       return false;
     }
   }
