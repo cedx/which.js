@@ -1,3 +1,4 @@
+// @ts-ignore
 import {which} from '@cedx/which';
 
 /**

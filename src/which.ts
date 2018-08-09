@@ -7,7 +7,7 @@ import {Finder, FinderError, FinderOptions} from './finder';
  * @param [options] The options to be passed to the finder.
  * @return A string, or an array of strings, specifying the path(s) of the found executable(s).
  */
-export async function which(command: string, options: WhichOptions = {}): Promise<string | string[]> {
+export async function which(command: string, options: Partial<WhichOptions> = {}): Promise<string | string[]> {
   const {all = false, extensions = '', onError = null, path = '', pathSeparator = ''} = options;
 
   const finder = new Finder({extensions, path, pathSeparator});
@@ -28,11 +28,11 @@ export interface WhichOptions extends FinderOptions {
   /**
    * Value indicating whether to return an array of all executables found, instead of just the first one.
    */
-  all?: boolean;
+  all: boolean;
 
   /**
    * An optional error handler.
    * It is called with the command as argument, and its return value is used instead.
    */
-  onError?: (command: string) => any;
+  onError: (command: string) => any;
 }
