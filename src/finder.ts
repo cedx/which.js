@@ -38,16 +38,16 @@ export class Finder {
     let {extensions = '', path = '', pathSeparator = ''} = options;
     this.pathSeparator = pathSeparator.length ? pathSeparator : (Finder.isWindows ? ';' : delimiter);
 
-    if (!Array.isArray(path)) path = path.split(pathSeparator).filter(item => item.length > 0);
+    if (!Array.isArray(path)) path = path.split(this.pathSeparator).filter(item => item.length > 0);
     if (!path.length) {
-      const pathEnv = process.env.PATH;
-      if (pathEnv) path = pathEnv.split(pathSeparator);
+      const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
+      if (pathEnv.length) path = pathEnv.split(this.pathSeparator);
     }
 
-    if (!Array.isArray(extensions)) extensions = extensions.split(pathSeparator).filter(item => item.length > 0);
+    if (!Array.isArray(extensions)) extensions = extensions.split(this.pathSeparator).filter(item => item.length > 0);
     if (!extensions.length && Finder.isWindows) {
-      const pathExt = process.env.PATHEXT;
-      extensions = pathExt ? pathExt.split(pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
+      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT! : '';
+      extensions = pathExt.length ? pathExt.split(this.pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
     }
 
     this.extensions = extensions.map(extension => extension.toLowerCase());
