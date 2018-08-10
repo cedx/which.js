@@ -1,3 +1,4 @@
+/* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
 import 'mocha';
 import {Finder, FinderError, which} from '../src';
@@ -6,8 +7,6 @@ import {Finder, FinderError, which} from '../src';
  * @test {which}
  */
 describe('which()', () => {
-  /* tslint:disable: no-unused-expression */
-
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
       const executable = await which('executable', {all: false, path: 'test/fixtures'}) as string;

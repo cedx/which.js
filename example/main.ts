@@ -1,3 +1,5 @@
+/* tslint:disable: no-console */
+
 // @ts-ignore
 import {which} from '@cedx/which';
 
@@ -5,8 +7,6 @@ import {which} from '@cedx/which';
  * Finds the instances of an executable.
  */
 async function main(): Promise<void> {
-  /* tslint:disable: no-console */
-
   try {
     // `path` is the absolute path to the executable.
     const path = await which('foobar');

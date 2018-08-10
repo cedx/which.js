@@ -1,3 +1,4 @@
+/* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
 import 'mocha';
 import {delimiter} from 'path';
@@ -7,8 +8,6 @@ import {Finder} from '../src';
  * @test {Finder}
  */
 describe('Finder', () => {
-  /* tslint:disable: no-unused-expression */
-
   /**
    * @test {Finder#constructor}
    */
