@@ -2,11 +2,11 @@
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "declaration": true,
-    "module": "commonjs",
+    "module": "CommonJS",
     "outDir": "lib",
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "ES2017"
   }
 }
