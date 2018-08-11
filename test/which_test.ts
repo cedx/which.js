@@ -1,6 +1,6 @@
 /* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
-import {Finder, FinderError, which} from '../src';
+import {Finder, FinderError, which} from '../lib';
 
 /**
  * @test {which}
