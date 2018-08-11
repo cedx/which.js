@@ -1,6 +1,5 @@
 /* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
-import 'mocha';
 import {Finder, FinderError, which} from '../src';
 
 /**
