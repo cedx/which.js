@@ -5,5 +5,5 @@ module.exports = {
   gitRevision: 'master',
   mode: 'modules',
   name: 'Which for JS',
-  out: 'doc/api',
+  out: 'doc/api'
 };
