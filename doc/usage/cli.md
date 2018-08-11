@@ -1,3 +1,6 @@
+path: blob/master
+source: bin/which.js
+
 # Command line interface
 From a command prompt, install the `which` executable:
 
