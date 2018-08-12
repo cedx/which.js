@@ -10,7 +10,7 @@ import {which} from '@cedx/which';
 async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
-    const path = await which('foobar');
+    const path = await which('foobar') as string;
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
@@ -35,7 +35,7 @@ If you pass `true` as parameter value, the function will return a `Promise<strin
 import {which} from '@cedx/which';
 
 async function main(): Promise<void> {
-  const paths = await which('foobar', {all: true});
+  const paths = await which('foobar', {all: true}) as string[];
   console.log('The command "foobar" was found at these locations:');
   for (const path of paths) console.log(path);
 }
@@ -59,7 +59,7 @@ By default, when the specified command cannot be located, a `FinderError` is thr
 import {which} from '@cedx/which';
 
 async function main(): Promise<void> {
-  const path = await which('foobar', {onError: command => ''});
+  const path = await which('foobar', {onError: command => ''}) as string;
   if (!path.length) console.log('The command "foobar" was not found');
   else console.log(`The command "foobar" is located at: ${path}`);
 }

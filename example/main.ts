@@ -9,7 +9,7 @@ import {which} from '@cedx/which';
 async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
-    const path = await which('foobar');
+    const path = await which('foobar') as string;
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
