@@ -13,7 +13,7 @@ import {Finder} from '../src';
    * @test {Finder#constructor}
    */
   @test('should properly handle the `path` and `extensions` properties')
-  public testConstructor() {
+  public testConstructor(): void {
     // It should set the `path` property to the value of the `PATH` environment variable by default.
     const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
     let path = pathEnv.length ? pathEnv.split(delimiter) : [];
@@ -43,7 +43,7 @@ import {Finder} from '../src';
    * @test {Finder#find}
    */
   @test('should return the path of the `executable.(cmd|sh)` file according to the current platform')
-  public async testFind() {
+  public async testFind(): Promise<void> {
     // It should return the path of the `executable.cmd` file on Windows.
     let executables = await new Finder({path: 'test/fixtures'}).find('executable');
     expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
@@ -59,7 +59,7 @@ import {Finder} from '../src';
    * @test {Finder#isExecutable}
    */
   @test('should return `true` for an executable file, otherwise `false`')
-  public async testIsExecutable() {
+  public async testIsExecutable(): Promise<void> {
     // It should return `false` for a non-executable file.
     expect(await new Finder().isExecutable(`${__dirname}/../AUTHORS.txt`)).to.be.false;
 
