@@ -16,7 +16,6 @@
     "commander": "^2.17.1"
   },
   "devDependencies": {
-    "@cedx/coveralls": "^7.0.0",
     "@types/chai": "^4.1.4",
     "@types/node": "^10.7.0",
     "chai": "^4.1.2",
