@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [4.2.0](https://github.com/cedx/which.js/compare/v4.1.0...v4.2.0)
+- Ported the unit tests to classes with experimental decorators.
+- Updated the package dependencies.
+
 ## Version [4.1.0](https://github.com/cedx/which.js/compare/v4.0.1...v4.1.0)
 - Ported the source code to [TypeScript](https://www.typescriptlang.org).
 - Replaced [ESDoc](https://esdoc.org) documentation generator by [TypeDoc](https://typedoc.org).
