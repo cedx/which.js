@@ -11,8 +11,7 @@ import {Finder, FinderError, which} from '../src';
   /**
    * @test {which}
    */
-  @test('It should return the path of the executables found')
-  public async testWhich(): Promise<void> {
+  @test public async testWhich(): Promise<void> {
     let executable: string;
     let executables: string[];
 
