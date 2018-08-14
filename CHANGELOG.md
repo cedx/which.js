@@ -3,6 +3,7 @@
 ## Version [4.1.0](https://github.com/cedx/which.js/compare/v4.0.1...v4.1.0)
 - Ported the source code to [TypeScript](https://www.typescriptlang.org).
 - Replaced [ESDoc](https://esdoc.org) documentation generator by [TypeDoc](https://typedoc.org).
+- Replaced [ESLint](https://eslint.org) static analyzer by [TSLint](https://palantir.github.io/tslint).
 - Updated the package dependencies.
 
 ## Version [4.0.1](https://github.com/cedx/which.js/compare/v4.0.0...v4.0.1)
