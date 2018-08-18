@@ -11,7 +11,7 @@ import {Finder, FinderError, which} from '../src';
   /**
    * @test {which}
    */
-  @test public async testWhich(): Promise<void> {
+  @test async testWhich(): Promise<void> {
     let executable: string;
     let executables: string[];
 

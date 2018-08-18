@@ -9,25 +9,17 @@ export class Finder {
   /**
    * The list of executable file extensions.
    */
-  public extensions: string[];
+  extensions: string[];
 
   /**
    * The list of system paths.
    */
-  public path: string[];
+  path: string[];
 
   /**
    * The character used to separate paths in the system path.
    */
-  public pathSeparator: string;
-
-  /**
-   * Value indicating whether the current platform is Windows.
-   */
-  static get isWindows(): boolean {
-    if (process.platform == 'win32') return true;
-    return process.env.OSTYPE == 'cygwin' || process.env.OSTYPE == 'msys';
-  }
+  pathSeparator: string;
 
   /**
    * Creates a new finder.
@@ -55,6 +47,14 @@ export class Finder {
   }
 
   /**
+   * Value indicating whether the current platform is Windows.
+   */
+  static get isWindows(): boolean {
+    if (process.platform == 'win32') return true;
+    return process.env.OSTYPE == 'cygwin' || process.env.OSTYPE == 'msys';
+  }
+
+  /**
    * The class name.
    */
   get [Symbol.toStringTag](): string {
@@ -67,7 +67,7 @@ export class Finder {
    * @param all Value indicating whether to return all executables found, or just the first one.
    * @return The paths of the executables found, or an empty array if the command was not found.
    */
-  public async find(command: string, all: boolean = true): Promise<string[]> {
+  async find(command: string, all: boolean = true): Promise<string[]> {
     const executables = [];
     for (const path of this.path) {
       executables.push(...await this._findExecutables(path, command, all));
@@ -82,7 +82,7 @@ export class Finder {
    * @param file The path of the file to be checked.
    * @return `true` if the specified file is executable, otherwise `false`.
    */
-  public async isExecutable(file: string): Promise<boolean> {
+  async isExecutable(file: string): Promise<boolean> {
     try {
       const fileStats = await promises.stat(file);
       if (!fileStats.isFile()) return false;
@@ -98,7 +98,7 @@ export class Finder {
    * Returns a string representation of this object.
    * @return The string representation of this object.
    */
-  public toString(): string {
+  toString(): string {
     const values = [];
     if (this.path.length) values.push(`path: "${this.path.join(this.pathSeparator)}"`);
     if (this.extensions.length) values.push(`extensions: "${this.extensions.join(this.pathSeparator)}"`);
@@ -177,7 +177,7 @@ export class FinderError extends Error {
    * Returns a string representation of this object.
    * @return The string representation of this object.
    */
-  public toString(): string {
+  toString(): string {
     const values = [`"${this.command}"`];
     if (this.finder.path.length) values.push(`finder: "${this.finder.path.join(this.finder.pathSeparator)}"`);
     if (this.message.length) values.push(`message: "${this.message}"`);
