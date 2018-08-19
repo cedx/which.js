@@ -64,17 +64,10 @@ export class Finder {
   /**
    * Finds the instances of an executable in the system path.
    * @param command The command to be resolved.
-   * @param all Value indicating whether to return all executables found, or just the first one.
-   * @return The paths of the executables found, or an empty array if the command was not found.
+   * @return The paths of the executables found.
    */
-  async find(command: string, all: boolean = true): Promise<string[]> {
-    const executables = [];
-    for (const path of this.path) {
-      executables.push(...await this._findExecutables(path, command, all));
-      if (!all && executables.length) return executables;
-    }
-
-    return [...new Set(executables)];
+  async *find(command: string): AsyncIterable<string> {
+    for (const directory of this.path) yield* this._findExecutables(directory, command);
   }
 
   /**
@@ -140,20 +133,13 @@ export class Finder {
    * Finds the instances of an executable in the specified directory.
    * @param directory The directory path.
    * @param command The command to be resolved.
-   * @param all Value indicating whether to return all executables found, or just the first one.
-   * @return The paths of the executables found, or an empty array if the command was not found.
+   * @return The paths of the executables found.
    */
-  private async _findExecutables(directory: string, command: string, all: boolean = true): Promise<string[]> {
-    const executables = [];
+  private async *_findExecutables(directory: string, command: string): AsyncIterable<string> {
     for (const extension of [''].concat(this.extensions)) {
       const resolvedPath = resolve(join(directory, command) + extension.toLowerCase());
-      if (await this.isExecutable(resolvedPath)) {
-        executables.push(resolvedPath);
-        if (!all) return executables;
-      }
+      if (await this.isExecutable(resolvedPath)) yield resolvedPath;
     }
-
-    return executables;
   }
 }
 

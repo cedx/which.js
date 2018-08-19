@@ -9,15 +9,20 @@ import {Finder, FinderError, FinderOptions} from './finder';
  */
 export async function which(command: string, options: Partial<WhichOptions> = {}): Promise<string | string[]> {
   const {all = false, extensions = '', onError = null, path = '', pathSeparator = ''} = options;
-
   const finder = new Finder({extensions, path, pathSeparator});
-  const executables = await finder.find(command, all);
-  if (!executables.length) {
+  const list = [];
+
+  for await (const executable of finder.find(command)) {
+    if (!all) return executable;
+    list.push(executable);
+  }
+
+  if (!list.length) {
     if (onError) return onError(command);
     throw new FinderError(command, finder, `Command "${command}" not found`);
   }
 
-  return all ? executables : executables[0];
+  return [...new Set(list)];
 }
 
 /**
