@@ -33,7 +33,7 @@ async function main() {
   let executables = await which(program.executable, {all: program.all});
   if (!program.silent) {
     if (!Array.isArray(executables)) executables = [executables];
-    for (let path of executables) console.log(path);
+    for (const path of executables) console.log(path);
   }
 }
 
