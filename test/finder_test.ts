@@ -42,9 +42,9 @@ import {Finder} from '../src';
    * @test {Finder#find}
    */
   @test async testFind(): Promise<void> {
-    async function toArray(asyncGenerator: AsyncIterable<string>): Promise<string[]> {
+    async function toArray(asyncIterable: AsyncIterable<string>): Promise<string[]> {
       const items = [];
-      for await (const item of asyncGenerator) items.push(item);
+      for await (const item of asyncIterable) items.push(item);
       return items;
     }
 
