@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [5.0.0](https://github.com/cedx/which.js/compare/v4.2.0...v5.0.0)
-- Breaking change: implemented the `Finder#find()` method using an asynchronous generator.
+- Breaking change: implemented the `Finder#find()` method using asynchronous generators.
 
 ## Version [4.2.0](https://github.com/cedx/which.js/compare/v4.1.0...v4.2.0)
 - Ported the unit tests to classes with experimental decorators.
