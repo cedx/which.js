@@ -9,7 +9,7 @@ import {Finder, FinderError, which} from '../src';
 @suite class WhichTest {
 
   /**
-   * @test {which}
+   * Tests the `which()` function.
    */
   @test async testWhich(): Promise<void> {
     let executable: string;

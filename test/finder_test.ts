@@ -10,7 +10,7 @@ import {Finder} from '../src';
 @suite class FinderTest {
 
   /**
-   * @test {Finder#constructor}
+   * Tests the `Finder` constructor.
    */
   @test testConstructor(): void {
     // It should set the `path` property to the value of the `PATH` environment variable by default.
@@ -39,7 +39,7 @@ import {Finder} from '../src';
   }
 
   /**
-   * @test {Finder#find}
+   * Tests the `Finder#find()` method.
    */
   @test async testFind(): Promise<void> {
     async function toArray(asyncIterable: AsyncIterable<string>): Promise<string[]> {
@@ -60,7 +60,7 @@ import {Finder} from '../src';
   }
 
   /**
-   * @test {Finder#isExecutable}
+   * Tests the `Finder::isExecutable()` method.
    */
   @test async testIsExecutable(): Promise<void> {
     // It should return `false` for a non-executable file.
