@@ -42,13 +42,19 @@ import {Finder} from '../src';
    * @test {Finder#find}
    */
   @test async testFind(): Promise<void> {
+    async function toArray(asyncGenerator: AsyncIterable<string>): Promise<string[]> {
+      const items = [];
+      for await (const item of asyncGenerator) items.push(item);
+      return items;
+    }
+
     // It should return the path of the `executable.cmd` file on Windows.
-    let executables = await new Finder({path: 'test/fixtures'}).find('executable');
+    let executables = await toArray(new Finder({path: 'test/fixtures'}).find('executable'));
     expect(executables).to.have.lengthOf(Finder.isWindows ? 1 : 0);
     if (Finder.isWindows) expect(executables[0].endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
 
     // It should return the path of the `executable.sh` file on POSIX.
-    executables = await new Finder({path: 'test/fixtures'}).find('executable.sh');
+    executables = await toArray(new Finder({path: 'test/fixtures'}).find('executable.sh'));
     expect(executables).to.have.lengthOf(Finder.isWindows ? 0 : 1);
     if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
   }
