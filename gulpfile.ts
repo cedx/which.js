@@ -6,7 +6,7 @@ import * as replace from 'gulp-replace';
 import {delimiter, normalize, resolve} from 'path';
 
 // @ts-ignore: disable processing of the imported JSON file.
-import * as pkg from '../package.json';
+import * as pkg from './package.json';
 
 // Initialize the build system.
 const _path = 'PATH' in process.env ? process.env.PATH! : '';
@@ -72,7 +72,7 @@ gulp.task('upgrade', async () => {
 /**
  * Updates the version number contained in the sources.
  */
-gulp.task('version', () => gulp.src('bin/which')
+gulp.task('version', () => gulp.src('bin/which.js')
   .pipe(replace(/const version = '\d+(\.\d+){2}'/, `const version = '${pkg.version}'`))
   .pipe(gulp.dest('bin'))
 );
