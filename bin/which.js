@@ -42,7 +42,7 @@ async function main() {
 }
 
 // Start the application.
-if (module === require.main) main().catch(err => {
+main().catch(err => {
   if (err instanceof FinderError) process.exitCode = 1;
   else {
     console.error(err);
