@@ -1,5 +1,5 @@
 site_name: Which for JS
-site_description: Find the instances of an executable in the system path, implemented in TypeScript.
+site_description: Find the instances of an executable in the system path, in JavaScript.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/which.js
 
@@ -27,7 +27,7 @@ markdown_extensions:
 - codehilite
 - meta
 
-pages:
+nav:
 - Overview: index.md
 - Installation: installation.md
 - Usage:

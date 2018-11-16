@@ -60,7 +60,7 @@ import {Finder} from '../src';
   }
 
   /**
-   * Tests the `Finder::isExecutable()` method.
+   * Tests the `Finder#isExecutable()` method.
    */
   @test async testIsExecutable(): Promise<void> {
     // It should return `false` for a non-executable file.

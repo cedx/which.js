@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [5.1.0](https://github.com/cedx/which.js/compare/v5.0.0...v5.1.0)
+- Updated the package dependencies.
+
 ## Version [5.0.0](https://github.com/cedx/which.js/compare/v4.2.0...v5.0.0)
 - Breaking change: implemented the `Finder#find()` method using asynchronous generators.
 
