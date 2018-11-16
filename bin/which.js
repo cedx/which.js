@@ -7,6 +7,7 @@ const {FinderError, which} = require('../lib');
 
 /**
  * The version number of the package.
+ * @type {string}
  */
 const version = '5.1.0';
 
