@@ -3,6 +3,7 @@
 ## Development
 - [API reference](https://dev.belin.io/which.js/api)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
+- [Submit an issue](https://git.belin.io/cedx/which.js/issues)
 
 ## Testing
 - [Continuous integration](https://travis-ci.com/cedx/which.js)

@@ -3,11 +3,14 @@
 
 Find the instances of an executable in the system path, in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [TypeScript](https://www.typescriptlang.org).
 
-## Resources
-- [Documentation](https://dev.belin.io/which.js)
+## Documentation
+- [User guide](https://dev.belin.io/which.js)
 - [API reference](https://dev.belin.io/which.js/api)
+
+## Development
+- [Git repository](https://git.belin.io/cedx/which.js)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
-- [GitHub repository](https://github.com/cedx/which.js)
+- [Submit an issue](https://git.belin.io/cedx/which.js/issues)
 
 ## License
 [Which for JS](https://dev.belin.io/which.js) is distributed under the MIT License.
