@@ -10,7 +10,7 @@ Find the instances of an executable in the system path, in [JavaScript](https://
 ## Development
 - [Git repository](https://git.belin.io/cedx/which.js)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
-- [Submit an issue](https://git.belin.io/cedx/which.js/issues)
+- [Submit an issue](https://github.com/cedx/which.js/issues)
 
 ## License
 [Which for JS](https://dev.belin.io/which.js) is distributed under the MIT License.
