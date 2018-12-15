@@ -73,7 +73,7 @@ gulp.task('upgrade', async () => {
 /**
  * Updates the version number contained in the sources.
  */
-gulp.task('version', () => gulp.src('bin/which.js')
+gulp.task('version', () => gulp.src('bin/main.js')
   .pipe(replace(/const version = '\d+(\.\d+){2}'/g, `const version = '${pkg.version}'`))
   .pipe(gulp.dest('bin'))
 );

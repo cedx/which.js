@@ -1,5 +1,5 @@
 path: src/branch/master
-source: bin/which.js
+source: bin/main.js
 
 # Command line interface
 From a command prompt, install the `which` executable:

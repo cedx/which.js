@@ -9,14 +9,14 @@
   "types": "./lib/index.d.ts",
   "version": "5.1.0",
   "bin": {
-    "which": "./bin/which.js"
+    "which": "./bin/main.js"
   },
   "dependencies": {
     "commander": "^2.19.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/node": "^10.12.10",
+    "@types/node": "^10.12.15",
     "chai": "^4.2.0",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
