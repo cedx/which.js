@@ -1,13 +1,18 @@
 {
-  "author": "Cédric Belin <cedric@belin.io>",
   "bugs": "https://github.com/cedx/which.js/issues",
   "description": "Find the instances of an executable in the system path. Like the `which` Linux command.",
   "homepage": "https://dev.belin.io/which.js",
   "license": "MIT",
   "main": "./lib/index.js",
   "name": "@cedx/which",
+  "repository": "github:cedx/which.js",
   "types": "./lib/index.d.ts",
   "version": "5.1.0",
+  "author": {
+    "email": "cedric@belin.io",
+    "name": "Cédric Belin",
+    "url": "https://belin.io"
+  },
   "bin": {
     "which": "./bin/main.js"
   },
@@ -24,10 +29,10 @@
     "mocha": "^5.2.0",
     "mocha-typescript": "^1.1.17",
     "nyc": "^13.1.0",
-    "source-map-support": "^0.5.9",
+    "source-map-support": "^0.5.10",
     "ts-node": "^7.0.1",
-    "tslint": "^5.12.0",
-    "typedoc": "^0.14.0",
+    "tslint": "^5.12.1",
+    "typedoc": "^0.14.1",
     "typescript": "^3.2.2"
   },
   "engines": {
@@ -41,10 +46,6 @@
     "utility",
     "which"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://git.belin.io/cedx/which.js.git"
-  },
   "scripts": {
     "coverage": "gulp coverage",
     "prepare": "gulp build",
