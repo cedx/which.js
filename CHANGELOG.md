@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [5.2.0](https://github.com/cedx/which.js/compare/v5.1.0...v5.2.0)
+- Updated the package dependencies.
+- Updated the URL of the Git repository.
+
 ## Version [5.1.0](https://github.com/cedx/which.js/compare/v5.0.0...v5.1.0)
 - Updated the package dependencies.
 
