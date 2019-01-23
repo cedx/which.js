@@ -7,6 +7,11 @@ import {delimiter, extname, join, resolve} from 'path';
 export class Finder {
 
   /**
+   * The class name.
+   */
+  readonly [Symbol.toStringTag]: string = 'Finder';
+
+  /**
    * The list of executable file extensions.
    */
   extensions: string[];
@@ -52,13 +57,6 @@ export class Finder {
   static get isWindows(): boolean {
     if (process.platform == 'win32') return true;
     return process.env.OSTYPE == 'cygwin' || process.env.OSTYPE == 'msys';
-  }
-
-  /**
-   * The class name.
-   */
-  get [Symbol.toStringTag](): string {
-    return 'Finder';
   }
 
   /**
