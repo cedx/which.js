@@ -13,6 +13,7 @@ const version = '5.2.0';
 
 /**
  * Application entry point.
+ * @return {Promise} Completes when the program is terminated.
  */
 async function main() {
   // Initialize the application.
