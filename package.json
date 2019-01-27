@@ -15,7 +15,7 @@
     "url": "https://belin.io"
   },
   "bin": {
-    "which": "./bin/main.js"
+    "which": "bin/main.js"
   },
   "dependencies": {
     "commander": "^2.19.0"
