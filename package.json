@@ -4,7 +4,6 @@
   "homepage": "https://dev.belin.io/which.js",
   "license": "MIT",
   "main": "lib/index",
-  "module": "lib/index.mjs",
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
   "types": "lib/index.d.ts",
