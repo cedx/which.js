@@ -5,12 +5,12 @@ import {delimiter} from 'path';
 import {Finder} from '../src';
 
 /**
- * Tests the features of the `Finder` class.
+ * Tests the features of the [[Finder]] class.
  */
 @suite class FinderTest {
 
   /**
-   * Tests the `Finder` constructor.
+   * Tests the [[Finder]] constructor.
    */
   @test testConstructor(): void {
     // It should set the `path` property to the value of the `PATH` environment variable by default.

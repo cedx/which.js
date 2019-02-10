@@ -4,12 +4,12 @@ import {suite, test} from 'mocha-typescript';
 import {Finder, FinderError, which} from '../src';
 
 /**
- * Tests the features of the `which()` function.
+ * Tests the features of the [[which]] function.
  */
 @suite class WhichTest {
 
   /**
-   * Tests the `which()` function.
+   * Tests the [[which]] function.
    */
   @test async testWhich(): Promise<void> {
     let executable: string;

@@ -2,7 +2,7 @@ import {Finder, FinderError, FinderOptions} from './finder';
 
 /**
  * Finds the first instance of an executable in the system path.
- * Rejects with a `FinderError` if the command was not found.
+ * Rejects with a [[FinderError]] if the command was not found.
  * @param command The command to be resolved.
  * @param options The options to be passed to the finder.
  * @return A string, or an array of strings, specifying the path(s) of the found executable(s).
@@ -26,7 +26,7 @@ export async function which(command: string, options: Partial<WhichOptions> = {}
 }
 
 /**
- * Defines the options of the `which()` function.
+ * Defines the options of the [[which]] function.
  */
 export interface WhichOptions extends FinderOptions {
 

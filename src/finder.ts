@@ -142,7 +142,7 @@ export class Finder {
 }
 
 /**
- * An exception caused by a `Finder` in a command lookup.
+ * An exception caused by a [[Finder]] in a command lookup.
  */
 export class FinderError extends Error {
 
@@ -170,7 +170,7 @@ export class FinderError extends Error {
 }
 
 /**
- * Defines the options of a `Finder` instance.
+ * Defines the options of a [[Finder]] instance.
  */
 export interface FinderOptions {
 
