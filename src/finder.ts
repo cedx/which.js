@@ -165,7 +165,7 @@ export class FinderError extends Error {
     const values = [`"${this.command}"`];
     if (this.finder.path.length) values.push(`finder: "${this.finder.path.join(this.finder.pathSeparator)}"`);
     if (this.message.length) values.push(`message: "${this.message}"`);
-    return `FinderError(${values.join(', ')})`;
+    return `${this.name}(${values.join(', ')})`;
   }
 }
 
