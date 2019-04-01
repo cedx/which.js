@@ -23,7 +23,7 @@
     "@types/chai": "^4.1.7",
     "@types/node": "^11.12.2",
     "chai": "^4.2.0",
-    "del": "^4.0.0",
+    "del": "^4.1.0",
     "gulp": "^4.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
