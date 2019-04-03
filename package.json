@@ -17,7 +17,7 @@
     "which": "bin/main.js"
   },
   "dependencies": {
-    "commander": "^2.19.0"
+    "commander": "^2.20.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
