@@ -9,7 +9,7 @@ const {FinderError, which} = require('../lib');
  * The version number of the package.
  * @type {string}
  */
-const version = '5.2.0';
+const version = '5.3.0';
 
 /**
  * Application entry point.
