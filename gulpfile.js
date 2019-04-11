@@ -60,7 +60,12 @@ task('lint', () => _exec('tslint', sources));
 /**
  * Runs the test suites.
  */
-task('test', () => _exec('nyc', [normalize(normalize('node_modules/.bin/mocha')), '--config=test/.mocharc.yaml', '"test/**/*.ts"']));
+task('test', () => _exec('nyc', [
+  '--nycrc-path=test/.nycrc',
+  normalize('node_modules/.bin/mocha'),
+  '--config=test/.mocharc.yaml',
+  '"test/**/*.ts"'
+]));
 
 /**
  * Upgrades the project to the latest revision.
