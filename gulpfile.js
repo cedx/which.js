@@ -41,7 +41,7 @@ task('coverage', () => _exec('coveralls', ['var/lcov.info']));
  * Builds the documentation.
  */
 task('doc', async () => {
-  for (const path in ['CHANGELOG.md', 'LICENSE.md']) await promises.copyFile(path, `doc/about/${path.toLowerCase()}`);
+  for (const path of ['CHANGELOG.md', 'LICENSE.md']) await promises.copyFile(path, `doc/about/${path.toLowerCase()}`);
   await _exec('typedoc', ['--options', 'doc/typedoc.js']);
   await _exec('mkdocs', ['build', '--config-file=doc/mkdocs.yml']);
   return del(['doc/about/changelog.md', 'doc/about/license.md', 'web/mkdocs.yml', 'web/typedoc.js']);
