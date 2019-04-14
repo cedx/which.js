@@ -81,7 +81,7 @@ task('upgrade', async () => {
 /**
  * Updates the version number contained in the sources.
  */
-task('version', () => src('bin/main.js')
+task('version', () => src('bin/which.js')
   .pipe(replace(/const version = '\d+(\.\d+){2}'/g, `const version = '${pkg.version}'`))
   .pipe(dest('bin'))
 );
