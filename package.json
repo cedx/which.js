@@ -7,14 +7,14 @@
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
   "types": "lib/index.d.ts",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "author": {
     "email": "cedric@belin.io",
     "name": "Cédric Belin",
     "url": "https://belin.io"
   },
   "bin": {
-    "which": "bin/main.js"
+    "which": "bin/which.js"
   },
   "dependencies": {
     "commander": "^2.20.0"
