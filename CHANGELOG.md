@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [5.4.0](https://github.com/cedx/which.js/compare/v5.3.0...v5.4.0)
+- Modified the package layout.
+- Updated the package dependencies.
+
 ## Version [5.3.0](https://github.com/cedx/which.js/compare/v5.2.0...v5.3.0)
 - Added support for [ECMAScript modules](https://nodejs.org/api/esm.html).
 - Updated the package dependencies.
