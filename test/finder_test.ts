@@ -4,14 +4,10 @@ import {suite, test} from 'mocha-typescript';
 import {delimiter} from 'path';
 import {Finder} from '../src';
 
-/**
- * Tests the features of the [[Finder]] class.
- */
+/** Tests the features of the [[Finder]] class. */
 @suite class FinderTest {
 
-  /**
-   * Tests the [[Finder]] constructor.
-   */
+  /** Tests the [[Finder]] constructor. */
   @test testConstructor(): void {
     // It should set the `path` property to the value of the `PATH` environment variable by default.
     const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
@@ -38,9 +34,7 @@ import {Finder} from '../src';
     expect(new Finder({pathSeparator: '#'}).pathSeparator).to.equal('#');
   }
 
-  /**
-   * Tests the `Finder#find()` method.
-   */
+  /** Tests the `Finder#find()` method. */
   @test async testFind(): Promise<void> {
     async function toArray(asyncIterable: AsyncIterable<string>): Promise<string[]> {
       const items = [];
@@ -59,9 +53,7 @@ import {Finder} from '../src';
     if (!Finder.isWindows) expect(executables[0].endsWith('/test/fixtures/executable.sh')).to.be.true;
   }
 
-  /**
-   * Tests the `Finder#isExecutable()` method.
-   */
+  /** Tests the `Finder#isExecutable()` method. */
   @test async testIsExecutable(): Promise<void> {
     // It should return `false` for a non-executable file.
     expect(await new Finder().isExecutable(`${__dirname}/../AUTHORS.txt`)).to.be.false;

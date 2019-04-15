@@ -25,19 +25,12 @@ export async function which(command: string, options: Partial<WhichOptions> = {}
   return [...new Set(list)];
 }
 
-/**
- * Defines the options of the [[which]] function.
- */
+/** Defines the options of the [[which]] function. */
 export interface WhichOptions extends FinderOptions {
 
-  /**
-   * Value indicating whether to return an array of all executables found, instead of just the first one.
-   */
+  /** Value indicating whether to return an array of all executables found, instead of just the first one. */
   all: boolean;
 
-  /**
-   * An optional error handler.
-   * It is called with the command as argument, and its return value is used instead.
-   */
+  /** An optional error handler. It is called with the command as argument, and its return value is used instead. */
   onError: (command: string) => any;
 }

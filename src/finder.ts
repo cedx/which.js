@@ -1,29 +1,19 @@
 import {promises, Stats} from 'fs';
 import {delimiter, extname, join, resolve} from 'path';
 
-/**
- * Finds the instances of an executable in the system path.
- */
+/** Finds the instances of an executable in the system path. */
 export class Finder {
 
-  /**
-   * The class name.
-   */
+  /** The class name. */
   readonly [Symbol.toStringTag]: string = 'Finder';
 
-  /**
-   * The list of executable file extensions.
-   */
+  /** The list of executable file extensions. */
   extensions: string[];
 
-  /**
-   * The list of system paths.
-   */
+  /** The list of system paths. */
   path: string[];
 
-  /**
-   * The character used to separate paths in the system path.
-   */
+  /** The character used to separate paths in the system path. */
   pathSeparator: string;
 
   /**
@@ -51,9 +41,7 @@ export class Finder {
     this.path = path.map(directory => directory.replace(/^"+|"+$/g, ''));
   }
 
-  /**
-   * Value indicating whether the current platform is Windows.
-   */
+  /** Value indicating whether the current platform is Windows. */
   static get isWindows(): boolean {
     if (process.platform == 'win32') return true;
     return process.env.OSTYPE == 'cygwin' || process.env.OSTYPE == 'msys';
@@ -141,9 +129,7 @@ export class Finder {
   }
 }
 
-/**
- * An exception caused by a [[Finder]] in a command lookup.
- */
+/** An exception caused by a [[Finder]] in a command lookup. */
 export class FinderError extends Error {
 
   /**
@@ -169,23 +155,15 @@ export class FinderError extends Error {
   }
 }
 
-/**
- * Defines the options of a [[Finder]] instance.
- */
+/** Defines the options of a [[Finder]] instance. */
 export interface FinderOptions {
 
-  /**
-   * The list of executable file extensions.
-   */
+  /** The list of executable file extensions. */
   extensions: string | string[];
 
-  /**
-   * The list of system paths.
-   */
+  /** The list of system paths. */
   path: string | string[];
 
-  /**
-   * The character used to separate paths in the system path.
-   */
+  /** The character used to separate paths in the system path. */
   pathSeparator: string;
 }
