@@ -5,7 +5,10 @@
 const program = require('commander');
 const {FinderError, which} = require('../lib');
 
-/** @type {string} The version number of the package. */
+/**
+ * The version number of the package.
+ * @type {string}
+ */
 const packageVersion = '5.4.0';
 
 /**
