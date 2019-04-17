@@ -4,8 +4,8 @@ node_js: ['10', '11']
 notifications: {email: false}
 
 install:
-  - npm --global install @cedx/coveralls
+  - npm install --global @cedx/coveralls
   - npm install
 
 script: npm test
-after_success: coveralls var/lcov.info
+after_success: npm run-script coverage
