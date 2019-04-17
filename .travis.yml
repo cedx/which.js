@@ -3,7 +3,9 @@ language: node_js
 node_js: ['10', '11']
 notifications: {email: false}
 
-install: npm install
-before_script: npm --global install @cedx/coveralls
+install:
+  - npm --global install @cedx/coveralls
+  - npm install
+
 script: npm test
 after_success: coveralls var/lcov.info
