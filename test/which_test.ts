@@ -6,7 +6,7 @@ import {Finder, FinderError, which} from '../src';
 describe('which', () => {
 
   /** Tests the [[which]] function. */
-  describe('which()', async () => {
+  describe('which()', () => {
     let executable: string;
     let executables: string[];
 
