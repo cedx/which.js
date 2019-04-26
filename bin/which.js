@@ -9,11 +9,11 @@ const {FinderError, which} = require('../lib');
  * The version number of the package.
  * @type {string}
  */
-const packageVersion = '5.4.0';
+const packageVersion = '6.0.0';
 
 /**
  * Application entry point.
- * @return {Promise} Completes when the program is terminated.
+ * @return {Promise<void>} Completes when the program is terminated.
  */
 async function main() {
   // Initialize the application.
