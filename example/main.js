@@ -1,7 +1,7 @@
 import {which} from '@cedx/which';
 
 /** Finds the instances of an executable. */
-async function main() {
+async function main() { // eslint-disable-line no-unused-vars
   try {
     // `path` is the absolute path to the executable.
     const path = await which('foobar');

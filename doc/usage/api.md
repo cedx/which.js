@@ -1,5 +1,5 @@
 path: blob/master
-source: src/which.ts
+source: lib/which.js
 
 # Application programming interface
 This package provides a single function, `which()`, allowing to locate a command in the system path:

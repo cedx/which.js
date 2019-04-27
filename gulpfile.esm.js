@@ -16,7 +16,7 @@ const pkg = createRequireFromPath('.')('./package.json');
  * The file patterns providing the list of source files.
  * @type {string[]}
  */
-const sources = ['*.js', 'bin/*.js', 'example/*.js', 'src/**/*.js', 'test/**/*.js'];
+const sources = ['*.js', 'bin/*.js', 'example/*.js', 'lib/**/*.js', 'test/**/*.js'];
 
 // Shortcuts.
 const {dest, series, src, task, watch} = gulp;
@@ -66,10 +66,7 @@ task('version', () => src('bin/which.js')
 );
 
 /** Watches for file changes. */
-task('watch', () => {
-  watch('src/**/*.js', {ignoreInitial: false}, task('build'));
-  watch('test/**/*.js', task('test'));
-});
+task('watch', () => watch('test/**/*.js', task('test')));
 
 /** Runs the default tasks. */
 task('default', series('version'));
