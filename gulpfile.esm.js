@@ -7,15 +7,20 @@ import {createRequireFromPath} from 'module';
 import {delimiter, normalize, resolve} from 'path';
 
 /**
+ * The package settings.
+ * @type {object}
+ */
+const pkg = createRequireFromPath('.')('./package.json');
+
+/**
  * The file patterns providing the list of source files.
  * @type {string[]}
  */
 const sources = ['*.js', 'bin/*.js', 'example/*.js', 'src/**/*.js', 'test/**/*.js'];
 
 // Shortcuts.
-const pkg = createRequireFromPath('.')('./package.json');
 const {dest, series, src, task, watch} = gulp;
-const {copyFile, readFile} = promises;
+const {copyFile} = promises;
 
 // Initialize the build system.
 const _path = 'PATH' in process.env ? process.env.PATH : '';

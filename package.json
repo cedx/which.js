@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
-  "type": "module",
+  "type": "commonjs",
   "types": "lib/types.d.ts",
   "version": "6.0.0",
   "author": {
@@ -31,8 +31,7 @@
     "gulp": "^4.0.1",
     "gulp-replace": "^1.0.0",
     "mocha": "^6.1.4",
-    "nyc": "^14.1.0",
-    "source-map-support": "^0.5.12"
+    "nyc": "^14.1.0"
   },
   "engines": {
     "node": ">=12.0.0",
