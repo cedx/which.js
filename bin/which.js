@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-'use strict';
 
-/* tslint:disable: no-console */
+'use strict';
 const program = require('commander');
-const {FinderError, which} = require('../lib');
+const {FinderError, which} = require('../lib/index.js');
 
 /**
  * The version number of the package.

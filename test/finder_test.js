@@ -1,15 +1,14 @@
-/* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
 import {delimiter} from 'path';
-import {Finder} from '../src';
+import {Finder} from '../lib/index.js';
 
-/** Tests the features of the [[Finder]] class. */
+/** @test {Finder} */
 describe('Finder', () => {
 
-  /** Tests the [[Finder]] constructor. */
+  /** @test {Finder#constructor} */
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
-      const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
+      const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
       const path = pathEnv.length ? pathEnv.split(delimiter) : [];
       expect(new Finder().path).to.have.ordered.members(path);
     });
@@ -20,7 +19,7 @@ describe('Finder', () => {
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
-      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT! : '';
+      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
       const extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
       expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
@@ -39,9 +38,9 @@ describe('Finder', () => {
     });
   });
 
-  /** Tests the `Finder#find()` method. */
+  /** @test {Finder#find} */
   describe('#find()', () => {
-    async function toArray(asyncIterable: AsyncIterable<string>): Promise<string[]> {
+    async function toArray(asyncIterable) {
       const items = [];
       for await (const item of asyncIterable) items.push(item);
       return items;
@@ -60,7 +59,7 @@ describe('Finder', () => {
     });
   });
 
-  /** Tests the `Finder#isExecutable()` method. */
+  /** @test {Finder#isExecutable} */
   describe('#isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
       expect(await new Finder().isExecutable(`${__dirname}/../AUTHORS.txt`)).to.be.false;

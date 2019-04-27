@@ -3,7 +3,6 @@ const {spawn} = require('child_process');
 const del = require('del');
 const {promises} = require('fs');
 const {dest, series, src, task, watch} = require('gulp');
-const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const {delimiter, normalize, resolve} = require('path');
 const pkg = require('./package.json');
@@ -19,14 +18,8 @@ const _path = 'PATH' in process.env ? process.env.PATH : '';
 const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
 
-/** Builds the project. */
-task('build:cjs', () => _exec('tsc'));
-task('build:esm', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
-task('build:rename', () => src('lib/**/*.js').pipe(rename({extname: '.mjs'})).pipe(dest('lib')));
-task('build', series('build:esm', 'build:rename', 'build:cjs'));
-
 /** Deletes all generated files and reset any saved state. */
-task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
+task('clean', () => del(['.nyc_output', 'doc/api', 'var/**/*', 'web']));
 
 /** Uploads the results of the code coverage. */
 task('coverage', () => _exec('coveralls', ['var/lcov.info']));
@@ -75,7 +68,7 @@ task('watch', () => {
 });
 
 /** Runs the default tasks. */
-task('default', series('build', 'version'));
+task('default', series('version'));
 
 /**
  * Spawns a new process using the specified command.
