@@ -38,5 +38,4 @@ import {which} from '@cedx/which';
 ```
 
 !!! info
-    This library is packaged as [CommonJS modules](https://nodejs.org/api/modules.html) (`.js` files)
-    and [ECMAScript modules](https://nodejs.org/api/esm.html) (`.mjs` files).
+    This library is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).

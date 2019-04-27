@@ -1,0 +1,19 @@
+{
+  "source": "lib",
+  "destination": "doc/api",
+  "excludes": ["index\\.js$"],
+  "plugins": [
+    {"name": "esdoc-ecmascript-proposal-plugin", "option": {"all": true}},
+    {"name": "esdoc-standard-plugin", "option": {
+      "accessor": {"access": ["public", "protected"]},
+      "manual": {"files": ["CHANGELOG.md"]},
+      "test": {"source": "test"},
+      "brand": {
+        "description": "Find the instances of an executable in the system path. Like the `which` Linux command, in JavaScript.",
+        "logo": "doc/img/favicon.ico",
+        "repository": "https://github.com/cedx/which.js",
+        "title": "Which for JS"
+      }
+    }}
+  ]
+}

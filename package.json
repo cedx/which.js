@@ -7,7 +7,7 @@
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
   "type": "module",
-  "types": "lib/index.d.ts",
+  "types": "lib/types.d.ts",
   "version": "6.0.0",
   "author": {
     "email": "cedric@belin.io",
@@ -24,6 +24,9 @@
     "@types/node": "^11.13.8",
     "chai": "^4.2.0",
     "del": "^4.1.0",
+    "esdoc": "^1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
     "gulp": "^4.0.1",
     "gulp-replace": "^1.0.0",
     "mocha": "^6.1.4",
