@@ -62,7 +62,7 @@ describe('Finder', () => {
   /** @test {Finder#isExecutable} */
   describe('#isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
-      expect(await new Finder().isExecutable(`${__dirname}/../AUTHORS.txt`)).to.be.false;
+      expect(await new Finder().isExecutable('AUTHORS.txt')).to.be.false;
     });
 
     it('should return `false` for a POSIX executable, when test is run on Windows', async () => {

@@ -10,7 +10,7 @@ import {delimiter, normalize, resolve} from 'path';
  * The package settings.
  * @type {object}
  */
-const pkg = createRequireFromPath('.')('./package.json');
+const packageConfig = createRequireFromPath('.')('./package.json');
 
 /**
  * The file patterns providing the list of source files.
@@ -61,7 +61,7 @@ task('upgrade', async () => {
 
 /** Updates the version number contained in the sources. */
 task('version', () => src('bin/which.js')
-  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${pkg.version}'`))
+  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${packageConfig.version}'`))
   .pipe(dest('bin'))
 );
 
@@ -79,7 +79,7 @@ task('default', series('version'));
  * @return {Promise<void>} Completes when the command is finally terminated.
  */
 function _exec(command, args = [], options = {}) {
-  return new Promise((fulfill, reject) => spawn(normalize(command), args, Object.assign({shell: true, stdio: 'inherit'}, options))
+  return new Promise((fulfill, reject) => spawn(normalize(command), args, {shell: true, stdio: 'inherit', ...options})
     .on('close', code => code ? reject(new Error(`${command}: ${code}`)) : fulfill())
   );
 }
