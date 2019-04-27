@@ -1,17 +1,21 @@
-'use strict';
-const {spawn} = require('child_process');
-const del = require('del');
-const {promises} = require('fs');
-const {dest, series, src, task, watch} = require('gulp');
-const replace = require('gulp-replace');
-const {delimiter, normalize, resolve} = require('path');
-const pkg = require('./package.json');
+import {spawn} from 'child_process';
+import del from 'del';
+import {promises} from 'fs';
+import gulp from 'gulp';
+import replace from 'gulp-replace';
+import {createRequireFromPath} from 'module';
+import {delimiter, normalize, resolve} from 'path';
 
 /**
  * The file patterns providing the list of source files.
  * @type {string[]}
  */
-const sources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.ts'];
+const sources = ['*.js', 'bin/*.js', 'example/*.js', 'src/**/*.js', 'test/**/*.js'];
+
+// Shortcuts.
+const pkg = createRequireFromPath('.')('./package.json');
+const {dest, series, src, task, watch} = gulp;
+const {copyFile, readFile} = promises;
 
 // Initialize the build system.
 const _path = 'PATH' in process.env ? process.env.PATH : '';
@@ -26,32 +30,27 @@ task('coverage', () => _exec('coveralls', ['var/lcov.info']));
 
 /** Builds the documentation. */
 task('doc', async () => {
-  for (const path of ['CHANGELOG.md', 'LICENSE.md']) await promises.copyFile(path, `doc/about/${path.toLowerCase()}`);
+  for (const path of ['CHANGELOG.md', 'LICENSE.md']) await copyFile(path, `doc/about/${path.toLowerCase()}`);
   await _exec('esdoc', ['-c', 'etc/esdoc.json']);
   await _exec('mkdocs', ['build', '--config-file=etc/mkdocs.yaml']);
   return del(['doc/about/changelog.md', 'doc/about/license.md']);
 });
 
 /** Fixes the coding standards issues. */
-task('fix', () => _exec('tslint', ['--config', 'etc/tslint.yaml', '--fix', ...sources]));
+task('fix', () => _exec('eslint', ['--config=etc/eslint.yaml', '--fix', ...sources]));
 
 /** Performs the static analysis of source code. */
-task('lint', () => _exec('tslint', ['--config', 'etc/tslint.yaml', ...sources]));
+task('lint', () => _exec('eslint', ['--config=etc/eslint.yaml', ...sources]));
 
 /** Runs the test suites. */
-task('test', () => _exec('nyc', [
-  '--nycrc-path=etc/nyc.yaml',
-  normalize('node_modules/.bin/mocha'),
-  '--config=etc/mocha.yaml',
-  '"test/**/*_test.ts"'
-]));
+task('test', () => _exec('nyc', ['--nycrc-path=etc/nyc.yaml', 'node_modules/.bin/mocha', '--config=etc/mocha.yaml']));
 
 /** Upgrades the project to the latest revision. */
 task('upgrade', async () => {
   await _exec('git', ['reset', '--hard']);
   await _exec('git', ['fetch', '--all', '--prune']);
   await _exec('git', ['pull', '--rebase']);
-  await _exec('npm', ['install', '--ignore-scripts']);
+  await _exec('npm', ['install']);
   return _exec('npm', ['update', '--dev']);
 });
 
@@ -63,8 +62,8 @@ task('version', () => src('bin/which.js')
 
 /** Watches for file changes. */
 task('watch', () => {
-  watch('src/**/*.ts', {ignoreInitial: false}, task('build'));
-  watch('test/**/*.ts', task('test'));
+  watch('src/**/*.js', {ignoreInitial: false}, task('build'));
+  watch('test/**/*.js', task('test'));
 });
 
 /** Runs the default tasks. */

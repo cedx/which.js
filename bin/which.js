@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-
-'use strict';
-const program = require('commander');
-const {FinderError, which} = require('../lib/index.js');
+import program from 'commander';
+import {FinderError, which} from '../lib/index.js';
 
 /**
  * The version number of the package.
