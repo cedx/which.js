@@ -3,6 +3,8 @@
 
 Find the instances of an executable in the system path, in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [TypeScript](https://www.typescriptlang.org).
 
+> This library is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
+
 ## Documentation
 - [User guide](https://dev.belin.io/which.js)
 - [API reference](https://dev.belin.io/which.js/api)

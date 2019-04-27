@@ -1,6 +1,9 @@
 /** Finds the instances of an executable in the system path. */
 export declare class Finder {
 
+  /** Value indicating whether the current platform is Windows. */
+  static readonly isWindows: boolean;
+
   /** The list of executable file extensions. */
   extensions: string[];
 
@@ -15,9 +18,6 @@ export declare class Finder {
    * @param options An object specifying values used to initialize this instance.
    */
   constructor(options?: Partial<FinderOptions>);
-
-  /** Value indicating whether the current platform is Windows. */
-  static readonly isWindows: boolean;
 
   /**
    * Finds the instances of an executable in the system path.

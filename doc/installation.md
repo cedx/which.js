@@ -36,6 +36,3 @@ Now in your [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 ```ts
 import {which} from '@cedx/which';
 ```
-
-!!! info
-    This library is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
