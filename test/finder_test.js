@@ -40,7 +40,6 @@ describe('Finder', () => {
 
   /** @test {Finder#find} */
   describe('#find()', () => {
-    // eslint-disable-next-line require-jsdoc
     async function toArray(asyncIterable) {
       const items = [];
       for await (const item of asyncIterable) items.push(item);
