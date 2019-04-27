@@ -52,7 +52,6 @@ rules:
   no-octal-escape: error
   no-proto: error
   no-redeclare: [error, {builtinGlobals: true}]
-  no-return-assign: error
   no-return-await: error
   no-script-url: error
   no-self-compare: error
@@ -120,7 +119,6 @@ rules:
   max-statements-per-line: [error, {max: 2}]
   multiline-comment-style: error
   new-cap: error
-  newline-per-chained-call: error
   no-array-constructor: error
   no-lonely-if: error
   no-mixed-operators: error
