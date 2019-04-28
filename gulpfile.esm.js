@@ -13,13 +13,19 @@ import pkg from './package.json';
 const sources = ['*.js', 'bin/*.js', 'example/*.js', 'lib/**/*.js', 'test/**/*.js'];
 
 // Shortcuts.
-const {dest, series, src, task, watch} = gulp;
+const {dest, src, task, watch} = gulp;
 const {copyFile} = promises;
 
 // Initialize the build system.
 const _path = 'PATH' in process.env ? process.env.PATH : '';
 const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
+
+/** Builds the project. */
+task('build', () => src('bin/which.js')
+  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${pkg.version}'`))
+  .pipe(dest('bin'))
+);
 
 /** Deletes all generated files and reset any saved state. */
 task('clean', () => del(['.nyc_output', 'doc/api', 'var/**/*', 'web']));
@@ -53,17 +59,11 @@ task('upgrade', async () => {
   return _exec('npm', ['update', '--dev']);
 });
 
-/** Updates the version number contained in the sources. */
-task('version', () => src('bin/which.js')
-  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${pkg.version}'`))
-  .pipe(dest('bin'))
-);
-
 /** Watches for file changes. */
 task('watch', () => watch('test/**/*.js', task('test')));
 
 /** Runs the default tasks. */
-task('default', series('version'));
+task('default', task('build'));
 
 /**
  * Spawns a new process using the specified command.
