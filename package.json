@@ -21,8 +21,10 @@
     "commander": "^2.20.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
-    "del": "^4.1.0",
+    "del": "^4.1.1",
     "esdoc": "^1.1.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",

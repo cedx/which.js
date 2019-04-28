@@ -6,7 +6,9 @@ env:
   mocha: true
   node: true
 
+parser: babel-eslint
 parserOptions:
+  babelOptions: {requireConfigFile: false}
   ecmaVersion: 2019
   sourceType: module
 
@@ -78,7 +80,6 @@ rules:
   no-shadow: error
   no-shadow-restricted-names: error
   no-undef-init: error
-  no-undefined: error
   no-use-before-define: [error, {functions: false}]
 
   # Node.js and CommonJS.
@@ -115,8 +116,7 @@ rules:
   max-len: [error, {code: 200}]
   max-nested-callbacks: error
   max-params: [error, 4]
-  max-statements-per-line: [error, {max: 2}]
-  multiline-comment-style: error
+  max-statements-per-line: [error, {max: 3}]
   new-cap: error
   no-array-constructor: error
   no-lonely-if: error
