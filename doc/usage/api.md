@@ -7,7 +7,7 @@ This package provides a single function, `which()`, allowing to locate a command
 ```ts
 import {which} from '@cedx/which';
 
-async function main(): Promise<void> {
+async function main() {
   try {
     // `path` is the absolute path to the executable.
     const path = await which('foobar');
