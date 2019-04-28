@@ -10,7 +10,7 @@ import pkg from './package.json';
  * The file patterns providing the list of source files.
  * @type {string[]}
  */
-const sources = ['*.js', 'bin/*.js', 'example/*.js', 'lib/**/*.js', 'test/**/*.js'];
+const sources = ['*.js', 'bin', 'example', 'lib', 'test'];
 
 // Shortcuts.
 const {dest, src, task, watch} = gulp;
