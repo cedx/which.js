@@ -3,14 +3,8 @@ import del from 'del';
 import {promises} from 'fs';
 import gulp from 'gulp';
 import replace from 'gulp-replace';
-import {createRequireFromPath} from 'module';
 import {delimiter, normalize, resolve} from 'path';
-
-/**
- * The package settings.
- * @type {object}
- */
-const packageConfig = createRequireFromPath('.')('./package.json');
+import pkg from './package.json';
 
 /**
  * The file patterns providing the list of source files.
@@ -61,7 +55,7 @@ task('upgrade', async () => {
 
 /** Updates the version number contained in the sources. */
 task('version', () => src('bin/which.js')
-  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${packageConfig.version}'`))
+  .pipe(replace(/const packageVersion = '\d+(\.\d+){2}'/g, `const packageVersion = '${pkg.version}'`))
   .pipe(dest('bin'))
 );
 
