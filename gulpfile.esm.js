@@ -42,13 +42,13 @@ task('doc', async () => {
 });
 
 /** Fixes the coding standards issues. */
-task('fix', () => _exec('eslint', ['--config=etc/eslint.yaml', '--fix', ...sources]));
+task('fix', () => _exec('eslint', ['--config=etc/eslint.json', '--fix', ...sources]));
 
 /** Performs the static analysis of source code. */
-task('lint', () => _exec('eslint', ['--config=etc/eslint.yaml', ...sources]));
+task('lint', () => _exec('eslint', ['--config=etc/eslint.json', ...sources]));
 
 /** Runs the test suites. */
-task('test', () => _exec('nyc', ['--nycrc-path=etc/nyc.yaml', 'node_modules/.bin/mocha', '--config=etc/mocha.yaml']));
+task('test', () => _exec('nyc', ['--nycrc-path=etc/nyc.json', 'node_modules/.bin/mocha', '--config=etc/mocha.json']));
 
 /** Upgrades the project to the latest revision. */
 task('upgrade', async () => {
