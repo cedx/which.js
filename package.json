@@ -7,7 +7,6 @@
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
   "type": "commonjs",
-  "types": "lib/types.d.ts",
   "version": "6.0.0",
   "author": {
     "email": "cedric@belin.io",
