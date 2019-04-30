@@ -8,7 +8,7 @@ describe('which', () => {
   describe('which()', () => {
     it('should return the path of the `executable.cmd` file on Windows', async () => {
       try {
-        const executable = await which('executable', {all: false, path: 'test/fixtures'});
+        const executable = /** @type {string} */ (await which('executable', {all: false, path: 'test/fixtures'}));
         if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
         else expect.fail('Error not thrown');
       }
@@ -37,7 +37,7 @@ describe('which', () => {
 
     it('should return the path of the `executable.sh` file on POSIX', async () => {
       try {
-        const executable = await which('executable.sh', {all: false, path: 'test/fixtures'});
+        const executable = /** @type {string} */ (await which('executable.sh', {all: false, path: 'test/fixtures'}));
         if (Finder.isWindows) expect.fail('Error not thrown');
         else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
       }
