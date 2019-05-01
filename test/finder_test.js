@@ -2,10 +2,8 @@ import {expect} from 'chai';
 import {delimiter} from 'path';
 import {Finder} from '../lib/index.js';
 
-/** @test {Finder} */
+/** Tests the features of the `Finder` class. */
 describe('Finder', () => {
-
-  /** @test {Finder#constructor} */
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
       const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
@@ -38,7 +36,6 @@ describe('Finder', () => {
     });
   });
 
-  /** @test {Finder#find} */
   describe('#find()', () => {
     async function toArray(asyncIterable) {
       const items = [];
@@ -59,7 +56,6 @@ describe('Finder', () => {
     });
   });
 
-  /** @test {Finder#isExecutable} */
   describe('#isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
       expect(await new Finder().isExecutable('AUTHORS.txt')).to.be.false;
