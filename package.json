@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
-  "type": "commonjs",
+  "type": "module",
   "version": "6.0.0",
   "author": {
     "email": "cedric@belin.io",
@@ -26,7 +26,7 @@
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^5.16.0",
-    "esm": "^3.2.22",
+    "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "gulp-replace": "^1.0.0",
     "mocha": "^6.1.4",
