@@ -1,0 +1,22 @@
+{
+  "opts": {
+    "destination": "doc/api",
+    "package": "package.json",
+    "readme": "README.md",
+    "recurse": true
+  },
+  "plugins": ["plugins/markdown"],
+  "source": {"include": ["lib"]},
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": false,
+    "dictionaries": ["jsdoc"]
+  },
+  "templates": {
+    "cleverLinks": true,
+    "default": {
+      "includeDate": false,
+      "staticFiles": {"include": ["doc"]}
+    }
+  }
+}
