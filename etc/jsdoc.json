@@ -1,7 +1,6 @@
 {
   "opts": {
     "destination": "doc/api",
-    "package": "package.json",
     "readme": "README.md",
     "recurse": true
   },
@@ -14,9 +13,6 @@
   },
   "templates": {
     "cleverLinks": true,
-    "default": {
-      "includeDate": false,
-      "staticFiles": {"include": ["doc"]}
-    }
+    "default": {"includeDate": false}
   }
 }
