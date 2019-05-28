@@ -1,8 +1,13 @@
 {
+  "metadata": {
+    "header": {"background": "#f9a825", "color": "white"},
+    "title": "Which for JS"
+  },
   "opts": {
     "destination": "doc/api",
     "readme": "README.md",
-    "recurse": true
+    "recurse": true,
+    "template": "node_modules/tidy-jsdoc"
   },
   "plugins": ["plugins/markdown"],
   "source": {"include": ["lib"]},
@@ -10,9 +15,5 @@
   "tags": {
     "allowUnknownTags": false,
     "dictionaries": ["jsdoc"]
-  },
-  "templates": {
-    "cleverLinks": true,
-    "default": {"includeDate": false}
   }
 }
