@@ -1,8 +1,10 @@
-import {expect} from 'chai';
+import chai from 'chai';
 import {Finder, FinderError, which} from '../lib/index.js';
 
 /** Tests the features of the {@link which} function. */
 describe('which()', () => {
+  const {expect} = chai;
+
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
       const executable = /** @type {string} */ (await which('executable', {all: false, path: 'test/fixtures'}));

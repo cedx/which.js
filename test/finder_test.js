@@ -1,9 +1,11 @@
-import {expect} from 'chai';
+import chai from 'chai';
 import {delimiter} from 'path';
 import {Finder} from '../lib/index.js';
 
 /** Tests the features of the {@link Finder} class. */
 describe('Finder', () => {
+  const {expect} = chai;
+
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
       const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
