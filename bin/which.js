@@ -1,12 +1,7 @@
 #!/usr/bin/env node
 import program from 'commander';
 import {FinderError, which} from '../lib/index.js';
-
-/**
- * The version number of the package.
- * @type {string}
- */
-const packageVersion = '6.0.0';
+import {packageVersion} from '../lib/version.js';
 
 /**
  * Application entry point.
