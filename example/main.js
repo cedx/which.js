@@ -1,6 +1,9 @@
 import {which} from '@cedx/which';
 
-/** Finds the instances of an executable. */
+/**
+ * Finds the instances of an executable.
+ * @return {Promise<void>} Completes when the program is terminated.
+ */
 async function main() { // eslint-disable-line no-unused-vars
   try {
     // `path` is the absolute path to the executable.
