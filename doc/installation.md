@@ -5,13 +5,13 @@ Before installing **Which for JS**, you need to make sure you have [Node.js](htt
 and [npm](https://www.npmjs.com), the Node.js package manager, up and running.
 
 !!! warning
-    Which for JS requires Node.js >= **12.3.0**.
+    Which for JS requires Node.js >= **12.4.0**.
 
 You can verify if you're already good to go with the following commands:
 
 ```shell
 node --version
-# v12.3.0
+# v12.4.0
 
 npm --version
 # 6.9.0
