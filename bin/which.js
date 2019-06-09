@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import program from 'commander';
 import {FinderError, which} from '../lib/index.js';
-import {packageVersion} from '../lib/version.js';
+import {packageVersion} from '../lib/version.g.js';
 
 /**
  * Application entry point.
