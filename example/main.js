@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import {which} from '@cedx/which';
 
 /**
  * Finds the instances of an executable.
  * @return {Promise} Completes when the program is terminated.
  */
-async function main() { // eslint-disable-line no-unused-vars
+async function main() {
   try {
     // `path` is the absolute path to the executable.
     const path = await which('foobar');
