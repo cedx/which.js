@@ -1,5 +1,7 @@
 # Changelog
 
+## Version [6.1.0](https://github.com/cedx/which.js/compare/v6.0.0...v6.1.0)
+
 ## Version [6.0.0](https://github.com/cedx/which.js/compare/v5.4.0...v6.0.0)
 - Breaking change: dropped support for [CommonJS modules](https://nodejs.org/api/modules.html).
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.

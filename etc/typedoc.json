@@ -1,0 +1,7 @@
+{
+  "excludePrivate": true,
+  "gitRevision": "master",
+  "mode": "modules",
+  "name": "Which for JS",
+  "out": "doc/api"
+}

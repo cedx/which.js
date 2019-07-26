@@ -7,7 +7,8 @@
   "name": "@cedx/which",
   "repository": "github:cedx/which.js",
   "type": "module",
-  "version": "6.0.0",
+  "types": "lib/index.d.ts",
+  "version": "6.1.0",
   "author": {
     "email": "cedric@belin.io",
     "name": "Cédric Belin",
@@ -20,18 +21,23 @@
     "commander": "^2.20.0"
   },
   "devDependencies": {
+    "@types/node": "^12.6.8",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
     "chai": "^4.2.0",
     "del": "^5.0.0",
-    "eslint": "^6.0.1",
-    "esm": "^3.2.25",
+    "eslint": "^6.1.0",
     "gulp": "^4.0.2",
-    "jsdoc": "^3.6.3",
     "mocha": "^6.2.0",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.3.0",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.3"
   },
   "engines": {
-    "node": ">=12.6.0",
-    "npm": ">=6.9.0"
+    "node": ">=12.7.0",
+    "npm": ">=6.10.0"
   },
   "keywords": [
     "esm",
