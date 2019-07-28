@@ -21,12 +21,16 @@
     "commander": "^2.20.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/gulp": "^4.0.6",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "chai": "^4.2.0",
     "del": "^5.0.0",
     "eslint": "^6.1.0",
+    "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
@@ -49,7 +53,7 @@
   ],
   "scripts": {
     "coverage": "gulp coverage",
-    "prepack": "gulp build",
+    "prepare": "gulp",
     "start": "gulp watch",
     "test": "gulp test"
   }
