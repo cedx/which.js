@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+// @ts-ignore
 import {which} from '@cedx/which';
 
-/**
- * Finds the instances of an executable.
- * @return {Promise} Completes when the program is terminated.
- */
-async function main() {
+/** Finds the instances of an executable. */
+async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
     const path = await which('foobar');
