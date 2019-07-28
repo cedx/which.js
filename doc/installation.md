@@ -5,16 +5,16 @@ Before installing **Which for JS**, you need to make sure you have [Node.js](htt
 and [npm](https://www.npmjs.com), the Node.js package manager, up and running.
 
 !!! warning
-    Which for JS requires Node.js >= **12.6.0**.
+    Which for JS requires Node.js >= **12.7.0**.
 
 You can verify if you're already good to go with the following commands:
 
 ```shell
 node --version
-# v12.6.0
+# v12.7.0
 
 npm --version
-# 6.9.0
+# 6.10.0
 ```
 
 !!! info
@@ -31,8 +31,8 @@ npm install @cedx/which
 ```
 
 ### 2. Import it
-Now in your [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) code, you can use:
+Now in your [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) or [TypeScript](https://www.typescriptlang.org) code, you can use:
 
-```js
+```ts
 import {which} from '@cedx/which';
 ```

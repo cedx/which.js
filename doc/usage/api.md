@@ -1,16 +1,16 @@
 path: blob/master
-source: lib/which.js
+source: src/io/which.ts
 
 # Application programming interface
 This package provides a single function, `which()`, allowing to locate a command in the system path:
 
-```js
+```ts
 import {which} from '@cedx/which';
 
-async function main() {
+async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
-    const path = await which('foobar');
+    const path = await which('foobar') as string;
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
@@ -31,11 +31,11 @@ A value indicating whether to return all executables found, instead of just the 
 
 If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
 
-```js
+```ts
 import {which} from '@cedx/which';
 
-async function main() {
-  const paths = await which('foobar', {all: true});
+async function main(): Promise<void> {
+  const paths = await which('foobar', {all: true}) as string[];
   console.log('The command "foobar" was found at these locations:');
   for (const path of paths) console.log(path);
 }
@@ -44,7 +44,7 @@ async function main() {
 ### **extensions**: string | string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```js
+```ts
 which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ```
@@ -55,11 +55,11 @@ which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ### **onError**: (command: string) => any
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
 
-```js
+```ts
 import {which} from '@cedx/which';
 
-async function main() {
-  const path = await which('foobar', {onError: command => ''});
+async function main(): Promise<void> {
+  const path = await which('foobar', {onError: command => ''}) as string;
   if (!path.length) console.log('The command "foobar" was not found');
   else console.log(`The command "foobar" is located at: ${path}`);
 }
@@ -70,7 +70,7 @@ When an `onError` handler is provided, it is called with the command as argument
 ### **path**: string | string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
-```js
+```ts
 which('foobar', {path: '/usr/local/bin:/usr/bin'});
 which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ```
@@ -78,7 +78,7 @@ which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ### **pathSeparator**: string
 The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
 
-```js
+```ts
 which('foobar', {pathSeparator: '#'});
 // For example: "/usr/local/bin#/usr/bin"
 ```

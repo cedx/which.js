@@ -1,5 +1,5 @@
 path: blob/master
-source: bin/which.js
+source: src/cli/main.ts
 
 # Command line interface
 From a command prompt, install the `which` executable:

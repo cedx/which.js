@@ -49,7 +49,7 @@
 - Using the `fs` promises API.
 
 ## Version [3.2.1](https://github.com/cedx/which.js/compare/v3.2.0...v3.2.1)
-- Fixed [issue #1](https://github.com/cedx/which.js/issues/1): the `which()` function can return duplicates.
+- Fixed the [issue #1](https://github.com/cedx/which.js/issues/1): the `which()` function can return duplicates.
 
 ## Version [3.2.0](https://github.com/cedx/which.js/compare/v3.1.0...v3.2.0)
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
