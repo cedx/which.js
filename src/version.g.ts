@@ -1,5 +1,2 @@
-/**
- * The version number of the package.
- * @type {string}
- */
-export const packageVersion = '6.0.0';
+/** The version number of the package. */
+export const packageVersion: string = '6.1.0';
