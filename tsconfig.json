@@ -3,11 +3,11 @@
   "compilerOptions": {
     "declaration": true,
     "experimentalDecorators": true,
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "lib",
-    "sourceMap": true,
+    "resolveJsonModule": true,
     "strict": true,
-    "target": "es2018"
+    "target": "es2019"
   }
 }

@@ -1,13 +1,13 @@
-import chai from 'chai';
+import * as chai from 'chai';
 import {Finder, FinderError, which} from '../lib/index.js';
 
-/** Tests the features of the {@link which} function. */
+/** Tests the features of the [[which]] function. */
 describe('which()', () => {
   const {expect} = chai;
 
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
-      const executable = /** @type {string} */ (await which('executable', {all: false, path: 'test/fixtures'}));
+      const executable = await which('executable', {all: false, path: 'test/fixtures'}) as string;
       if (Finder.isWindows) expect(executable.endsWith('\\test\\fixtures\\executable.cmd')).to.be.true;
       else expect.fail('Error not thrown');
     }
@@ -36,7 +36,7 @@ describe('which()', () => {
 
   it('should return the path of the `executable.sh` file on POSIX', async () => {
     try {
-      const executable = /** @type {string} */ (await which('executable.sh', {all: false, path: 'test/fixtures'}));
+      const executable = await which('executable.sh', {all: false, path: 'test/fixtures'}) as string;
       if (Finder.isWindows) expect.fail('Error not thrown');
       else expect(executable.endsWith('/test/fixtures/executable.sh')).to.be.true;
     }
