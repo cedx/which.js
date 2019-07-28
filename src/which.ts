@@ -1,4 +1,4 @@
-import {Finder, FinderError, FinderOptions} from './finder.js';
+import {Finder, FinderError, FinderOptions} from './finder';
 
 /**
  * Finds the first instance of an executable in the system path.

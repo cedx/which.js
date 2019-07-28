@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import {Finder, FinderError, which} from '../lib/index.js';
+import {Finder, FinderError, which} from '../src/index';
 
 /** Tests the features of the [[which]] function. */
 describe('which()', () => {

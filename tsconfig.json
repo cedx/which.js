@@ -2,7 +2,6 @@
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "declaration": true,
-    "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "lib",

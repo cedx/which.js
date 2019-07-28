@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 import {delimiter} from 'path';
-import {Finder} from '../lib/index.js';
+import {Finder} from '../src/index';
 
 /** Tests the features of the [[Finder]] class. */
 describe('Finder', () => {
