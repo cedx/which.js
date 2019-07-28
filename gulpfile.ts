@@ -2,6 +2,7 @@ import {spawn, SpawnOptions} from 'child_process';
 import * as del from 'del';
 import {promises} from 'fs';
 import * as gulp from 'gulp';
+import * as replace from 'gulp-replace';
 import {EOL} from 'os';
 import {delimiter, normalize, resolve} from 'path';
 import * as pkg from './package.json';
@@ -10,7 +11,7 @@ import * as pkg from './package.json';
 const sources: string[] = ['*.ts', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.ts'];
 
 // Shortcuts.
-const {series, task, watch} = gulp;
+const {dest, series, src, task, watch} = gulp;
 const {copyFile, writeFile} = promises;
 
 // Initialize the build system.
@@ -19,7 +20,9 @@ const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
 
 /** Builds the project. */
-task('build', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
+task('build:fix', () => src('lib/**/*.js').pipe(replace(/(export|import) (.+) from '(\.[^']+)'/g, "$1 $2 from '$3.js'")).pipe(dest('lib')));
+task('build:js', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
+task('build', series('build:js', 'build:fix'));
 
 /** Deletes all generated files and reset any saved state. */
 task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
@@ -54,7 +57,7 @@ task('upgrade', async () => {
 });
 
 /** Builds the version file. */
-task('version', () => writeFile('src/version.g.ts', [
+task('version', () => writeFile('src/cli/version.g.ts', [
   '/** The version number of the package. */',
   `export const packageVersion: string = '${pkg.version}';`, ''
 ].join(EOL)));
