@@ -1,13 +1,16 @@
 # Changelog
 
 ## Version [6.1.0](https://github.com/cedx/which.js/compare/v6.0.0...v6.1.0)
+- Due to strong user demand, restored the [TypeScript](https://www.typescriptlang.org) source code.
+- Raised the [Node.js](https://nodejs.org) constraint.
+- Replaced the [JSDoc](https://jsdoc.app) documentation generator by [TypeDoc](https://typedoc.org).
 
 ## Version [6.0.0](https://github.com/cedx/which.js/compare/v5.4.0...v6.0.0)
 - Breaking change: dropped support for [CommonJS modules](https://nodejs.org/api/modules.html).
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
 - Breaking change: reverted the source code to [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
-- Replaced [TypeDoc](https://typedoc.org) documentation generator by [JSDoc](https://jsdoc.app).
-- Replaced [TSLint](https://palantir.github.io/tslint) static analyzer by [ESLint](https://eslint.org).
+- Replaced the [TypeDoc](https://typedoc.org) documentation generator by [JSDoc](https://jsdoc.app).
+- Replaced the [TSLint](https://palantir.github.io/tslint) static analyzer by [ESLint](https://eslint.org).
 - Updated the package dependencies.
 
 ## Version [5.4.0](https://github.com/cedx/which.js/compare/v5.3.0...v5.4.0)
@@ -35,8 +38,8 @@
 
 ## Version [4.1.0](https://github.com/cedx/which.js/compare/v4.0.1...v4.1.0)
 - Ported the source code to [TypeScript](https://www.typescriptlang.org).
-- Replaced [ESDoc](https://esdoc.org) documentation generator by [TypeDoc](https://typedoc.org).
-- Replaced [ESLint](https://eslint.org) static analyzer by [TSLint](https://palantir.github.io/tslint).
+- Replaced the [ESDoc](https://esdoc.org) documentation generator by [TypeDoc](https://typedoc.org).
+- Replaced the [ESLint](https://eslint.org) static analyzer by [TSLint](https://palantir.github.io/tslint).
 - Updated the package dependencies.
 
 ## Version [4.0.1](https://github.com/cedx/which.js/compare/v4.0.0...v4.0.1)

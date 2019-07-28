@@ -12,4 +12,3 @@
 /*.iml
 /*.ts
 /**/*.tsconfig.json
-/lib/**/*.map

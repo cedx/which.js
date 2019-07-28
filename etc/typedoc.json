@@ -1,6 +1,7 @@
 {
   "excludePrivate": true,
   "gitRevision": "master",
+  "ignoreCompilerErrors": true,
   "mode": "modules",
   "name": "Which for JS",
   "out": "doc/api"
