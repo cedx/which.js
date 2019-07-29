@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig.json",
+  "include": ["**/*.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "module": "es2015"
+    "declaration": true,
+    "module": "es2015",
+    "outDir": "../lib"
   }
 }
