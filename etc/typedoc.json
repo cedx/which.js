@@ -2,9 +2,7 @@
   "excludePrivate": true,
   "gaSite": "auto",
   "gitRevision": "master",
-  "ignoreCompilerErrors": true,
   "mode": "file",
   "name": "Which for JS",
-  "out": "doc/api",
-  "tsconfig": "src/tsconfig.json"
+  "out": "doc/api"
 }

@@ -20,7 +20,7 @@ const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
 
 /** Builds the project. */
-task('build:fix', () => src('lib/**/*.js').pipe(replace(/(export|import) (.+) from '(\.[^']+)'/g, "$1 $2 from '$3.js'")).pipe(dest('lib')));
+task('build:fix', () => src('lib/**/*.js').pipe(replace(/(export|import)\s+(.+)\s+from\s+'(\.[^']+)'/g, "$1 $2 from '$3.js'")).pipe(dest('lib')));
 task('build:js', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
 task('build', series('build:js', 'build:fix'));
 
@@ -33,7 +33,7 @@ task('coverage', () => _exec('coveralls', ['var/lcov.info']));
 /** Builds the documentation. */
 task('doc', async () => {
   for (const path of ['CHANGELOG.md', 'LICENSE.md']) await copyFile(path, `doc/about/${path.toLowerCase()}`);
-  await _exec('typedoc', ['--gaID', process.env.GOOGLE_ANALYTICS_ID!, '--options', 'etc/typedoc.json']);
+  await _exec('typedoc', ['--gaID', process.env.GOOGLE_ANALYTICS_ID!, '--options', 'etc/typedoc.json', '--tsconfig', 'src/tsconfig.json']);
   await _exec('mkdocs', ['build', '--config-file=etc/mkdocs.yaml']);
   return del(['doc/about/changelog.md', 'doc/about/license.md']);
 });
