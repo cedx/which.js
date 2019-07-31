@@ -2,7 +2,10 @@ import program from 'commander';
 import {which} from '../io/which';
 import {packageVersion} from './version.g';
 
-/** Application entry point. */
+/**
+ * Application entry point.
+ * @return Completes when the program is terminated.
+ */
 export async function main(): Promise<void> {
   // Initialize the application.
   process.title = 'Which.js';

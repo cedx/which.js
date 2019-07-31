@@ -134,10 +134,10 @@ export class FinderError extends Error {
 export interface FinderOptions {
 
   /** The list of executable file extensions. */
-  extensions: string | string[];
+  extensions: string|string[];
 
   /** The list of system paths. */
-  path: string | string[];
+  path: string|string[];
 
   /** The character used to separate paths in the system path. */
   pathSeparator: string;

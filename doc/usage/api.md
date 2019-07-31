@@ -41,7 +41,7 @@ async function main(): Promise<void> {
 }
 ```
 
-### **extensions**: string | string[]
+### **extensions**: string|string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
 ```ts
@@ -67,7 +67,7 @@ async function main(): Promise<void> {
 
 When an `onError` handler is provided, it is called with the command as argument, and its return value is used instead. This is preferable to throwing and then immediately catching the `FinderError`.
 
-### **path**: string | string[]
+### **path**: string|string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
 ```ts

@@ -3,7 +3,10 @@
 // @ts-ignore
 import {which} from '@cedx/which';
 
-/** Finds the instances of an executable. */
+/**
+ * Finds the instances of an executable.
+ * @return Completes when the program is terminated.
+ */
 async function main(): Promise<void> {
   try {
     // `path` is the absolute path to the executable.
