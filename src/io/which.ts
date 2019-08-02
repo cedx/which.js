@@ -8,7 +8,7 @@ import {Finder, FinderError, FinderOptions} from './finder';
  * @return A string, or an array of strings, specifying the path(s) of the found executable(s).
  */
 export async function which(command: string, options: Partial<WhichOptions> = {}): Promise<string|string[]> {
-  const {all = false, extensions = [], onError = null, path = [], pathSeparator = ''} = options;
+  const {all = false, extensions = [], onError, path = [], pathSeparator = ''} = options;
   const finder = new Finder({extensions, path, pathSeparator});
   const list = [];
 
