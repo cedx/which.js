@@ -49,7 +49,7 @@ export class Finder {
    * @param command The command to be resolved.
    * @return The paths of the executables found.
    */
-  async *find(command: string): AsyncIterable<string> {
+  async *find(command: string): AsyncIterableIterator<string> { // eslint-disable-line @typescript-eslint/require-await
     for (const directory of this.path) yield* this._findExecutables(directory, command);
   }
 
@@ -107,7 +107,7 @@ export class Finder {
    * @param command The command to be resolved.
    * @return The paths of the executables found.
    */
-  private async *_findExecutables(directory: string, command: string): AsyncIterable<string> {
+  private async *_findExecutables(directory: string, command: string): AsyncIterableIterator<string> {
     for (const extension of ['', ...this.extensions]) {
       const resolvedPath = resolve(join(directory, command) + extension.toLowerCase());
       if (await this.isExecutable(resolvedPath)) yield resolvedPath;

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-// @ts-ignore
 import {which} from '@cedx/which';
 
 /**

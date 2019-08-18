@@ -39,7 +39,7 @@ describe('Finder', () => {
   });
 
   describe('#find()', () => {
-    async function toArray(asyncIterable: AsyncIterable<string>): Promise<string[]> {
+    async function toArray(asyncIterable: AsyncIterableIterator<string>): Promise<string[]> {
       const items = [];
       for await (const item of asyncIterable) items.push(item);
       return items;
