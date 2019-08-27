@@ -4,7 +4,7 @@ source: src/io/which.ts
 # Application programming interface
 This package provides a single function, `which()`, allowing to locate a command in the system path:
 
-```ts
+```typescript
 import {which} from '@cedx/which';
 
 async function main(): Promise<void> {
@@ -31,7 +31,7 @@ A value indicating whether to return all executables found, instead of just the 
 
 If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
 
-```ts
+```typescript
 import {which} from '@cedx/which';
 
 async function main(): Promise<void> {
@@ -44,7 +44,7 @@ async function main(): Promise<void> {
 ### **extensions**: string|string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```ts
+```typescript
 which('foobar', {extensions: '.FOO;.EXE;.CMD'});
 which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ```
@@ -55,7 +55,7 @@ which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
 ### **onError**: (command: string) => any
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
 
-```ts
+```typescript
 import {which} from '@cedx/which';
 
 async function main(): Promise<void> {
@@ -70,7 +70,7 @@ When an `onError` handler is provided, it is called with the command as argument
 ### **path**: string|string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
-```ts
+```typescript
 which('foobar', {path: '/usr/local/bin:/usr/bin'});
 which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ```
@@ -78,7 +78,7 @@ which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
 ### **pathSeparator**: string
 The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
 
-```ts
+```typescript
 which('foobar', {pathSeparator: '#'});
 // For example: "/usr/local/bin#/usr/bin"
 ```
