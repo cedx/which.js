@@ -29,6 +29,6 @@ export async function main(): Promise<void> {
   let executables = await which(program.executable, {all: program.all});
   if (!program.silent) {
     if (!Array.isArray(executables)) executables = [executables];
-    for (const path of executables) console.log(path);
+    for (const path of executables) console.log(path); // eslint-disable-line no-console
   }
 }
