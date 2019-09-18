@@ -10,7 +10,8 @@ jobs:
       matrix:
         runtime: [12.x]
     steps:
-      - uses: actions/checkout@v1
+      - name: Fetch the sources
+        uses: actions/checkout@v1
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
