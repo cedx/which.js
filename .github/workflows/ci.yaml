@@ -23,5 +23,5 @@ jobs:
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
           npm test
-          ls var/
+          cat var/lcov.info
           npm run-script coverage
