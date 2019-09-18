@@ -17,8 +17,10 @@ jobs:
           node-version: ${{matrix.runtime}}
       - name: Run tests
         env:
-          CI: true
-          NODE_OPTIONS: --experimental-modules --no-warnings
+          ci: true
+          ci_name: GitHub
+          coveralls_token: 6im7iEOQ5VHjciLMinZiurPiuAh0nFrhd
+          node_options: --experimental-modules --no-warnings
         run: |
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
