@@ -11,19 +11,18 @@ jobs:
         runtime: [12.x]
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{matrix.runtime}}
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: ${{matrix.runtime}}
       - name: Run tests
         env:
           CI: true
-          CI_NAME: GitHub
-          COVERALLS_TOKEN: 6im7iEOQ5VHjciLMinZiurPiuAh0nFrhd
+          COVERALLS_SERVICE_NAME: GitHub
+          COVERALLS_REPO_TOKEN: 6im7iEOQ5VHjciLMinZiurPiuAh0nFrhd
           NODE_OPTIONS: '--experimental-modules --no-warnings'
         run: |
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
           npm test
-          cat var/lcov.info
           npm run-script coverage
