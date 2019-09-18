@@ -23,4 +23,5 @@ jobs:
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
           npm test
+          ls
           npm run-script coverage
