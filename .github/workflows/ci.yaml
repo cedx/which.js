@@ -16,14 +16,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{matrix.runtime}}
-      - name: Run tests
+      - name: Run the tests
         env:
-          CI: true
-          COVERALLS_SERVICE_NAME: GitHub
-          COVERALLS_REPO_TOKEN: 6im7iEOQ5VHjciLMinZiurPiuAh0nFrhd
           NODE_OPTIONS: '--experimental-modules --no-warnings'
         run: |
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
           npm test
-          npm run-script coverage
+      - name: Collect the code coverage
+        env:
+          CI: true
+          CI_BRANCH: ${GITHUB_REF}
+          CI_COMMIT: ${GITHUB_SHA}
+          CI_NAME: github
+          COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_TOKEN}}
+          NODE_OPTIONS: '--experimental-modules --no-warnings'
+        if: success()
+        run: npm run-script coverage
