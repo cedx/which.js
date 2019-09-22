@@ -6,7 +6,7 @@
 - [Submit an issue](https://github.com/cedx/which.js/issues)
 
 ## Testing
-- [Continuous integration](https://travis-ci.com/cedx/which.js)
+- [Continuous integration](https://github.com/cedx/which.js/actions)
 - [Code coverage](https://coveralls.io/github/cedx/which.js)
 
 ## Other implementations

@@ -6,30 +6,29 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        runtime: [12.x]
     steps:
-      - name: Fetch the sources
-        uses: actions/checkout@v1
-      - name: Use Node.js 12.x
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{matrix.runtime}}
-      - name: Run the tests
-        env:
-          NODE_OPTIONS: '--experimental-modules --no-warnings'
+          node-version: 12
+      - name: Check environment
+        run: |
+          node --version
+          npm --version
+      - name: Fetch sources
+        uses: actions/checkout@v1
+      - name: Install dependencies
         run: |
           npm install --global @cedx/coveralls
           npm install --ignore-scripts
-          npm test
-      - name: Collect the code coverage
+      - name: Run tests
+        env:
+          NODE_OPTIONS: '--experimental-modules --no-warnings'
+        run: npm test
+      - name: Collect code coverage
         env:
           CI: true
-          CI_BRANCH: ${GITHUB_REF}
-          CI_COMMIT: ${GITHUB_SHA}
-          CI_NAME: github
-          COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_TOKEN}}
+          COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NODE_OPTIONS: '--experimental-modules --no-warnings'
         if: success()
         run: npm run-script coverage
