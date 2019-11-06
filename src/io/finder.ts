@@ -23,13 +23,13 @@ export class Finder {
 
     if (!Array.isArray(path)) path = path.split(pathSeparator).filter(item => item.length > 0);
     if (!path.length) {
-      const pathEnv = 'PATH' in process.env ? process.env.PATH! : '';
+      const pathEnv = process.env.PATH ?? '';
       if (pathEnv.length) path = pathEnv.split(pathSeparator);
     }
 
     if (!Array.isArray(extensions)) extensions = extensions.split(pathSeparator).filter(item => item.length > 0);
     if (!extensions.length && Finder.isWindows) {
-      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT! : '';
+      const pathExt = process.env.PATHEXT ?? '';
       extensions = pathExt.length ? pathExt.split(pathSeparator) : ['.exe', '.cmd', '.bat', '.com'];
     }
 
