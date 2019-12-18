@@ -6,7 +6,7 @@
   "include": [
     "../*.ts",
     "../bin/*.js",
-    "../example/*.ts",
+    "../example/*.js",
     "../src/**/*.ts",
     "../test/**/*.ts"
   ]
