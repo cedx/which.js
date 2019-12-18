@@ -1,4 +1,3 @@
-/* eslint-disable no-console, @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unused-vars */
 import {which} from '@cedx/which';
 
 /**
