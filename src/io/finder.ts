@@ -109,7 +109,7 @@ export class Finder {
    */
   private async *_findExecutables(directory: string, command: string): AsyncIterableIterator<string> {
     for (const extension of ['', ...this.extensions]) {
-      const resolvedPath = resolve(join(directory, command) + extension.toLowerCase());
+      const resolvedPath = resolve(directory, `${command}${extension.toLowerCase()}`);
       if (await this.isExecutable(resolvedPath)) yield resolvedPath;
     }
   }
