@@ -1,5 +1,5 @@
 import {promises, Stats} from 'fs';
-import {delimiter, extname, join, resolve} from 'path';
+import {delimiter, extname, resolve} from 'path';
 
 /** Finds the instances of an executable in the system path. */
 export class Finder {
