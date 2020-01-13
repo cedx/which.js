@@ -1,14 +1,14 @@
-import * as chai from 'chai';
+import chai from 'chai';
 import {delimiter} from 'path';
-import {Finder} from '../src/index';
+import {Finder} from '../lib/index.js';
 
-/** Tests the features of the [[Finder]] class. */
+/** Tests the features of the {@link Finder} class. */
 describe('Finder', () => {
   const {expect} = chai;
 
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
-      const pathEnv = process.env.PATH ?? '';
+      const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
       const path = pathEnv.length ? pathEnv.split(delimiter) : [];
       expect(new Finder().path).to.have.ordered.members(path);
     });
@@ -19,7 +19,7 @@ describe('Finder', () => {
     });
 
     it('should set the `extensions` property to the value of the `PATHEXT` environment variable by default', () => {
-      const pathExt = process.env.PATHEXT ?? '';
+      const pathExt = 'PATHEXT' in process.env ? process.env.PATHEXT : '';
       const extensions = pathExt.length ? pathExt.split(delimiter).map(item => item.toLowerCase()) : [];
       expect(new Finder().extensions).to.have.ordered.members(extensions);
     });
@@ -39,7 +39,7 @@ describe('Finder', () => {
   });
 
   describe('#find()', () => {
-    async function toArray(asyncIterable: AsyncIterableIterator<string>): Promise<string[]> {
+    async function toArray(asyncIterable) {
       const items = [];
       for await (const item of asyncIterable) items.push(item);
       return items;

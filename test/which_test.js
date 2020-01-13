@@ -1,7 +1,7 @@
-import * as chai from 'chai';
-import {Finder, FinderError, which} from '../src/index';
+import chai from 'chai';
+import {Finder, FinderError, which} from '../lib/index.js';
 
-/** Tests the features of the [[which]] function. */
+/** Tests the features of the {@link which} function. */
 describe('which()', () => {
   const {expect} = chai;
 

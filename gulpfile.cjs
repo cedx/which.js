@@ -6,12 +6,6 @@ const replace = require('gulp-replace');
 const {EOL} = require('os');
 const {delimiter, normalize, resolve} = require('path');
 
-/**
- * The file patterns providing the list of source files.
- * @type {string[]}
- */
-const sources = ['bin/*.js', 'src/**/*.ts', 'test/**/*.ts'];
-
 // Initialize the build system.
 const _path = 'PATH' in process.env ? process.env.PATH : '';
 const _vendor = resolve('node_modules/.bin');
@@ -37,10 +31,10 @@ task('doc', async () => {
 });
 
 /** Fixes the coding standards issues. */
-task('fix', () => _exec('eslint', ['--config=etc/eslint.yaml', '--fix', ...sources]));
+task('fix', () => _exec('eslint', ['--config=etc/eslint.yaml', '--fix', 'src/**/*.ts']));
 
 /** Performs the static analysis of source code. */
-task('lint', () => _exec('eslint', ['--config=etc/eslint.yaml', ...sources]));
+task('lint', () => _exec('eslint', ['--config=etc/eslint.yaml', 'src/**/*.ts']));
 
 /** Publishes the package to the registry. */
 task('publish:github', () => _exec('npm', ['publish', '--registry=https://npm.pkg.github.com']));
@@ -48,10 +42,8 @@ task('publish:npm', () => _exec('npm', ['publish', '--registry=https://registry.
 task('publish', series('clean', 'publish:github', 'publish:npm'));
 
 /** Runs the test suites. */
-task('test', () => {
-  process.env.TS_NODE_PROJECT = 'test/tsconfig.json';
-  return _exec('nyc', ['--nycrc-path=etc/nyc.yaml', 'node_modules/.bin/mocha', '--config=etc/mocha.yaml', '"test/**/*.ts"']);
-});
+task('test:run', () => _exec('nyc', ['--nycrc-path=etc/nyc.yaml', 'node_modules/.bin/mocha', '--config=etc/mocha.yaml']));
+task('test', series('build', 'test:run'));
 
 /** Upgrades the project to the latest revision. */
 task('upgrade', async () => {
