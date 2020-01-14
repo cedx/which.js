@@ -12,12 +12,13 @@ const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
 
 /** Builds the project. */
-task('build:fix', () => src('lib/**/*.js').pipe(replace(/(export|import)\s+(.+)\s+from\s+'(\.[^']+)'/g, "$1 $2 from '$3.js'")).pipe(dest('lib')));
+const esmRegex = /(export|import)\s+(.+)\s+from\s+'(\.[^']+)'/g;
+task('build:fix', () => src('lib/**/*.js').pipe(replace(esmRegex, "$1 $2 from '$3.js'")).pipe(dest('lib')));
 task('build:js', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
 task('build', series('build:js', 'build:fix'));
 
 /** Deletes all generated files and reset any saved state. */
-task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
+task('clean', () => del(['doc/api', 'lib', 'var/**/*', 'web']));
 
 /** Uploads the results of the code coverage. */
 task('coverage', () => _exec('coveralls', ['var/lcov.info']));
@@ -42,7 +43,8 @@ task('publish:npm', () => _exec('npm', ['publish', '--registry=https://registry.
 task('publish', series('clean', 'publish:github', 'publish:npm'));
 
 /** Runs the test suites. */
-task('test:run', () => _exec('nyc', ['--nycrc-path=etc/nyc.yaml', 'node_modules/.bin/mocha', '--config=etc/mocha.yaml']));
+const mocha = ['node_modules/.bin/mocha', '--recursive'];
+task('test:run', () => _exec('c8', ['--all', '--include=lib/**/*.js', '--report-dir=var', '--reporter=lcovonly', ...mocha]));
 task('test', series('build', 'test:run'));
 
 /** Upgrades the project to the latest revision. */
