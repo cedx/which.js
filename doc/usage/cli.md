@@ -32,5 +32,5 @@ For example:
 
 ```shell
 which --all node
-# /usr/bin/node
+# /usr/local/bin/node
 ```
