@@ -10,7 +10,7 @@ import {which} from '@cedx/which';
 async function main() {
   try {
     // `path` is the absolute path to the executable.
-    const path = await which('foobar') as string;
+    const path = await which('foobar');
     console.log(`The command "foobar" is located at: ${path}`);
   }
 
@@ -59,7 +59,7 @@ By default, when the specified command cannot be located, a `FinderError` is thr
 import {which} from '@cedx/which';
 
 async function main() {
-  const path = await which('foobar', {onError: command => ''}) as string;
+  const path = await which('foobar', {onError: command => ''});
   if (!path.length) console.log('The command "foobar" was not found');
   else console.log(`The command "foobar" is located at: ${path}`);
 }
