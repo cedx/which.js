@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Executable",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/which.js",
+      "args": ["node"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
+      "args": ["--recursive"],
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
