@@ -38,7 +38,7 @@ describe('Finder', () => {
     });
   });
 
-  describe('#find()', () => {
+  describe('.find()', () => {
     async function toArray(asyncIterable) {
       const items = [];
       for await (const item of asyncIterable) items.push(item);
@@ -58,7 +58,7 @@ describe('Finder', () => {
     });
   });
 
-  describe('#isExecutable()', () => {
+  describe('.isExecutable()', () => {
     it('should return `false` for a non-executable file', async () => {
       expect(await new Finder().isExecutable('AUTHORS.txt')).to.be.false;
     });
