@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {FinderError} from '../lib/index.js';
-import {main} from '../lib/cli.js';
+import {main} from '../lib/cli/main.js';
 
 // Start the application.
 main().catch(err => {
