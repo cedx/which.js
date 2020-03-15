@@ -1,2 +1,2 @@
-export * from './io/finder';
-export * from './io/which';
+export * from './finder';
+export * from './which';

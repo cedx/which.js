@@ -1,5 +1,5 @@
 import program from 'commander';
-import {which} from '../io/which';
+import {which} from './which';
 import {packageVersion} from './version.g';
 
 /**
