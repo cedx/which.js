@@ -12,7 +12,7 @@ const _vendor = resolve('node_modules/.bin');
 if (!_path.includes(_vendor)) process.env.PATH = `${_vendor}${delimiter}${_path}`;
 
 /** Builds the project. */
-const esmRegex = /(export|import)\s+(.+)\s+from\s+'(\.[^']+)'/g;
+const esmRegex = /(export|import)\s+(.+)\s+from\s+'(\.((?!.*\.js)[^']+))'/g;
 task('build:fix', () => src('lib/**/*.js').pipe(replace(esmRegex, "$1 $2 from '$3.js'")).pipe(dest('lib')));
 task('build:js', () => _exec('tsc', ['--project', 'src/tsconfig.json']));
 task('build', series('build:js', 'build:fix'));
@@ -59,7 +59,7 @@ task('upgrade', async () => {
 /** Builds the version file. */
 task('version', async () => {
   const {version} = JSON.parse(await promises.readFile('package.json', 'utf8'));
-  return promises.writeFile('src/version.g.ts', [
+  return promises.writeFile('src/cli/version.g.ts', [
     '/** The version number of the package. */',
     `export const packageVersion: string = '${version}';`, ''
   ].join(EOL));
