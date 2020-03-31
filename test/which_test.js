@@ -6,7 +6,7 @@ describe('which()', () => {
   it('should return the path of the `executable.cmd` file on Windows', async () => {
     try {
       const executable = await which('executable', {all: false, path: 'test/fixtures'});
-      if (Finder.isWindows) assert(executable.endsWith('\\test\\fixtures\\executable.cmd'));
+      if (Finder.isWindows) assert(executable.endsWith(String.raw`\test\fixtures\executable.cmd`));
       else assert.fail('Error not thrown');
     }
 
@@ -24,7 +24,7 @@ describe('which()', () => {
         assert(Array.isArray(executables));
         assert.equal(executables.length, 1);
         assert.equal(typeof executables[0], 'string');
-        assert.match(executables[0], /\\test\\fixtures\\executable\.cmd$/);
+        assert(executables[0].endsWith(String.raw`\test\fixtures\executable.cmd`));
       }
     }
 

@@ -46,7 +46,7 @@ describe('Finder', () => {
     it('should return the path of the `executable.cmd` file on Windows', async () => {
       const executables = await toArray(new Finder({path: 'test/fixtures'}).find('executable'));
       assert.equal(executables.length, Finder.isWindows ? 1 : 0);
-      if (Finder.isWindows) assert(executables[0].endsWith('\\test\\fixtures\\executable.cmd'));
+      if (Finder.isWindows) assert(executables[0].endsWith(String.raw`\test\fixtures\executable.cmd`));
     });
 
     it('should return the path of the `executable.sh` file on POSIX', async () => {
