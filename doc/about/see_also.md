@@ -2,7 +2,6 @@
 
 ## Development
 - [API reference](https://api.belin.io/which.js)
-- [GitHub package](https://github.com/cedx/which.js/packages)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
 - [Submit an issue](https://git.belin.io/cedx/which.js/issues)
 

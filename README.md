@@ -11,7 +11,6 @@ Find the instances of an executable in the system path, in [JavaScript](https://
 
 ## Development
 - [Git repository](https://git.belin.io/cedx/which.js)
-- [GitHub package](https://github.com/cedx/which.js/packages)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
 - [Submit an issue](https://git.belin.io/cedx/which.js/issues)
 
