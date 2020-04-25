@@ -6,14 +6,14 @@ Find the instances of an executable in the system path, in [JavaScript](https://
 > This library is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
 
 ## Documentation
-- [User guide](https://dev.belin.io/which.js)
-- [API reference](https://dev.belin.io/which.js/api)
+- [User guide](https://docs.belin.io/which.js)
+- [API reference](https://api.belin.io/which.js)
 
 ## Development
-- [Git repository](https://github.com/cedx/which.js)
+- [Git repository](https://git.belin.io/cedx/which.js)
 - [GitHub package](https://github.com/cedx/which.js/packages)
 - [npm package](https://www.npmjs.com/package/@cedx/which)
-- [Submit an issue](https://github.com/cedx/which.js/issues)
+- [Submit an issue](https://git.belin.io/cedx/which.js/issues)
 
 ## License
-[Which for JS](https://dev.belin.io/which.js) is distributed under the MIT License.
+[Which for JS](https://docs.belin.io/which.js) is distributed under the MIT License.
