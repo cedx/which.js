@@ -6,7 +6,7 @@ import {Finder} from '../lib/index.js';
 describe('Finder', () => {
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
-      const pathEnv = 'PATH' in process.env ? process.env.PATH : '';
+      const pathEnv = process.env.PATH ?? '';
       const path = pathEnv.length ? pathEnv.split(delimiter) : [];
       assert.deepEqual(new Finder().path, path);
     });
