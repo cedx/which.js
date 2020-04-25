@@ -5,7 +5,6 @@
   "license": "MIT",
   "main": "lib/index.js",
   "name": "@cedx/which",
-  "repository": "github:cedx/which.js",
   "type": "module",
   "types": "lib/index.d.ts",
   "version": "7.0.0",
@@ -51,6 +50,10 @@
     "utility",
     "which"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://git.belin.io/cedx/which.js.git"
+  },
   "scripts": {
     "coverage": "gulp coverage",
     "prepack": "gulp",
