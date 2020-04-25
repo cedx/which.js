@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [7.0.1](https://git.belin.io/cedx/which.js/compare/v7.0.0...v7.0.1)
+- Fixed a packaging issue.
+
 ## Version [7.0.0](https://git.belin.io/cedx/which.js/compare/v6.4.0...v7.0.0)
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
 - Updated the documentation.
