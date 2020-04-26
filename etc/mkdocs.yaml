@@ -22,6 +22,9 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: 'https://linkedin.com/in/cedxbelin'
 
+extra_css:
+  - css/mkdocs.css
+
 markdown_extensions:
   - admonition
   - codehilite
