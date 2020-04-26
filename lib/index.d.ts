@@ -1,2 +1,2 @@
-export * from './finder';
-export * from './which';
+export * from './finder.js';
+export * from './which.js';
