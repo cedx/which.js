@@ -1,6 +1,6 @@
 import program from 'commander';
-import {which} from '../which';
-import {packageVersion} from './version.g';
+import {which} from '../which.js';
+import {packageVersion} from './version.g.js';
 
 /**
  * Application entry point.
