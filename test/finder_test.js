@@ -2,7 +2,7 @@ import {strict as assert} from 'assert';
 import {delimiter} from 'path';
 import {Finder} from '../lib/index.js';
 
-/** Tests the features of the {@link Finder} class. */
+/** Tests the features of the `Finder` class. */
 describe('Finder', () => {
   describe('constructor', () => {
     it('should set the `path` property to the value of the `PATH` environment variable by default', () => {
