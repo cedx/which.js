@@ -53,9 +53,8 @@
     "url": "https://git.belin.io/cedx/which.js.git"
   },
   "scripts": {
-    "coverage": "gulp coverage",
-    "prepack": "gulp",
-    "start": "gulp watch",
-    "test": "gulp test"
+    "coverage": "coveralls var/lcov.info",
+    "prepack": "pwsh tool/build.ps1",
+    "test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
   }
 }
