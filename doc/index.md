@@ -1,5 +1,5 @@
 # Which <small>for JS</small>
-![Runtime](https://img.shields.io/node/v/@cedx/which.svg) ![Release](https://img.shields.io/npm/v/@cedx/which.svg) ![License](https://img.shields.io/npm/l/@cedx/which.svg) ![Downloads](https://img.shields.io/npm/dt/@cedx/which.svg) ![Dependencies](https://david-dm.org/cedx/which.js.svg) ![Coverage](https://coveralls.io/repos/github/cedx/which.js/badge.svg) ![Build](https://github.com/cedx/which.js/workflows/build/badge.svg)
+![Runtime](https://badgen.net/npm/node/@cedx/which) ![Release](https://badgen.net/npm/v/@cedx/which) ![License](https://badgen.net/npm/license/@cedx/which) ![Downloads](https://badgen.net/npm/dt/@cedx/which) ![Dependencies](https://badgen.net/david/dep/cedx/which.js) ![Coverage](https://badgen.net/coveralls/c/github/cedx/which.js) ![Build](https://badgen.net/github/checks/cedx/which.js)
 
 Find the instances of an executable in the system path,
 in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
