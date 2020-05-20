@@ -1,4 +1,4 @@
-import { FinderOptions } from './finder.js';
+import { FinderOptions } from "./finder.js";
 /**
  * Finds the first instance of an executable in the system path.
  * Rejects with a [[FinderError]] if the command was not found.

@@ -1,59 +1,59 @@
 {
-  "bugs": "https://git.belin.io/cedx/which.js/issues",
-  "description": "Find the instances of an executable in the system path. Like the `which` Linux command.",
-  "homepage": "https://docs.belin.io/which.js",
-  "license": "MIT",
-  "main": "lib/index.js",
-  "name": "@cedx/which",
-  "type": "module",
-  "types": "lib/index.d.ts",
-  "version": "7.0.1",
-  "author": {
-    "email": "cedric@belin.io",
-    "name": "Cédric Belin",
-    "url": "https://belin.io"
-  },
-  "bin": {
-    "which": "bin/which.js"
-  },
-  "dependencies": {
-    "commander": "^5.1.0"
-  },
-  "devDependencies": {
-    "@types/node": "^14.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "c8": "^7.1.2",
-    "eslint": "^7.0.0",
-    "mocha": "^7.1.2",
-    "typedoc": "^0.17.6",
-    "typescript": "^3.9.2"
-  },
-  "engines": {
-    "node": ">=14.2.0"
-  },
-  "files": [
-    "lib/"
-  ],
-  "funding": {
-    "type": "patreon",
-    "url": "https://www.patreon.com/cedx"
-  },
-  "keywords": [
-    "esm",
-    "find",
-    "path",
-    "system",
-    "utility",
-    "which"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://git.belin.io/cedx/which.js.git"
-  },
-  "scripts": {
-    "coverage": "coveralls var/lcov.info",
-    "prepack": "pwsh tool/build.ps1",
-    "test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
-  }
+	"bugs": "https://git.belin.io/cedx/which.js/issues",
+	"description": "Find the instances of an executable in the system path. Like the `which` Linux command.",
+	"homepage": "https://docs.belin.io/which.js",
+	"license": "MIT",
+	"main": "lib/index.js",
+	"name": "@cedx/which",
+	"type": "module",
+	"types": "lib/index.d.ts",
+	"version": "7.0.1",
+	"author": {
+		"email": "cedric@belin.io",
+		"name": "Cédric Belin",
+		"url": "https://belin.io"
+	},
+	"bin": {
+		"which": "bin/which.js"
+	},
+	"dependencies": {
+		"commander": "^5.1.0"
+	},
+	"devDependencies": {
+		"@types/node": "^14.0.1",
+		"@typescript-eslint/eslint-plugin": "^2.33.0",
+		"@typescript-eslint/parser": "^2.33.0",
+		"c8": "^7.1.2",
+		"eslint": "^7.0.0",
+		"mocha": "^7.1.2",
+		"typedoc": "^0.17.7",
+		"typescript": "^3.9.2"
+	},
+	"engines": {
+		"node": ">=14.2.0"
+	},
+	"files": [
+		"lib/"
+	],
+	"funding": {
+		"type": "patreon",
+		"url": "https://www.patreon.com/cedx"
+	},
+	"keywords": [
+		"esm",
+		"find",
+		"path",
+		"system",
+		"utility",
+		"which"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://git.belin.io/cedx/which.js.git"
+	},
+	"scripts": {
+		"coverage": "coveralls var/lcov.info",
+		"prepack": "pwsh tool/build.ps1",
+		"test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
+	}
 }

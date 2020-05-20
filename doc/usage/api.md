@@ -6,20 +6,20 @@ source: src/which.ts
 # Application programming interface
 This package provides a single function, `which()`, allowing to locate a command in the system path:
 
-```js
-import {which} from '@cedx/which';
+``` js
+import {which} from "@cedx/which";
 
 async function main() {
-  try {
-    // `path` is the absolute path to the executable.
-    const path = await which('foobar');
-    console.log(`The command "foobar" is located at: ${path}`);
-  }
+	try {
+		// `path` is the absolute path to the executable.
+		const path = await which("foobar");
+		console.log(`The command 'foobar' is located at: ${path}`);
+	}
 
-  catch (err) {
-    // `err` is an instance of `FinderError`.
-    console.log(`The command "${err.command}" was not found`);
-  }
+	catch (err) {
+		// `err` is an instance of `FinderError`.
+		console.log(`The command '${err.command}' was not found`);
+	}
 }
 ```
 
@@ -33,37 +33,37 @@ A value indicating whether to return all executables found, instead of just the 
 
 If you pass `true` as parameter value, the function will return a `Promise<string[]>` providing all paths found, instead of a `Promise<string>`:
 
-```js
-import {which} from '@cedx/which';
+``` js
+import {which} from "@cedx/which";
 
 async function main() {
-  const paths = await which('foobar', {all: true});
-  console.log('The command "foobar" was found at these locations:');
-  for (const path of paths) console.log(path);
+	const paths = await which("foobar", {all: true});
+	console.log("The command 'foobar' was found at these locations:");
+	for (const path of paths) console.log(path);
 }
 ```
 
 ### **extensions**: string|string[]
 The executable file extensions, provided as a string or a list of file extensions. Defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```js
-which('foobar', {extensions: '.FOO;.EXE;.CMD'});
-which('bazqux', {extensions: ['.foo', '.exe', '.cmd']});
+``` js
+which("foobar", {extensions: ".FOO;.EXE;.CMD"});
+which("bazqux", {extensions: [".foo", ".exe", ".cmd"]});
 ```
 
 !!! tip
-    The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension.
+	The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension.
 
 ### **onError**: (command: string) => any
 By default, when the specified command cannot be located, a `FinderError` is thrown. You can disable this exception by providing your own error handler:
 
-```js
-import {which} from '@cedx/which';
+``` js
+import {which} from "@cedx/which";
 
 async function main() {
-  const path = await which('foobar', {onError: command => ''});
-  if (!path.length) console.log('The command "foobar" was not found');
-  else console.log(`The command "foobar" is located at: ${path}`);
+	const path = await which("foobar", {onError: command => ""});
+	if (!path.length) console.log("The command 'foobar' was not found");
+	else console.log(`The command 'foobar' is located at: ${path}`);
 }
 ```
 
@@ -72,15 +72,15 @@ When an `onError` handler is provided, it is called with the command as argument
 ### **path**: string|string[]
 The system path, provided as a string or a list of directories. Defaults to the list of paths provided by the `PATH` environment variable.
 
-```js
-which('foobar', {path: '/usr/local/bin:/usr/bin'});
-which('bazqux', {path: ['/usr/local/bin', '/usr/bin']});
+``` js
+which("foobar", {path: "/usr/local/bin:/usr/bin"});
+which("bazqux", {path: ["/usr/local/bin", "/usr/bin"]});
 ```
 
 ### **pathSeparator**: string
 The character used to separate paths in the system path. Defaults to the [`path.delimiter`](https://nodejs.org/api/path.html#path_path_delimiter) constant.
 
-```js
-which('foobar', {pathSeparator: '#'});
+``` js
+which("foobar", {pathSeparator: "#"});
 // For example: "/usr/local/bin#/usr/bin"
 ```
