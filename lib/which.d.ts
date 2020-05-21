@@ -12,5 +12,5 @@ export interface WhichOptions extends FinderOptions {
     /** Value indicating whether to return an array of all executables found, instead of just the first one. */
     all: boolean;
     /** An optional error handler. */
-    onError: (command: string) => any;
+    onError: (command: string) => string | string[];
 }

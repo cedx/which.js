@@ -32,5 +32,5 @@ export interface WhichOptions extends FinderOptions {
 	all: boolean;
 
 	/** An optional error handler. */
-	onError: (command: string) => any;
+	onError: (command: string) => string|string[];
 }

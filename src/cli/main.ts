@@ -16,7 +16,7 @@ export async function main(): Promise<void> {
 		.version(packageVersion, "-v, --version")
 		.option("-a, --all", "list all instances of executables found (instead of just the first one)")
 		.option("-s, --silent", "silence the output, just return the exit code (0 if any executable is found, otherwise 1)")
-		.arguments("<command>").action(command => program.executable = command)
+		.arguments("<command>").action(command => { program.executable = String(command); })
 		.parse(process.argv);
 
 	if (!program.executable) {
@@ -26,7 +26,7 @@ export async function main(): Promise<void> {
 	}
 
 	// Run the program.
-	let executables = await which(program.executable, {all: program.all});
+	let executables = await which(program.executable, {all: program.all}); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 	if (!program.silent) {
 		if (!Array.isArray(executables)) executables = [executables];
 		for (const path of executables) console.log(path); // eslint-disable-line no-console

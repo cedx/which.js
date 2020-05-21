@@ -151,9 +151,9 @@ rules:
   "@typescript-eslint/class-literal-property-style": error
   "@typescript-eslint/explicit-function-return-type": [error, {allowExpressions: true}]
   "@typescript-eslint/explicit-member-accessibility": [error, {accessibility: no-public}]
-  "@typescript-eslint/member-naming": [error, {private: "^_", protected: "^_"}]
   "@typescript-eslint/member-ordering": [error , {default: [public-field, protected-field, private-field, constructor, public-method, protected-method, private-method]}]
   "@typescript-eslint/method-signature-style": error
+  "@typescript-eslint/naming-convention": error
   "@typescript-eslint/no-dynamic-delete": error
   "@typescript-eslint/no-extraneous-class": error
   "@typescript-eslint/no-explicit-any": "off"
