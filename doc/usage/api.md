@@ -1,5 +1,5 @@
 ---
-path: src/branch/master
+path: src/branch/main
 source: src/which.ts
 ---
 
@@ -18,7 +18,7 @@ async function main() {
 
 	catch (err) {
 		// `err` is an instance of `FinderError`.
-		console.log(`The command '${err.command}' was not found`);
+		console.log(`The command '${err.command}' was not found.`);
 	}
 }
 ```
@@ -26,7 +26,7 @@ async function main() {
 The function returns a [`Promise<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with the absolute path of the first instance of the executables found. If the command could not be located, the promise rejects with a `FinderError`.
 
 ## Options
-The behavior of the `which()` function can be customized using the following optional parameters.
+The behavior of the `which()` function can be customized using the following options.
 
 ### **all**: boolean
 A value indicating whether to return all executables found, instead of just the first one.
