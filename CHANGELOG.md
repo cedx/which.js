@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [7.1.0](https://git.belin.io/cedx/which.js/compare/v7.0.1...v7.1.0)
+- Deprecated this package in favor of [`@cedx/which.hx`](https://docs.belin.io/which.hx).
+- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://docs.microsoft.com/en-us/powershell) scripts.
+- Updated the package dependencies.
+
 ## Version [7.0.1](https://git.belin.io/cedx/which.js/compare/v7.0.0...v7.0.1)
 - Dropped support for [GitHub Packages](https://github.com/features/packages).
 - Fixed a packaging issue.
