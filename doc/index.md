@@ -4,6 +4,10 @@
 Find the instances of an executable in the system path,
 in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
 
+!!! danger
+    This package has been renamed to [`@cedx/which.hx`](https://docs.belin.io/which.hx), and its version number resetted.  
+    Please update your `package.json` file.
+
 ## Quick start
 Install the latest version of **Which for JS** with [npm](https://www.npmjs.com):
 
