@@ -51,8 +51,14 @@
 		"url": "https://git.belin.io/cedx/which.js.git"
 	},
 	"scripts": {
+		"build": "pwsh tool/version.ps1 && tsc --project src/tsconfig.json",
+		"clean": "pwsh tool/clean.ps1",
 		"coverage": "coveralls var/lcov.info",
+		"doc": "typedoc --options etc/typedoc.json && pwsh tool/doc.ps1",
+		"lint": "eslint --config=etc/eslint.yaml src/**/*.ts",
 		"prepack": "pwsh tool/build.ps1",
-		"test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
+		"prepublishOnly": "npm run clean",
+		"test": "npm run build && c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive",
+		"watch": "pwsh tool/watch.ps1"
 	}
 }
