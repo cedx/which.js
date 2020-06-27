@@ -56,7 +56,7 @@
 		"coverage": "coveralls var/lcov.info",
 		"doc": "typedoc --options etc/typedoc.json && pwsh tool/doc.ps1",
 		"lint": "eslint --config=etc/eslint.yaml src/**/*.ts",
-		"prepack": "pwsh tool/build.ps1",
+		"prepack": "npm run build",
 		"prepublishOnly": "npm run clean",
 		"test": "npm run build && c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive",
 		"watch": "pwsh tool/watch.ps1"
