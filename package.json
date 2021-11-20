@@ -17,27 +17,24 @@
 		"which": "./bin/which.js"
 	},
 	"dependencies": {
-		"commander": "^5.1.0"
+		"commander": "^8.3.0"
 	},
 	"devDependencies": {
-		"@types/node": "^14.0.14",
-		"@typescript-eslint/eslint-plugin": "^3.4.0",
-		"@typescript-eslint/parser": "^3.4.0",
-		"c8": "^7.2.0",
-		"eslint": "^7.3.1",
-		"mocha": "^8.0.1",
-		"typedoc": "^0.17.7",
-		"typescript": "^3.9.5"
+		"@types/node": "^16.11.9",
+		"c8": "^7.10.0",
+		"mocha": "^9.1.3",
+		"typedoc": "^0.22.9",
+		"typescript": "^4.5.2"
 	},
 	"engines": {
-		"node": ">=14.4.0"
+		"node": ">=16.0.0"
 	},
 	"files": [
 		"lib/"
 	],
 	"funding": {
-		"type": "patreon",
-		"url": "https://www.patreon.com/cedx"
+		"type": "github",
+		"url": "https://github.com/sponsors/cedx"
 	},
 	"keywords": [
 		"find",
@@ -46,16 +43,10 @@
 		"utility",
 		"which"
 	],
-	"repository": {
-		"type": "git",
-		"url": "https://git.belin.io/cedx/which.js.git"
-	},
 	"scripts": {
 		"build": "pwsh tool/version.ps1 && tsc --project src/tsconfig.json",
 		"clean": "pwsh tool/clean.ps1",
-		"coverage": "coveralls var/lcov.info",
 		"doc": "typedoc --options etc/typedoc.json && pwsh tool/doc.ps1",
-		"lint": "eslint --config=etc/eslint.yaml src/**/*.ts",
 		"prepack": "npm run build",
 		"prepublishOnly": "npm run clean",
 		"test": "npm run build && c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive",
