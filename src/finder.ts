@@ -50,7 +50,7 @@ export class Finder {
 	 * @param command The command to be resolved.
 	 * @return The paths of the executables found.
 	 */
-	async *find(command: string): AsyncIterableIterator<string> { // eslint-disable-line @typescript-eslint/require-await
+	async *find(command: string): AsyncIterableIterator<string> {
 		for (const directory of this.path) yield* this._findExecutables(directory, command);
 	}
 
