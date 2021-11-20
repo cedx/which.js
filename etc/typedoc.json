@@ -1,10 +1,11 @@
 {
+	"entryPoints": ["../src/index.ts"],
 	"excludePrivate": true,
+	"githubPages": true,
 	"gitRevision": "main",
 	"hideGenerator": true,
-	"mode": "file",
 	"name": "Which for JS",
-	"out": "doc/api",
+	"out": "../docs",
 	"readme": "none",
-	"tsconfig": "src/tsconfig.json"
+	"tsconfig": "../src/tsconfig.json"
 }
