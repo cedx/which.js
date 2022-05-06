@@ -1,14 +1,14 @@
 {
 	"bugs": "https://github.com/cedx/which.js/issues",
 	"description": "Find the instances of an executable in the system path. Like the `which` Linux command.",
+	"exports": "./lib/index.js",
 	"homepage": "https://github.com/cedx/which.js",
 	"license": "MIT",
-	"main": "./lib/index.js",
 	"name": "@cedx/which",
 	"repository": "github:cedx/which.js",
 	"type": "module",
-	"types": "./lib/index.d.ts",
-	"version": "7.1.0",
+	"types": "./share/index.d.ts",
+	"version": "8.0.0",
 	"author": {
 		"email": "cedric@belin.io",
 		"name": "Cédric Belin",
@@ -18,20 +18,27 @@
 		"which": "./bin/which.js"
 	},
 	"dependencies": {
-		"commander": "^8.3.0"
+		"commander": "^9.2.0"
 	},
 	"devDependencies": {
-		"@types/node": "^17.0.23",
-		"c8": "^7.11.0",
-		"mocha": "^9.2.2",
-		"typedoc": "^0.22.14",
-		"typescript": "^4.6.3"
+		"@types/gulp": "^4.0.9",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "^17.0.30",
+		"c8": "^7.11.2",
+		"del": "^6.0.0",
+		"eslint": "^8.14.0",
+		"execa": "^6.1.0",
+		"gulp": "^4.0.2",
+		"mocha": "^10.0.0",
+		"typedoc": "^0.22.15",
+		"typescript": "^4.6.4"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=18.0.0"
 	},
 	"files": [
-		"lib/"
+		"lib/",
+		"share/"
 	],
 	"funding": {
 		"type": "github",
@@ -45,12 +52,7 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/tsconfig.json",
-		"clean": "pwsh tool/clean.ps1",
-		"doc": "typedoc --options etc/typedoc.json && pwsh tool/doc.ps1",
-		"prepack": "npm run build",
-		"prepublishOnly": "npm run clean",
-		"test": "npm run build && c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive",
-		"watch": "pwsh tool/watch.ps1"
+		"prepack": "gulp",
+		"test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
 	}
 }
