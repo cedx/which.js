@@ -11,8 +11,8 @@ async function main() {
 		console.log(`The command 'foobar' is located at: ${path}`);
 	}
 
-	catch (err) {
-		// `err` is an instance of `FinderError`.
-		console.log(`The command '${err.command}' was not found`);
+	catch (error) {
+		// `error` is an instance of `FinderError`.
+		console.log(`The command '${error.command}' was not found`);
 	}
 }

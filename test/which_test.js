@@ -10,9 +10,9 @@ describe("which()", function() {
 			else assert.fail("Error not thrown");
 		}
 
-		catch (err) {
-			if (Finder.isWindows) assert.fail(err.message);
-			else assert(err instanceof FinderError);
+		catch (error) {
+			if (Finder.isWindows) assert.fail(error.message);
+			else assert(error instanceof FinderError);
 		}
 	});
 
@@ -28,9 +28,9 @@ describe("which()", function() {
 			}
 		}
 
-		catch (err) {
-			if (Finder.isWindows) assert.fail(err.message);
-			else assert(err instanceof FinderError);
+		catch (error) {
+			if (Finder.isWindows) assert.fail(error.message);
+			else assert(error instanceof FinderError);
 		}
 	});
 
@@ -41,9 +41,9 @@ describe("which()", function() {
 			else assert(executable.endsWith("/test/fixtures/executable.sh"));
 		}
 
-		catch (err) {
-			if (Finder.isWindows) assert(err instanceof FinderError);
-			else assert.fail(err.message);
+		catch (error) {
+			if (Finder.isWindows) assert(error instanceof FinderError);
+			else assert.fail(error.message);
 		}
 	});
 
@@ -59,9 +59,9 @@ describe("which()", function() {
 			}
 		}
 
-		catch (err) {
-			if (Finder.isWindows) assert(err instanceof FinderError);
-			else assert.fail(err.message);
+		catch (error) {
+			if (Finder.isWindows) assert(error instanceof FinderError);
+			else assert.fail(error.message);
 		}
 	});
 
