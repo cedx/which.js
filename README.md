@@ -1,9 +1,7 @@
 # Which for JS
-![Runtime](https://badgen.net/npm/node/@cedx/which) ![Release](https://badgen.net/npm/v/@cedx/which) ![License](https://badgen.net/npm/license/@cedx/which) ![Downloads](https://badgen.net/npm/dt/@cedx/which) ![Coverage](https://badgen.net/coveralls/c/github/cedx/which.js)
+![Runtime](https://badgen.net/npm/node/@cedx/which) ![Release](https://badgen.net/npm/v/@cedx/which) ![License](https://badgen.net/npm/license/@cedx/which) ![Downloads](https://badgen.net/npm/dt/@cedx/which) ![Coverage](https://badgen.net/codecov/c/github/cedx/which.js)
 
 Find the instances of an executable in the system path, in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
-
-> WARNING: this package is **abandoned** and no longer maintained.
 
 ## Documentation
 - [User guide](https://github.com/cedx/which.js/wiki)
