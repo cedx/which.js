@@ -2,7 +2,7 @@ import {which} from "@cedx/which";
 
 /**
  * Finds the instances of an executable.
- * @return {Promise<void>} Completes when the program is terminated.
+ * @returns {Promise<void>} Completes when the program is terminated.
  */
 async function main() {
 	try {

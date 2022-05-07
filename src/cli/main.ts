@@ -4,7 +4,7 @@ import {packageVersion} from "./version.g.js";
 
 /**
  * Application entry point.
- * @return Completes when the program is terminated.
+ * @returns Completes when the program is terminated.
  */
 export async function main(): Promise<void> {
 	// Initialize the application.
