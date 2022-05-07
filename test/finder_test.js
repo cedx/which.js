@@ -26,14 +26,6 @@ describe("Finder", function() {
 			const extensions = [".EXE", ".CMD", ".BAT"];
 			assert.deepEqual(new Finder({extensions: extensions.join(delimiter)}).extensions, [".exe", ".cmd", ".bat"]);
 		});
-
-		it("should set the `pathSeparator` property to the value of the `path.delimiter` constant by default", function() {
-			assert.equal(new Finder().pathSeparator, delimiter);
-		});
-
-		it("should properly set the path separator", function() {
-			assert.equal(new Finder({pathSeparator: "#"}).pathSeparator, "#");
-		});
 	});
 
 	describe(".find()", function() {
