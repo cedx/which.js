@@ -19,4 +19,4 @@ jobs:
         if: success()
         uses: codecov/codecov-action@v2
         with:
-          files: var/coverage.xml
+          files: var/lcov.info
