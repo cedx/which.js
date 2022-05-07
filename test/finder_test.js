@@ -9,7 +9,7 @@ describe("Finder", () => {
 	describe("constructor", () => {
 		it("should set the `paths` property to the value of the `PATH` environment variable by default", () => {
 			const pathEnv = process.env.PATH ?? "";
-			const paths = pathEnv.length ? pathEnv.split(delimiter) : [];
+			const paths = pathEnv.length ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
 			assert.deepEqual(new Finder().paths, paths);
 		});
 
