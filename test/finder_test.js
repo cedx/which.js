@@ -9,13 +9,13 @@ describe("Finder", () => {
 	describe("constructor", () => {
 		it("should set the `paths` property to the value of the `PATH` environment variable by default", () => {
 			const pathEnv = process.env.PATH ?? "";
-			const paths = pathEnv.length ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
+			const paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
 			assert.deepEqual(new Finder().paths, paths);
 		});
 
 		it("should set the `extensions` property to the value of the `PATHEXT` environment variable by default", () => {
 			const pathExt = process.env.PATHEXT ?? "";
-			const extensions = pathExt.length ? pathExt.split(";").map(item => item.toLowerCase()) : [".exe", ".cmd", ".bat", ".com"];
+			const extensions = pathExt ? pathExt.split(";").map(item => item.toLowerCase()) : [".exe", ".cmd", ".bat", ".com"];
 			assert.deepEqual(new Finder().extensions, extensions);
 		});
 
