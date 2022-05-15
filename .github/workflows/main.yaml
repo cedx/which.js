@@ -2,7 +2,10 @@ name: main
 on: [pull_request, push]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - name: Fetch sources
         uses: actions/checkout@v3
