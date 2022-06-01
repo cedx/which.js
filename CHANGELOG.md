@@ -1,5 +1,13 @@
 # Changelog
 
+## Version [8.0.0](https://github.com/cedx/which.js/compare/v7.1.0...v8.0.0)
+- Breaking change: raised the required [Node.js](https://nodejs.org) version.
+- Breaking change: removed the `FinderError` class.
+- Breaking change: removed the `Finder.pathSeparator` property.
+- Breaking change: renamed the `Finder.path` property to `paths`.
+- Added the `ResultSet` class.
+- Ported the source code to [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+
 ## Version [7.1.0](https://github.com/cedx/which.js/compare/v7.0.1...v7.1.0)
 - Deprecated this package in favor of [`@cedx/which.hx`](https://docs.belin.io/which.hx).
 - Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://docs.microsoft.com/en-us/powershell) scripts.
