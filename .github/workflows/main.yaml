@@ -1,5 +1,5 @@
 name: main
-on: [pull_request, push]
+on: push
 jobs:
   test:
     runs-on: ${{matrix.os}}
@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version: 16
+          node-version: 18
       - name: Install dependencies
         run: npm install
       - name: Run tests
