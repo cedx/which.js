@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import test from "node:test";
 import {delimiter} from "node:path";
+import test from "node:test";
 import {Finder} from "../lib/index.js";
 
 test("Finder.constructor", async ctx => {
