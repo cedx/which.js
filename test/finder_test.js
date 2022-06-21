@@ -1,17 +1,18 @@
 import assert from "node:assert/strict";
 import {delimiter} from "node:path";
+import {env} from "node:process";
 import test from "node:test";
 import {Finder} from "../lib/index.js";
 
 test("Finder.constructor", async ctx => {
 	await ctx.test("should set the `paths` property to the value of the `PATH` environment variable by default", () => {
-		const pathEnv = process.env.PATH ?? "";
+		const pathEnv = env.PATH ?? "";
 		const paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
 		assert.deepEqual(new Finder().paths, paths);
 	});
 
 	await ctx.test("should set the `extensions` property to the value of the `PATHEXT` environment variable by default", () => {
-		const pathExt = process.env.PATHEXT ?? "";
+		const pathExt = env.PATHEXT ?? "";
 		const extensions = pathExt ? pathExt.split(";").map(item => item.toLowerCase()) : [".exe", ".cmd", ".bat", ".com"];
 		assert.deepEqual(new Finder().extensions, extensions);
 	});
