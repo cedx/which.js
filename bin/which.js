@@ -12,7 +12,7 @@ program.name("which")
 	.version(version, "-v, --version")
 	.option("-a, --all", "list all executable instances found (instead of just the first one)")
 	.option("-s, --silent", "silence the output, just return the exit code (0 if any executable is found, otherwise 1)")
-	.argument("<command>")
+	.argument("<command>", "the name of the executable to find")
 	.parse();
 
 // Start the application.
