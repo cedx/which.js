@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import which, {Finder} from "../lib/index.js";
+import which, {Finder} from "../src/index.js";
 
 test("ResultSet.all()", async ctx => {
 	const options = {paths: ["test/fixture"]};

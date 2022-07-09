@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import {delimiter} from "node:path";
 import {env} from "node:process";
 import test from "node:test";
-import {Finder} from "../lib/index.js";
+import {Finder} from "../src/index.js";
 
 test("Finder.constructor", async ctx => {
 	await ctx.test("should set the `paths` property to the value of the `PATH` environment variable by default", () => {

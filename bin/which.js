@@ -3,7 +3,7 @@ import console from "node:console";
 import process from "node:process";
 import {program} from "commander";
 import pkg from "../package.json" assert {type: "json"};
-import which from "../lib/index.js";
+import which from "../src/index.js";
 
 // Parse the command line arguments.
 program.name("which")

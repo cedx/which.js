@@ -1,13 +1,13 @@
 {
-	"include": ["*.js", "bin/*js", "example/*.js", "lib/**/*.js", "test/**/*.js"],
+	"include": ["*.js", "bin/*js", "example/*.js", "src/**/*.js", "test/**/*.js"],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"checkJs": true,
 		"esModuleInterop": true,
 		"module": "esnext",
-		"moduleResolution": "nodenext",
+		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"paths": {"@cedx/which": ["lib"]},
+		"paths": {"@cedx/which": ["src"]},
 		"strict": true,
 		"target": "es2022"
 	}
