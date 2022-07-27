@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import {delimiter} from "node:path";
 import {env} from "node:process";
-// @ts-expect-error TS2614
 import {describe, it} from "node:test";
 import {Finder} from "../src/index.js";
 
