@@ -1,14 +1,14 @@
 {
-	"include": ["*.js", "bin/*js", "example/*.js", "src/**/*.js", "test/**/*.js"],
+	"include": ["*.js", "bin/*.js", "example/*.js", "src/**/*.js", "test/**/*.js"],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"checkJs": true,
 		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "nodenext",
+		"module": "ESNext",
+		"moduleResolution": "NodeNext",
 		"resolveJsonModule": true,
 		"paths": {"@cedx/which": ["src"]},
 		"strict": true,
-		"target": "esnext"
+		"target": "ESNext"
 	}
 }

@@ -1,13 +1,11 @@
 {
 	"bugs": "https://github.com/cedx/which.js/issues",
 	"description": "Find the instances of an executable in the system path. Like the `which` Linux command.",
-	"exports": "./src/index.js",
 	"homepage": "https://github.com/cedx/which.js",
 	"license": "MIT",
 	"name": "@cedx/which",
 	"repository": "github:cedx/which.js",
 	"type": "module",
-	"types": "./lib/index.d.ts",
 	"version": "8.0.0",
 	"author": {
 		"email": "cedric@belin.io",
@@ -17,24 +15,25 @@
 	"bin": {
 		"which": "./bin/which.js"
 	},
-	"dependencies": {
-		"commander": "^9.4.0"
-	},
 	"devDependencies": {
-		"@babel/eslint-parser": "^7.18.9",
+		"@babel/eslint-parser": "^7.19.1",
 		"@babel/plugin-syntax-import-assertions": "^7.18.6",
 		"@types/gulp": "^4.0.9",
-		"@types/node": "^18.6.2",
+		"@types/node": "^18.8.3",
 		"c8": "^7.12.0",
 		"del": "^7.0.0",
-		"eslint": "^8.20.0",
+		"eslint": "^8.25.0",
 		"execa": "^6.1.0",
 		"gulp": "^4.0.2",
-		"typedoc": "^0.23.9",
-		"typescript": "^4.7.4"
+		"typedoc": "^0.23.15",
+		"typescript": "^4.8.4"
 	},
 	"engines": {
 		"node": ">=18.0.0"
+	},
+	"exports": {
+		"types": "./lib/index.d.ts",
+		"import": "./src/index.js"
 	},
 	"files": [
 		"lib/",
