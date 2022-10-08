@@ -6,11 +6,11 @@
 - Breaking change: removed the `Finder.pathSeparator` property.
 - Breaking change: renamed the `Finder.path` property to `paths`.
 - Added the `ResultSet` class.
-- Ported the source code to [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+- Ported the source code to [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
 
 ## Version [7.1.0](https://github.com/cedx/which.js/compare/v7.0.1...v7.1.0)
 - Deprecated this package in favor of [`@cedx/which.hx`](https://docs.belin.io/which.hx).
-- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://docs.microsoft.com/en-us/powershell) scripts.
+- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://learn.microsoft.com/powershell) scripts.
 - Updated the package dependencies.
 
 ## Version [7.0.1](https://github.com/cedx/which.js/compare/v7.0.0...v7.0.1)
@@ -40,7 +40,7 @@
 ## Version [6.0.0](https://github.com/cedx/which.js/compare/v5.4.0...v6.0.0)
 - Breaking change: dropped support for [CommonJS modules](https://nodejs.org/api/modules.html).
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
-- Breaking change: reverted the source code to [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+- Breaking change: reverted the source code to [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
 - Replaced the [TypeDoc](https://typedoc.org) documentation generator by [JSDoc](https://jsdoc.app).
 - Replaced the [TSLint](https://palantir.github.io/tslint) static analyzer by [ESLint](https://eslint.org).
 - Updated the package dependencies.
@@ -110,7 +110,7 @@
 
 ## Version [2.0.0](https://github.com/cedx/which.js/compare/v1.1.0...v2.0.0)
 - Breaking change: converted the [`Observable`](http://reactivex.io/intro.html)-based API to an `async/await`-based one.
-- Added the [`[Symbol.toStringTag]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) property to all classes.
+- Added the [`[Symbol.toStringTag]`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) property to all classes.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Version [1.1.0](https://github.com/cedx/which.js/compare/v1.0.0...v1.1.0)
