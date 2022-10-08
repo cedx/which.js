@@ -1,32 +1,57 @@
 #!/usr/bin/env node
 import console from "node:console";
 import process from "node:process";
-import {program} from "commander";
+import {parseArgs} from "node:util";
 import pkg from "../package.json" assert {type: "json"};
 import which from "../src/index.js";
 
+// The usage information.
+const usage = `
+Find the instances of an executable in the system path.
+
+Usage:
+  which [options] <command>
+
+Arguments:
+  command        The name of the executable to find.
+
+Options:
+  -a, --all      List all executable instances found (instead of just the first one).
+  -s, --silent   Silence the output, just return the exit code (0 if any executable is found, otherwise 1).
+  -h, --help     Display this help.
+  -v, --version  Output the version number.
+`;
+
 // Parse the command line arguments.
-program.name("which")
-	.description("Find the instances of an executable in the system path.")
-	.version(pkg.version, "-v, --version")
-	.option("-a, --all", "list all executable instances found (instead of just the first one)")
-	.option("-s, --silent", "silence the output, just return the exit code (0 if any executable is found, otherwise 1)")
-	.argument("<command>", "the name of the executable to find")
-	.parse();
+const {positionals, values} = parseArgs({allowPositionals: true, options: {
+	all: {short: "a", type: "boolean"},
+	help: {short: "h", type: "boolean"},
+	silent: {short: "s", type: "boolean"},
+	version: {short: "v", type: "boolean"}
+}});
+
+// Print the usage.
+if (values.help || values.version) {
+	console.log(values.version ? pkg.version : usage.trim());
+	process.exit();
+}
+
+// Check the requirements.
+if (!positionals.length) {
+	console.error("Required argument 'command' is missing.");
+	process.exit(1);
+}
 
 // Start the application.
-const [command] = program.args;
-const {all, silent} = program.opts();
-
 try {
-	const finder = which(command);
-	let paths = await (all ? finder.all() : finder.first());
-	if (!silent) {
+	const finder = which(positionals[0]);
+	let paths = await (values.all ? finder.all() : finder.first());
+	if (!values.silent) {
 		if (!Array.isArray(paths)) paths = [paths];
 		paths.forEach(path => console.log(path));
 	}
 }
 catch (error) {
-	if (!silent) console.error(error instanceof Error ? error.message : error);
+	if (!values.silent) console.error(error instanceof Error ? error.message : error);
 	process.exitCode = 1;
 }
