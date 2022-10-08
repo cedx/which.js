@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [8.0.1](https://github.com/cedx/which.js/compare/v8.0.0...v8.0.1)
+- Fixed the [TypeScript](https://www.typescriptlang.org) typings.
+- Dropped the dependency on [Commander.js](https://github.com/tj/commander.js).
+
 ## Version [8.0.0](https://github.com/cedx/which.js/compare/v7.1.0...v8.0.0)
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
 - Breaking change: removed the `FinderError` class.
