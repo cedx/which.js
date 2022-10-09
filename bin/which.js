@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import console from "node:console";
+import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" assert {type: "json"};
@@ -48,7 +49,7 @@ try {
 	let paths = await (values.all ? finder.all() : finder.first());
 	if (!values.silent) {
 		if (!Array.isArray(paths)) paths = [paths];
-		paths.forEach(path => console.log(path));
+		console.log(paths.join(EOL));
 	}
 }
 catch (error) {
