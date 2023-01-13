@@ -37,7 +37,7 @@ export class ResultSet {
 		const executables = [];
 		for await (const path of this.stream()) if (!executables.includes(path)) executables.push(path);
 		if (executables.length) return executables;
-		throw new Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
+		throw Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
 	}
 
 	/**
@@ -48,7 +48,7 @@ export class ResultSet {
 		let executable = "";
 		for await (const path of this.stream()) { executable = path; break; } // eslint-disable-line no-unreachable-loop
 		if (executable) return executable;
-		throw new Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
+		throw Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
 	}
 
 	/**
