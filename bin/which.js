@@ -23,36 +23,41 @@ Options:
   -v, --version  Output the version number.
 `;
 
-// Parse the command line arguments.
-const {positionals, values} = parseArgs({allowPositionals: true, options: {
-	all: {short: "a", type: "boolean"},
-	help: {short: "h", type: "boolean"},
-	silent: {short: "s", type: "boolean"},
-	version: {short: "v", type: "boolean"}
-}});
-
-// Print the usage.
-if (values.help || values.version) {
-	console.log(values.version ? pkg.version : usage.trim());
-	process.exit();
-}
-
-// Check the requirements.
-if (!positionals.length) {
-	console.error("Required argument 'command' is missing.");
-	process.exit(1);
-}
-
 // Start the application.
+let silent = false;
+
 try {
+	// Parse the command line arguments.
+	const {positionals, values} = parseArgs({allowPositionals: true, options: {
+		all: {short: "a", type: "boolean", default: false},
+		help: {short: "h", type: "boolean", default: false},
+		silent: {short: "s", type: "boolean", default: false},
+		version: {short: "v", type: "boolean", default: false}
+	}});
+
+	silent = values.silent ?? false;
+
+	// Print the usage.
+	if (values.help || values.version) {
+		console.log(values.version ? pkg.version : usage.trim());
+		process.exit(0);
+	}
+
+	// Check the requirements.
+	if (!positionals.length) {
+		console.error("Required argument 'command' is missing.");
+		process.exit(1);
+	}
+
+	// Find the executable.
 	const finder = which(positionals[0]);
 	let paths = await (values.all ? finder.all() : finder.first());
-	if (!values.silent) {
+	if (!silent) {
 		if (!Array.isArray(paths)) paths = [paths];
 		console.log(paths.join(EOL));
 	}
 }
 catch (error) {
-	if (!values.silent) console.error(error instanceof Error ? error.message : error);
-	process.exitCode = 1;
+	if (!silent) console.error(error instanceof Error ? error.message : error);
+	process.exit(1);
 }
