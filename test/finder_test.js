@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import {delimiter} from "node:path";
 import {env} from "node:process";
 import {describe, it} from "node:test";
-import {Finder} from "../src/index.js";
+import {Finder} from "#which";
 
 /**
  * Tests the features of the {@link Finder} class.
