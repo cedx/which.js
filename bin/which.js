@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import console from "node:console";
+import {readFileSync} from "node:fs";
 import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
-import pkg from "../package.json" assert {type: "json"};
 import which from "../src/index.js";
 
 // The usage information.
@@ -39,7 +39,8 @@ try {
 
 	// Print the usage.
 	if (values.help || values.version) {
-		console.log(values.version ? pkg.version : usage.trim());
+		const {version} = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+		console.log(values.version ? version : usage.trim());
 		process.exit(0);
 	}
 
