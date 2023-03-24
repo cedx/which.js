@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [8.0.2](https://github.com/cedx/which.js/compare/v8.0.1...v8.0.2)
+- Dropped the use of import assertions.
+
 ## Version [8.0.1](https://github.com/cedx/which.js/compare/v8.0.0...v8.0.1)
 - Dropped the dependency on [Commander.js](https://github.com/tj/commander.js).
 - Fixed the [TypeScript](https://www.typescriptlang.org) typings.
