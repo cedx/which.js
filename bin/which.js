@@ -51,7 +51,7 @@ try {
 	}
 
 	// Find the executable.
-	const finder = which(positionals[0]);
+	const finder = which(/** @type {string} */ (positionals.shift()));
 	let paths = await (values.all ? finder.all() : finder.first());
 	if (!silent) {
 		if (!Array.isArray(paths)) paths = [paths];
