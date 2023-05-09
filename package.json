@@ -16,7 +16,7 @@
 		"which": "./bin/which.js"
 	},
 	"devDependencies": {
-		"@types/node": "^20.1.0",
+		"@types/node": "^20.1.1",
 		"c8": "^7.13.0",
 		"eslint": "^8.40.0",
 		"typedoc": "^0.24.7",
