@@ -11,6 +11,7 @@
 *.json text
 *.md text diff=markdown
 *.mjs text
+*.ps1 text
 *.svg text
 *.txt text
 *.yaml text
