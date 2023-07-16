@@ -7,7 +7,7 @@ import which, {Finder} from "#which";
  */
 describe("ResultSet", () => {
 	describe(".all()", () => {
-		const options = {paths: ["test/fixture"]};
+		const options = {paths: ["share"]};
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const promise = which("executable", options).all();
@@ -17,7 +17,7 @@ describe("ResultSet", () => {
 				assert.ok(Array.isArray(executables));
 				assert.equal(executables.length, 1);
 				assert.equal(typeof executables[0], "string");
-				assert.ok(executables[0].endsWith("\\test\\fixture\\executable.cmd"));
+				assert.ok(executables[0].endsWith("\\share\\executable.cmd"));
 			}
 		});
 
@@ -29,7 +29,7 @@ describe("ResultSet", () => {
 				assert.ok(Array.isArray(executables));
 				assert.equal(executables.length, 1);
 				assert.equal(typeof executables[0], "string");
-				assert.ok(executables[0].endsWith("/test/fixture/executable.sh"));
+				assert.ok(executables[0].endsWith("/share/executable.sh"));
 			}
 		});
 
@@ -40,7 +40,7 @@ describe("ResultSet", () => {
 	});
 
 	describe(".first()", () => {
-		const options = {paths: ["test/fixture"]};
+		const options = {paths: ["share"]};
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const promise = which("executable", options).first();
@@ -48,7 +48,7 @@ describe("ResultSet", () => {
 			else {
 				const executable = await promise;
 				assert.equal(typeof executable, "string");
-				assert.ok(executable.endsWith("\\test\\fixture\\executable.cmd"));
+				assert.ok(executable.endsWith("\\share\\executable.cmd"));
 			}
 		});
 
@@ -58,7 +58,7 @@ describe("ResultSet", () => {
 			else {
 				const executable = await promise;
 				assert.equal(typeof executable, "string");
-				assert.ok(executable.endsWith("/test/fixture/executable.sh"));
+				assert.ok(executable.endsWith("/share/executable.sh"));
 			}
 		});
 

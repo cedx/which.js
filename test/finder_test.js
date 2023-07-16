@@ -27,7 +27,7 @@ describe("Finder", () => {
 	});
 
 	describe(".find()", () => {
-		const finder = new Finder({paths: ["test/fixture"]});
+		const finder = new Finder({paths: ["share"]});
 
 		async function toArray(/** @type {AsyncIterable<string>} */ asyncIterable) {
 			const items = [];
@@ -38,13 +38,13 @@ describe("Finder", () => {
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const executables = await toArray(finder.find("executable"));
 			assert.equal(executables.length, Finder.isWindows ? 1 : 0);
-			if (Finder.isWindows) assert.ok(executables[0].endsWith("\\test\\fixture\\executable.cmd"));
+			if (Finder.isWindows) assert.ok(executables[0].endsWith("\\share\\executable.cmd"));
 		});
 
 		it("should return the path of the `executable.sh` file on POSIX", async () => {
 			const executables = await toArray(finder.find("executable.sh"));
 			assert.equal(executables.length, Finder.isWindows ? 0 : 1);
-			if (!Finder.isWindows) assert.ok(executables[0].endsWith("/test/fixture/executable.sh"));
+			if (!Finder.isWindows) assert.ok(executables[0].endsWith("/share/executable.sh"));
 		});
 
 		it("should return an empty array if the searched command is not executable or not found", async () => {
@@ -59,16 +59,16 @@ describe("Finder", () => {
 		const finder = new Finder;
 
 		it("should return `false` if the searched command is not executable or not found", async () => {
-			assert.equal(await finder.isExecutable("test/fixture/not_executable.sh"), false);
+			assert.equal(await finder.isExecutable("share/not_executable.sh"), false);
 			assert.equal(await finder.isExecutable("foo/bar/baz.qux"), false);
 		});
 
 		it("should return `false` for a POSIX executable, when test is run on Windows", async () => {
-			assert.notEqual(await finder.isExecutable("test/fixture/executable.sh"), Finder.isWindows);
+			assert.notEqual(await finder.isExecutable("share/executable.sh"), Finder.isWindows);
 		});
 
 		it("should return `false` for a Windows executable, when test is run on POSIX", async () => {
-			assert.equal(await finder.isExecutable("test/fixture/executable.cmd"), Finder.isWindows);
+			assert.equal(await finder.isExecutable("share/executable.cmd"), Finder.isWindows);
 		});
 	});
 });
