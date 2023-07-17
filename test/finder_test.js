@@ -26,7 +26,7 @@ describe("Finder", () => {
 		});
 	});
 
-	describe(".find()", () => {
+	describe("find()", () => {
 		const finder = new Finder({paths: ["share"]});
 
 		async function toArray(/** @type {AsyncIterable<string>} */ asyncIterable) {
@@ -55,7 +55,7 @@ describe("Finder", () => {
 		});
 	});
 
-	describe(".isExecutable()", () => {
+	describe("isExecutable()", () => {
 		const finder = new Finder;
 
 		it("should return `false` if the searched command is not executable or not found", async () => {

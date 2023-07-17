@@ -6,7 +6,7 @@ import which, {Finder} from "#which";
  * Tests the features of the {@link ResultSet} class.
  */
 describe("ResultSet", () => {
-	describe(".all()", () => {
+	describe("all()", () => {
 		const options = {paths: ["share"]};
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
@@ -39,7 +39,7 @@ describe("ResultSet", () => {
 		});
 	});
 
-	describe(".first()", () => {
+	describe("first()", () => {
 		const options = {paths: ["share"]};
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
