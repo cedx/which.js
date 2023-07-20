@@ -35,7 +35,7 @@ export class Finder {
 
 		if (!paths.length) {
 			const pathEnv = process.env.PATH ?? "";
-			if (pathEnv) paths = pathEnv.split(Finder.isWindows ? ";" : delimiter);
+			if (pathEnv) paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
 		}
 
 		this.extensions = extensions.map(extension => extension.toLowerCase());
