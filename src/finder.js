@@ -35,11 +35,11 @@ export class Finder {
 
 		if (!paths.length) {
 			const pathEnv = process.env.PATH ?? "";
-			if (pathEnv) paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
+			paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter) : [];
 		}
 
 		this.extensions = extensions.map(extension => extension.toLowerCase());
-		this.paths = paths.map(directory => directory.replace(/^"+|"+$/g, "")).filter(directory => directory.length);
+		this.paths = paths.map(item => item.replace(/^"+|"+$/g, "")).filter(item => item.length);
 	}
 
 	/**
