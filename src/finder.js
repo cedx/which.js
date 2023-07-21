@@ -47,8 +47,7 @@ export class Finder {
 	 * @type {boolean}
 	 */
 	static get isWindows() {
-		if (process.platform == "win32") return true;
-		return process.env.OSTYPE == "cygwin" || process.env.OSTYPE == "msys";
+		return process.platform == "win32" || ["cygwin", "msys"].includes(process.env.OSTYPE ?? "");
 	}
 
 	/**
