@@ -8,7 +8,7 @@ import {Finder} from "#which";
  * Tests the features of the {@link Finder} class.
  */
 describe("Finder", () => {
-	describe("constructor", () => {
+	describe("constructor()", () => {
 		it("should set the `paths` property to the value of the `PATH` environment variable by default", () => {
 			const pathEnv = env.PATH ?? "";
 			const paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter).filter(item => item.length) : [];
