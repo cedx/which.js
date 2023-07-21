@@ -39,7 +39,7 @@ export class Finder {
 		}
 
 		this.extensions = extensions.map(extension => extension.toLowerCase());
-		this.paths = paths.map(item => item.replace(/^"+|"+$/g, "")).filter(item => item.length);
+		this.paths = paths.map(item => item.replace(/^"|"$/g, "")).filter(item => item.length);
 	}
 
 	/**
