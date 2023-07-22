@@ -54,6 +54,7 @@
 		"lint": "tsc --project jsconfig.json && eslint --config=etc/eslint.json bin example scripts src test",
 		"postpublish": "node scripts/publish.js",
 		"prepack": "npm run dist",
+		"start": "node bin/which.js --help",
 		"test": "c8 --all --include=src/**/*.js --report-dir=var --reporter=lcovonly node --test --test-reporter=spec"
 	}
 }
