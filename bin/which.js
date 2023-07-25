@@ -46,7 +46,7 @@ try {
 
 	// Check the requirements.
 	if (!positionals.length) {
-		console.error("Required argument 'command' is missing.");
+		console.error("You must provide the name of a command to find.");
 		process.exit(1);
 	}
 
