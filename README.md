@@ -13,4 +13,4 @@ Find the instances of an executable in the system path, in [JavaScript](https://
 - [Submit an issue](https://github.com/cedx/which.js/issues)
 
 ## License
-[Which for JS](https://cedx.github.io/which.js) is distributed under the MIT License.
+[Which for JS](https://github.com/cedx/which.js) is distributed under the MIT License.

@@ -16,7 +16,7 @@
 - Ported the source code to [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
 
 ## Version [7.1.0](https://github.com/cedx/which.js/compare/v7.0.1...v7.1.0)
-- Deprecated this package in favor of [`@cedx/which.hx`](https://cedx.github.io/which.hx).
+- Deprecated this package in favor of [`@cedx/which.hx`](https://github.com/cedx/which.hx).
 - Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://learn.microsoft.com/powershell) scripts.
 - Updated the package dependencies.
 
