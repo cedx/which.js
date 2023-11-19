@@ -14,10 +14,10 @@ describe("ResultSet", () => {
 			if (!Finder.isWindows) assert.rejects(promise);
 			else {
 				const executables = await promise;
-				assert.ok(Array.isArray(executables));
+				assert(Array.isArray(executables));
 				assert.equal(executables.length, 1);
 				assert.equal(typeof executables[0], "string");
-				assert.ok(executables[0].endsWith("\\share\\executable.cmd"));
+				assert(executables[0].endsWith("\\share\\executable.cmd"));
 			}
 		});
 
@@ -26,10 +26,10 @@ describe("ResultSet", () => {
 			if (Finder.isWindows) assert.rejects(promise);
 			else {
 				const executables = await promise;
-				assert.ok(Array.isArray(executables));
+				assert(Array.isArray(executables));
 				assert.equal(executables.length, 1);
 				assert.equal(typeof executables[0], "string");
-				assert.ok(executables[0].endsWith("/share/executable.sh"));
+				assert(executables[0].endsWith("/share/executable.sh"));
 			}
 		});
 
@@ -48,7 +48,7 @@ describe("ResultSet", () => {
 			else {
 				const executable = await promise;
 				assert.equal(typeof executable, "string");
-				assert.ok(executable.endsWith("\\share\\executable.cmd"));
+				assert(executable.endsWith("\\share\\executable.cmd"));
 			}
 		});
 
@@ -58,7 +58,7 @@ describe("ResultSet", () => {
 			else {
 				const executable = await promise;
 				assert.equal(typeof executable, "string");
-				assert.ok(executable.endsWith("/share/executable.sh"));
+				assert(executable.endsWith("/share/executable.sh"));
 			}
 		});
 

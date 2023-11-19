@@ -38,13 +38,13 @@ describe("Finder", () => {
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const executables = await toArray(finder.find("executable"));
 			assert.equal(executables.length, Finder.isWindows ? 1 : 0);
-			if (Finder.isWindows) assert.ok(executables[0].endsWith("\\share\\executable.cmd"));
+			if (Finder.isWindows) assert(executables[0].endsWith("\\share\\executable.cmd"));
 		});
 
 		it("should return the path of the `executable.sh` file on POSIX", async () => {
 			const executables = await toArray(finder.find("executable.sh"));
 			assert.equal(executables.length, Finder.isWindows ? 0 : 1);
-			if (!Finder.isWindows) assert.ok(executables[0].endsWith("/share/executable.sh"));
+			if (!Finder.isWindows) assert(executables[0].endsWith("/share/executable.sh"));
 		});
 
 		it("should return an empty array if the searched command is not executable or not found", async () => {
