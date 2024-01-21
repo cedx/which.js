@@ -26,7 +26,7 @@
 	},
 	"exports": {
 		"types": "./lib/index.d.ts",
-		"import": "./src/index.js"
+		"import": "./lib/index.js"
 	},
 	"files": [
 		"lib/",
@@ -35,7 +35,7 @@
 	"imports": {
 		"#which": {
 			"types": "./lib/index.d.ts",
-			"import": "./src/index.js"
+			"import": "./lib/index.js"
 		}
 	},
 	"keywords": [
@@ -46,14 +46,14 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/jsconfig.json",
+		"build": "tsc --project src/tsconfig.json",
 		"clean": "node scripts/clean.js",
 		"doc": "typedoc --options etc/typedoc.json && node scripts/doc.js",
 		"dist": "npm run clean && npm run build",
-		"lint": "tsc --project jsconfig.json && eslint --config=etc/eslint.json bin example scripts src test",
+		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.json bin example scripts src test",
 		"postpublish": "node scripts/publish.js",
 		"prepack": "npm run dist",
 		"start": "node bin/which.js --help",
-		"test": "node --test --test-reporter=lcov --test-reporter-destination=var/lcov.info --test-reporter=spec --test-reporter-destination=stdout"
+		"test": "npm run build && node --test --test-reporter=lcov --test-reporter-destination=var/lcov.info --test-reporter=spec --test-reporter-destination=stdout"
 	}
 }
