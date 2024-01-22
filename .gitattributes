@@ -11,6 +11,7 @@
 *.mjs text
 *.ps1 text
 *.svg text
+*.ts text
 *.txt text
 *.yaml text
 *.yml text
