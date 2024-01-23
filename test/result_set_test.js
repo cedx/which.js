@@ -1,4 +1,4 @@
-import assert from "node:assert/strict";
+import {equal} from "node:assert/strict";
 import {describe, it} from "node:test";
 import which, {Finder} from "#which";
 
@@ -15,8 +15,8 @@ describe("ResultSet", () => {
 			else {
 				const executables = await promise;
 				assert(Array.isArray(executables));
-				assert.equal(executables.length, 1);
-				assert.equal(typeof executables[0], "string");
+				equal(executables.length, 1);
+				equal(typeof executables[0], "string");
 				assert(executables[0].endsWith("\\share\\executable.cmd"));
 			}
 		});
@@ -27,8 +27,8 @@ describe("ResultSet", () => {
 			else {
 				const executables = await promise;
 				assert(Array.isArray(executables));
-				assert.equal(executables.length, 1);
-				assert.equal(typeof executables[0], "string");
+				equal(executables.length, 1);
+				equal(typeof executables[0], "string");
 				assert(executables[0].endsWith("/share/executable.sh"));
 			}
 		});
@@ -47,7 +47,7 @@ describe("ResultSet", () => {
 			if (!Finder.isWindows) assert.rejects(promise);
 			else {
 				const executable = await promise;
-				assert.equal(typeof executable, "string");
+				equal(typeof executable, "string");
 				assert(executable.endsWith("\\share\\executable.cmd"));
 			}
 		});
@@ -57,7 +57,7 @@ describe("ResultSet", () => {
 			if (Finder.isWindows) assert.rejects(promise);
 			else {
 				const executable = await promise;
-				assert.equal(typeof executable, "string");
+				equal(typeof executable, "string");
 				assert(executable.endsWith("/share/executable.sh"));
 			}
 		});
