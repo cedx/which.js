@@ -56,6 +56,6 @@
 		"postpublish": "node tool/publish.js",
 		"prepack": "npm run dist",
 		"start": "node bin/which.js --help",
-		"test": "npm run build && node --test --test-reporter=lcov --test-reporter-destination=var/lcov.info --test-reporter=spec --test-reporter-destination=stdout"
+		"test": "npm run build && node --test --test-reporter=spec --test-reporter-destination=stdout"
 	}
 }
