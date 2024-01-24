@@ -1,4 +1,5 @@
-import {readFileSync, readdirSync, rmSync} from "node:fs";
+import {readFileSync, readdirSync, rmSync, writeFileSync} from "node:fs";
+import {EOL} from "node:os";
 import {join} from "node:path";
 
 /**
@@ -16,4 +17,13 @@ export function cleanDirectory(directory) {
  */
 export function parseJson(path) {
 	return JSON.parse(readFileSync(new URL(path, import.meta.url), {encoding: "utf8"}));
+}
+
+/**
+ * Adds a shebang to the specified source file.
+ * @param {string} path The path to the source file.
+ * @param {string} executable The name of the executable to prepend.
+ */
+export function shebang(path, executable = "node") {
+	writeFileSync(path, `#!/usr/bin/env ${executable}${EOL}${readFileSync(path, {encoding: "utf8"})}`);
 }
