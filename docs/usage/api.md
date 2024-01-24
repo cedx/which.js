@@ -42,7 +42,7 @@ catch (error) {
 }
 ```
 
-### **stream()**: AsyncIterableIterator&lt;string&gt;
+### **stream()**: AsyncGenerator&lt;string&gt;
 The `ResultSet.stream()` method returns an asynchronous generator that yields the absolute path of the instances of an executable found in the system path.
 
 ```javascript

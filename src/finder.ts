@@ -51,7 +51,7 @@ export class Finder {
 	 * @param command The command to be resolved.
 	 * @returns The paths of the executables found.
 	 */
-	async *find(command: string): AsyncIterableIterator<string> {
+	async *find(command: string): AsyncGenerator<string> {
 		for (const directory of this.paths) yield* this.#findExecutables(directory, command);
 	}
 
@@ -107,7 +107,7 @@ export class Finder {
 	 * @param command The command to be resolved.
 	 * @returns The paths of the executables found.
 	 */
-	async *#findExecutables(directory: string, command: string): AsyncIterableIterator<string> {
+	async *#findExecutables(directory: string, command: string): AsyncGenerator<string> {
 		for (const extension of ["", ...Finder.isWindows ? this.extensions : []]) {
 			const resolvedPath = resolve(directory, `${command}${extension}`);
 			if (await this.isExecutable(resolvedPath)) yield resolvedPath;

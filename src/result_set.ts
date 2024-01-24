@@ -42,9 +42,8 @@ export class ResultSet {
 	 * @returns The first search result.
 	 */
 	async first(): Promise<string> {
-		let executable = "";
-		for await (const path of this.stream()) { executable = path; break; } // eslint-disable-line no-unreachable-loop
-		if (executable) return executable;
+		const {value} = await this.stream().next();
+		if (value) return value;
 		throw Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
 	}
 
@@ -52,7 +51,7 @@ export class ResultSet {
 	 * Returns a stream of instances of the searched command.
 	 * @returns A stream of the search results.
 	 */
-	stream(): AsyncIterableIterator<string> {
+	stream(): AsyncGenerator<string> {
 		return this.#finder.find(this.#command);
 	}
 }
