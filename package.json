@@ -19,6 +19,7 @@
 		"@types/node": "^20.11.6",
 		"@typescript-eslint/eslint-plugin": "^6.19.1",
 		"@typescript-eslint/parser": "^6.19.1",
+		"esbuild": "^0.19.12",
 		"eslint": "^8.56.0",
 		"typedoc": "^0.25.7",
 		"typescript": "^5.3.3"
@@ -48,14 +49,14 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/tsconfig.json",
+		"build": "tsc --project src/tsconfig.json && esbuild --allow-overwrite --bundle --format=esm --legal-comments=none --log-level=warning --minify --outfile=bin/which.js --platform=node src/cli.ts",
 		"clean": "node tool/clean.js",
+		"dist": "npm run clean && npm run build && node tool/dist.js && git update-index --chmod=+x bin/which.js",
 		"doc": "typedoc --options etc/typedoc.json && node tool/doc.js",
-		"dist": "npm run clean && npm run build",
-		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.json example src test tool",
+		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.json src tool",
 		"postpublish": "node tool/publish.js",
 		"prepack": "npm run dist",
-		"start": "node bin/which.js --help",
+		"start": "npm run build && node bin/which.js",
 		"test": "npm run build && node --test --test-reporter=spec"
 	}
 }
