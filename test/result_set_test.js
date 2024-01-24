@@ -11,7 +11,7 @@ describe("ResultSet", () => {
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const promise = which("executable", options).all();
-			if (!Finder.isWindows) rejects(promise);
+			if (!Finder.isWindows) await rejects(promise);
 			else {
 				const executables = await promise;
 				ok(Array.isArray(executables));
@@ -23,7 +23,7 @@ describe("ResultSet", () => {
 
 		it("should return the path of the `executable.sh` file on POSIX", async () => {
 			const promise = which("executable.sh", options).all();
-			if (Finder.isWindows) rejects(promise);
+			if (Finder.isWindows) await rejects(promise);
 			else {
 				const executables = await promise;
 				ok(Array.isArray(executables));
@@ -33,9 +33,9 @@ describe("ResultSet", () => {
 			}
 		});
 
-		it("should reject if the searched command is not executable or not found", () => {
-			rejects(() => which("not_executable.sh", options).all());
-			rejects(() => which("foo", options).all());
+		it("should reject if the searched command is not executable or not found", async () => {
+			await rejects(() => which("not_executable.sh", options).all());
+			return rejects(() => which("foo", options).all());
 		});
 	});
 
@@ -44,7 +44,7 @@ describe("ResultSet", () => {
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
 			const promise = which("executable", options).first();
-			if (!Finder.isWindows) rejects(promise);
+			if (!Finder.isWindows) await rejects(promise);
 			else {
 				const executable = await promise;
 				equal(typeof executable, "string");
@@ -54,7 +54,7 @@ describe("ResultSet", () => {
 
 		it("should return the path of the `executable.sh` file on POSIX", async () => {
 			const promise = which("executable.sh", options).first();
-			if (Finder.isWindows) rejects(promise);
+			if (Finder.isWindows) await rejects(promise);
 			else {
 				const executable = await promise;
 				equal(typeof executable, "string");
@@ -62,9 +62,9 @@ describe("ResultSet", () => {
 			}
 		});
 
-		it("should reject if the searched command is not executable or not found", () => {
-			rejects(() => which("not_executable.sh", options).first());
-			rejects(() => which("foo", options).first());
+		it("should reject if the searched command is not executable or not found", async () => {
+			await rejects(() => which("not_executable.sh", options).first());
+			return rejects(() => which("foo", options).first());
 		});
 	});
 });
