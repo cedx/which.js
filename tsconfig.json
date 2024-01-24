@@ -1,5 +1,5 @@
 {
-	"include": ["bin/*.js", "example/*.js", "src/**/*.ts", "test/**/*.js", "tool/*.js"],
+	"include": ["example/*.js", "src/**/*.ts", "test/**/*.js", "tool/*.js"],
 	"compilerOptions": {
 		"allowJs": true,
 		"baseUrl": ".",

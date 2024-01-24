@@ -52,7 +52,7 @@
 		"clean": "node tool/clean.js",
 		"doc": "typedoc --options etc/typedoc.json && node tool/doc.js",
 		"dist": "npm run clean && npm run build",
-		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.json bin example src test tool",
+		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.json example src test tool",
 		"postpublish": "node tool/publish.js",
 		"prepack": "npm run dist",
 		"start": "node bin/which.js --help",
