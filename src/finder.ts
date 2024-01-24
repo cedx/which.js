@@ -1,3 +1,4 @@
+import type {Stats} from "node:fs";
 import {stat} from "node:fs/promises";
 import {delimiter, extname, resolve} from "node:path";
 import process from "node:process";
@@ -9,23 +10,19 @@ export class Finder {
 
 	/**
 	 * The list of executable file extensions.
-	 * @type {string[]}
-	 * @readonly
 	 */
-	extensions;
+	readonly extensions: string[];
 
 	/**
 	 * The list of system paths.
-	 * @type {string[]}
-	 * @readonly
 	 */
-	paths;
+	readonly paths: string[];
 
 	/**
 	 * Creates a new finder.
-	 * @param {FinderOptions} [options] An object providing values to initialize this instance.
+	 * @param options An object providing values to initialize this instance.
 	 */
-	constructor(options = {}) {
+	constructor(options: Partial<FinderOptions> = {}) {
 		let {extensions = [], paths = []} = options;
 
 		if (!extensions.length) {
@@ -44,27 +41,26 @@ export class Finder {
 
 	/**
 	 * Value indicating whether the current platform is Windows.
-	 * @type {boolean}
 	 */
-	static get isWindows() {
+	static get isWindows(): boolean {
 		return process.platform == "win32" || ["cygwin", "msys"].includes(process.env.OSTYPE ?? "");
 	}
 
 	/**
 	 * Finds the instances of an executable in the system path.
-	 * @param {string} command The command to be resolved.
-	 * @returns {AsyncIterableIterator<string>} The paths of the executables found.
+	 * @param command The command to be resolved.
+	 * @returns The paths of the executables found.
 	 */
-	async *find(command) {
+	async *find(command: string): AsyncIterableIterator<string> {
 		for (const directory of this.paths) yield* this.#findExecutables(directory, command);
 	}
 
 	/**
 	 * Gets a value indicating whether the specified file is executable.
-	 * @param {string} file The path of the file to be checked.
-	 * @returns {Promise<boolean>} `true` if the specified file is executable, otherwise `false`.
+	 * @param file The path of the file to be checked.
+	 * @returns `true` if the specified file is executable, otherwise `false`.
 	 */
-	async isExecutable(file) {
+	async isExecutable(file: string): Promise<boolean> {
 		try {
 			const fileStats = await stat(file);
 			return fileStats.isFile() && (Finder.isWindows ? this.#checkFileExtension(file) : this.#checkFilePermissions(fileStats));
@@ -76,19 +72,19 @@ export class Finder {
 
 	/**
 	 * Checks that the specified file is executable according to the executable file extensions.
-	 * @param {string} file The path of the file to be checked.
-	 * @returns {boolean} `true` if the specified file is executable, otherwise `false`.
+	 * @param file The path of the file to be checked.
+	 * @returns `true` if the specified file is executable, otherwise `false`.
 	 */
-	#checkFileExtension(file) {
+	#checkFileExtension(file: string): boolean {
 		return this.extensions.includes(extname(file).toLowerCase());
 	}
 
 	/**
 	 * Checks that the specified file is executable according to its permissions.
-	 * @param {import("node:fs").Stats} stats A reference to the file to be checked.
-	 * @returns {boolean} `true` if the specified file is executable, otherwise `false`.
+	 * @param stats A reference to the file to be checked.
+	 * @returns `true` if the specified file is executable, otherwise `false`.
 	 */
-	#checkFilePermissions(stats) {
+	#checkFilePermissions(stats: Stats): boolean {
 		// Others.
 		const perms = stats.mode;
 		if (perms & 0o001) return true;
@@ -107,11 +103,11 @@ export class Finder {
 
 	/**
 	 * Finds the instances of an executable in the specified directory.
-	 * @param {string} directory The directory path.
-	 * @param {string} command The command to be resolved.
-	 * @returns {AsyncIterableIterator<string>} The paths of the executables found.
+	 * @param directory The directory path.
+	 * @param command The command to be resolved.
+	 * @returns The paths of the executables found.
 	 */
-	async *#findExecutables(directory, command) {
+	async *#findExecutables(directory: string, command: string): AsyncIterableIterator<string> {
 		for (const extension of ["", ...Finder.isWindows ? this.extensions : []]) {
 			const resolvedPath = resolve(directory, `${command}${extension}`);
 			if (await this.isExecutable(resolvedPath)) yield resolvedPath;
@@ -121,7 +117,16 @@ export class Finder {
 
 /**
  * Defines the options of a {@link Finder} instance.
- * @typedef {object} FinderOptions
- * @property {string[]} [extensions] The list of executable file extensions.
- * @property {string[]} [paths] The list of system paths.
  */
+export interface FinderOptions {
+
+	/**
+	 * The list of executable file extensions.
+	 */
+	extensions: string[];
+
+	/**
+	 * The list of system paths.
+	 */
+	paths: string[];
+}
