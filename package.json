@@ -53,7 +53,7 @@
 		"clean": "node tool/clean.js",
 		"dist": "npm run clean && npm run build && node tool/dist.js && git update-index --chmod=+x bin/which.js",
 		"doc": "typedoc --options etc/typedoc.js && node tool/doc.js",
-		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.cjs etc example src test tool",
+		"lint": "tsc --project tsconfig.json && eslint --config=etc/eslint.cjs example src test tool",
 		"postpublish": "node tool/publish.js",
 		"prepack": "npm run dist",
 		"start": "npm run build && node bin/which.js --help",
