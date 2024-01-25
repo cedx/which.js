@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [8.1.0](https://github.com/cedx/which.js/compare/v8.0.2...v8.1.0)
+- Ported the source code to [TypeScript](https://www.typescriptlang.org).
+
 ## Version [8.0.2](https://github.com/cedx/which.js/compare/v8.0.1...v8.0.2)
 - Dropped the use of import assertions.
 
