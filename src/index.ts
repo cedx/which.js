@@ -1,6 +1,5 @@
 export * from "./finder.js";
 export * from "./result_set.js";
-
 import {Finder, type FinderOptions} from "./finder.js";
 import {ResultSet} from "./result_set.js";
 
