@@ -26,6 +26,6 @@ npm install @cedx/which
 ### 2. Import it
 Now in your [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript) code, you can use:
 
-```javascript
+```js
 import which from "@cedx/which";
 ```
