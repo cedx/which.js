@@ -3,7 +3,7 @@ import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" with {type: "json"};
-import which from "../src/index.js";
+import which from "./index.js";
 
 // The usage information.
 const usage = `
