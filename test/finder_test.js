@@ -29,21 +29,21 @@ describe("Finder", () => {
 		const finder = new Finder({paths: ["res"]});
 
 		it("should return the path of the `executable.cmd` file on Windows", async () => {
-			const executables = await asyncIterableToArray(finder.find("executable"));
+			const executables = await generatorToArray(finder.find("executable"));
 			equal(executables.length, Finder.isWindows ? 1 : 0);
 			if (Finder.isWindows) ok(executables[0].endsWith("\\res\\executable.cmd"));
 		});
 
 		it("should return the path of the `executable.sh` file on POSIX", async () => {
-			const executables = await asyncIterableToArray(finder.find("executable.sh"));
+			const executables = await generatorToArray(finder.find("executable.sh"));
 			equal(executables.length, Finder.isWindows ? 0 : 1);
 			if (!Finder.isWindows) ok(executables[0].endsWith("/res/executable.sh"));
 		});
 
 		it("should return an empty array if the searched command is not executable or not found", async () => {
-			let executables = await asyncIterableToArray(finder.find("not_executable.sh"));
+			let executables = await generatorToArray(finder.find("not_executable.sh"));
 			equal(executables.length, 0);
-			executables = await asyncIterableToArray(finder.find("foo"));
+			executables = await generatorToArray(finder.find("foo"));
 			equal(executables.length, 0);
 		});
 	});
@@ -66,11 +66,11 @@ describe("Finder", () => {
 
 /**
  * Converts the specified generator to an array.
- * @param {AsyncIterable<string>} asyncIterable A generator.
+ * @param {AsyncGenerator<string>} generator A generator.
  * @returns {Promise<string[]>} The array corresponding to the specified generator.
  */
-async function asyncIterableToArray(asyncIterable) {
+async function generatorToArray(generator) {
 	const items = [];
-	for await (const item of asyncIterable) items.push(item);
+	for await (const item of generator) items.push(item);
 	return items;
 }
