@@ -16,7 +16,7 @@
 		"which": "./bin/which.js"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.6",
+		"@types/node": "^20.11.7",
 		"@typescript-eslint/eslint-plugin": "^6.19.1",
 		"@typescript-eslint/parser": "^6.19.1",
 		"esbuild": "^0.19.12",
@@ -49,7 +49,7 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/tsconfig.json && esbuild --allow-overwrite --bundle --format=esm --legal-comments=none --log-level=warning --minify --outfile=bin/which.js --platform=node src/cli.ts",
+		"build": "tsc --project src/tsconfig.json && esbuild --allow-overwrite --bundle --format=esm --legal-comments=none --log-level=warning --minify --outfile=bin/which.js --platform=node src/cli/main.ts",
 		"clean": "node tool/clean.js",
 		"dist": "npm run clean && npm run build && node tool/dist.js && git update-index --chmod=+x bin/which.js",
 		"doc": "typedoc --options etc/typedoc.js && node tool/doc.js",
