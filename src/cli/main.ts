@@ -18,10 +18,10 @@ let silent = false;
 async function main(): Promise<number> {
 	// Parse the command line arguments.
 	const {positionals, values} = parseArgs({allowPositionals: true, options: {
-		all: {short: "a", type: "boolean"},
-		help: {short: "h", type: "boolean"},
-		silent: {short: "s", type: "boolean"},
-		version: {short: "v", type: "boolean"}
+		all: {short: "a", type: "boolean", default: false},
+		help: {short: "h", type: "boolean", default: false},
+		silent: {short: "s", type: "boolean", default: false},
+		version: {short: "v", type: "boolean", default: false}
 	}});
 
 	// Print the usage.
