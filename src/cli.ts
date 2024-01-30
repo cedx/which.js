@@ -2,14 +2,32 @@ import console from "node:console";
 import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
-import pkg from "../../package.json" with {type: "json"};
-import usage from "./usage.js";
-import which from "../index.js";
+import pkg from "../package.json" with {type: "json"};
+import which from "./index.js";
 
 /**
  * Value indicating whether to silence the output.
  */
 let silent = false;
+
+/**
+ * The usage information.
+ */
+const usage = `
+Find the instances of an executable in the system path.
+
+Usage:
+  which [options] <command>
+
+Arguments:
+  command        The name of the executable to find.
+
+Options:
+  -a, --all      List all executable instances found (instead of just the first one).
+  -s, --silent   Silence the output, just return the exit code (0 if any executable is found, otherwise 1).
+  -h, --help     Display this help.
+  -v, --version  Output the version number.
+`;
 
 /**
  * Application entry point.

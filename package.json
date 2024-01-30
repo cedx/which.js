@@ -17,8 +17,8 @@
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.10",
-		"@typescript-eslint/eslint-plugin": "^6.19.1",
-		"@typescript-eslint/parser": "^6.19.1",
+		"@typescript-eslint/eslint-plugin": "^6.20.0",
+		"@typescript-eslint/parser": "^6.20.0",
 		"del": "^7.1.0",
 		"esbuild": "^0.20.0",
 		"eslint": "^8.56.0",
@@ -51,7 +51,7 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/tsconfig.json && esbuild \"--banner:js=#!/usr/bin/env node\" --bundle --format=esm --legal-comments=none --log-level=warning --minify --outfile=bin/which.js --platform=node src/cli/main.ts",
+		"build": "tsc --project src/tsconfig.json && esbuild \"--banner:js=#!/usr/bin/env node\" --bundle --format=esm --legal-comments=none --log-level=warning --minify --outfile=bin/which.js --platform=node src/cli.ts",
 		"clean": "node tool/clean.js",
 		"dist": "npm run clean && npm run build && git update-index --chmod=+x bin/which.js",
 		"doc": "typedoc --options etc/typedoc.js && node tool/doc.js",
