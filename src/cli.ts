@@ -31,6 +31,7 @@ Options:
 
 /**
  * Application entry point.
+ * @returns Resolves when the application is terminated.
  */
 async function main(): Promise<void> {
 	// Parse the command line arguments.
