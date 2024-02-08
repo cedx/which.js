@@ -16,7 +16,7 @@
 		"which": "./bin/which.js"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.16",
+		"@types/node": "^20.11.17",
 		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"@typescript-eslint/parser": "^6.21.0",
 		"del": "^7.1.0",
