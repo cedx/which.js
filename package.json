@@ -59,6 +59,7 @@
 		"postpublish": "node tool/publish.js",
 		"prepack": "npm run dist",
 		"start": "npm run build && node bin/which.js --help",
-		"test": "npm run build && node --test --test-reporter=spec"
+		"test": "npm run build && node --test --test-reporter=spec",
+		"watch": "esbuild --bundle --format=esm --legal-comments=none --outfile=bin/which.js --platform=node --watch src/cli.ts"
 	}
 }
