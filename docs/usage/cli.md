@@ -1,21 +1,14 @@
 # Command line interface
-From a command prompt, install the `which` executable:
+From a command prompt, you can invoke the `which` executable by using
+the [`npx` command](https://docs.npmjs.com/cli/commands/npx):
 
 ```shell
-npm install --global @cedx/which
-```
-
-> Consider adding the [`npm install --global`](https://docs.npmjs.com/files/folders) executables directory to your system path.
-
-Then use it to find the instances of an executable command:
-
-```shell
-$ which --help
+$ npx @cedx/which --help
 
 Find the instances of an executable in the system path.
 
 Usage:
-  which [options] <command>
+  npx @cedx/which [options] <command>
 
 Arguments:
   command        The name of the executable to find.
@@ -27,10 +20,10 @@ Options:
   -v, --version  Output the version number.
 ```
 
-For example:
+Then use it to find the instances of an executable program. For example:
 
 ```shell
-which --all node
+npx @cedx/which --all node
 # /usr/bin/node
 # /usr/local/bin/node
 ```
