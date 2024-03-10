@@ -37,12 +37,6 @@
 		"lib/",
 		"src/"
 	],
-	"imports": {
-		"#which": {
-			"types": "./lib/index.d.ts",
-			"import": "./lib/index.js"
-		}
-	},
 	"keywords": [
 		"find",
 		"path",
