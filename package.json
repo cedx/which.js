@@ -19,7 +19,7 @@
 		"@types/eslint__js": "^8.42.3",
 		"@types/node": "^20.11.27",
 		"del": "^7.1.0",
-		"esbuild": "^0.20.1",
+		"esbuild": "^0.20.2",
 		"eslint": "^8.57.0",
 		"execa": "^8.0.1",
 		"typedoc": "^0.25.12",
@@ -45,11 +45,11 @@
 		"which"
 	],
 	"scripts": {
-		"build": "tsc --project src/tsconfig.json && esbuild \"--banner:js=#!/usr/bin/env node\" --bundle --format=esm --legal-comments=none --minify --outfile=bin/which.js --platform=node src/cli.ts",
+		"build": "tsc --project src && esbuild \"--banner:js=#!/usr/bin/env node\" --bundle --format=esm --legal-comments=none --minify --outfile=bin/which.js --platform=node src/cli.ts",
 		"clean": "node tool/clean.js",
 		"dist": "npm run clean && npm run build && git update-index --chmod=+x bin/which.js",
 		"doc": "typedoc --options etc/typedoc.js && node tool/doc.js",
-		"lint": "npm run build && tsc --project tsconfig.json && eslint --config=etc/eslint.config.js etc example src test tool",
+		"lint": "npm run build && tsc --project . && eslint --config=etc/eslint.config.js etc example src test tool",
 		"prepack": "npm run dist",
 		"release": "node tool/publish.js",
 		"start": "npm run build && node bin/which.js --help",
