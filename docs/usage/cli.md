@@ -2,7 +2,7 @@
 From a command prompt, you can invoke the `which` executable by using
 the [`npx` command](https://docs.npmjs.com/cli/commands/npx):
 
-```shell
+``` shell
 $ npx @cedx/which --help
 
 Find the instances of an executable in the system path.
@@ -22,7 +22,7 @@ Options:
 
 Then use it to find the instances of an executable program. For example:
 
-```shell
+``` shell
 npx @cedx/which --all node
 # /usr/bin/node
 # /usr/local/bin/node

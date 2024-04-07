@@ -11,7 +11,7 @@ This function takes the name of the command to locate, and returns a `ResultSet`
 The `ResultSet.all()` method returns a `Promise` that resolves with the absolute paths of all instances of an executable found in the system path.
 If the executable could not be located, the promise rejects.
 
-```js
+``` js
 import console from "node:console";
 import which from "@cedx/which";
 
@@ -29,7 +29,7 @@ catch (error) {
 The `ResultSet.first()` method returns a `Promise` that resolves with the absolute path of the first instance of an executable found in the system path.
 If the executable could not be located, the promise rejects.
 
-```js
+``` js
 import console from "node:console";
 import which from "@cedx/which";
 
@@ -45,7 +45,7 @@ catch (error) {
 ### **stream()**: AsyncGenerator&lt;string, void&gt;
 The `ResultSet.stream()` method returns an asynchronous generator that yields the absolute path of the instances of an executable found in the system path.
 
-```js
+``` js
 import console from "node:console";
 import which from "@cedx/which";
 
@@ -65,7 +65,7 @@ The behavior of the `which(command: string, options?: FinderOptions)` function c
 An array of strings specifying the list of executable file extensions.
 On Windows, defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```js
+``` js
 which("foobar", {extensions: [".foo", ".exe", ".cmd"]});
 ```
 
@@ -75,6 +75,6 @@ which("foobar", {extensions: [".foo", ".exe", ".cmd"]});
 An array of strings specifying the system paths from which the given command will be searched.
 Defaults to the list of directories provided by the `PATH` environment variable.
 
-```js
+``` js
 which("foobar", {paths: ["/usr/local/bin", "/usr/bin"]});
 ```
