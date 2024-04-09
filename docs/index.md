@@ -14,7 +14,3 @@ For detailed instructions, see the [installation guide](installation.md).
 ## Usage
 - [Application programming interface](usage/api.md)
 - [Command line interface](usage/cli.md)
-
-## See also
-- [API reference](api/)
-- [npm package](https://www.npmjs.com/package/@cedx/which)

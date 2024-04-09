@@ -69,7 +69,9 @@ On Windows, defaults to the list of extensions provided by the `PATHEXT` environ
 which("foobar", {extensions: [".foo", ".exe", ".cmd"]});
 ```
 
-> The `extensions` option is only meaningful on the Windows platform, where the executability of a file is determined from its extension.
+!!! note
+    The `extensions` option is only meaningful on the Windows platform,
+    where the executability of a file is determined from its extension.
 
 ### **paths**: string[]
 An array of strings specifying the system paths from which the given command will be searched.
