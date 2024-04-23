@@ -1,6 +1,6 @@
 import console from "node:console";
 import {EOL} from "node:os";
-import process from "node:process";
+import {exit} from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" with {type: "json"};
 import which from "./index.js";
@@ -59,5 +59,5 @@ async function main(): Promise<void> {
 // Start the application.
 main().catch((error: unknown) => {
 	if (!silent) console.error(error instanceof Error ? error.message : error);
-	process.exitCode = 1;
+	exit(1);
 });
