@@ -1,5 +1,13 @@
 #!/usr/bin/env node
-import c from"node:console";import{EOL as x}from"node:os";import{exit as w}from"node:process";import{parseArgs as b}from"node:util";var p={bugs:"https://github.com/cedx/which.js/issues",description:"Find the instances of an executable in the system path. Like the `which` Linux command.",homepage:"https://docs.belin.io/which.js",license:"MIT",name:"@cedx/which",repository:"cedx/which.js",type:"module",version:"8.1.0",author:{email:"cedric@belin.io",name:"C\xE9dric Belin",url:"https://belin.io"},bin:{which:"./bin/which.js"},devDependencies:{"@types/eslint__js":"^8.42.3","@types/gulp":"^4.0.17","@types/node":"^20.12.7",del:"^7.1.0",esbuild:"^0.20.2",eslint:"^8.57.0",execa:"^8.0.1",gulp:"^5.0.0",typedoc:"^0.25.13",typescript:"^5.4.5","typescript-eslint":"^7.7.0"},engines:{node:">=20.0.0"},exports:{types:"./lib/index.d.ts",import:"./lib/index.js"},files:["lib/","src/"],keywords:["find","path","system","utility","which"],scripts:{prepack:"gulp",start:"gulp build && node bin/which.js --help",test:"gulp build && node --test --test-reporter=spec"}};import{stat as m}from"node:fs/promises";import{delimiter as u,extname as g,resolve as y}from"node:path";import o from"node:process";var r=class s{extensions;paths;constructor(t={}){let{extensions:e=[],paths:n=[]}=t;if(!e.length){let i=o.env.PATHEXT??"";e=i?i.split(";"):[".exe",".cmd",".bat",".com"]}if(!n.length){let i=o.env.PATH??"";n=i?i.split(s.isWindows?";":u):[]}this.extensions=e.map(i=>i.toLowerCase()),this.paths=n.map(i=>i.replace(/^"|"$/g,"")).filter(i=>i.length)}static get isWindows(){return o.platform=="win32"||["cygwin","msys"].includes(o.env.OSTYPE??"")}async*find(t){for(let e of this.paths)yield*this.#i(e,t)}async isExecutable(t){try{let e=await m(t);return e.isFile()&&(s.isWindows?this.#t(t):this.#e(e))}catch{return!1}}#t(t){return this.extensions.includes(g(t).toLowerCase())}#e(t){let e=t.mode;if(e&1)return!0;let n=typeof o.getgid=="function"?o.getgid():-1;if(e&8)return n==t.gid;let i=typeof o.getuid=="function"?o.getuid():-1;return e&64?i==t.uid:e&72?i==0:!1}async*#i(t,e){for(let n of["",...s.isWindows?this.extensions:[]]){let i=y(t,`${e}${n}`);await this.isExecutable(i)&&(yield i)}}};import{delimiter as d}from"node:path";var a=class{#t;#e;constructor(t,e){this.#t=t,this.#e=e}async all(){let t=[];for await(let e of this.stream())t.includes(e)||t.push(e);if(t.length)return t;throw Error(`No "${this.#t}" in (${this.#e.paths.join(r.isWindows?";":d)}).`)}async first(){let{value:t}=await this.stream().next();if(t)return t;throw Error(`No "${this.#t}" in (${this.#e.paths.join(r.isWindows?";":d)}).`)}stream(){return this.#e.find(this.#t)}};function l(s,t={}){return new a(s,new r(t))}var h=!1,v=`
+import console from "node:console";
+import {EOL} from "node:os";
+import {exit} from "node:process";
+import {parseArgs} from "node:util";
+import pkg from "../package.json" with {type: "json"};
+import which from "../src/index.js";
+
+// The usage information.
+const usage = `
 Find the instances of an executable in the system path.
 
 Usage:
@@ -13,4 +21,36 @@ Options:
   -s, --silent   Silence the output, just return the exit code (0 if any executable is found, otherwise 1).
   -h, --help     Display this help.
   -v, --version  Output the version number.
-`;async function j(){let{positionals:s,values:t}=b({allowPositionals:!0,options:{all:{short:"a",type:"boolean",default:!1},help:{short:"h",type:"boolean",default:!1},silent:{short:"s",type:"boolean",default:!1},version:{short:"v",type:"boolean",default:!1}}});if(t.help||t.version)return c.log(t.version?p.version:v.trim());if(!s.length)throw Error("You must provide the name of a command to find.");h=t.silent??!1;let e=l(s[0]),n=await(t.all?e.all():e.first());h||c.log(Array.isArray(n)?n.join(x):n)}j().catch(s=>{h||c.error(s instanceof Error?s.message:s),w(1)});
+`;
+
+// Value indicating whether to silence the output.
+let silent = false;
+
+try {
+	// Parse the command line arguments.
+	const {positionals, values} = parseArgs({allowPositionals: true, options: {
+		all: {short: "a", type: "boolean", default: false},
+		help: {short: "h", type: "boolean", default: false},
+		silent: {short: "s", type: "boolean", default: false},
+		version: {short: "v", type: "boolean", default: false}
+	}});
+
+	// Print the usage.
+	if (values.help || values.version) {
+		console.log(values.version ? pkg.version : usage.trim());
+		exit(0);
+	}
+
+	// Check the requirements.
+	if (!positionals.length) throw Error("You must provide the name of a command to find.");
+
+	// Find the instances of the provided executable.
+	silent = values.silent ?? false;
+	const finder = which(positionals[0]);
+	const paths = await (values.all ? finder.all() : finder.first());
+	if (!silent) console.log(Array.isArray(paths) ? paths.join(EOL) : paths);
+}
+catch(error) {
+	if (!silent) console.error(error instanceof Error ? error.message : error);
+	exit(1);
+}
