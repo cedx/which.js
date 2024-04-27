@@ -35,8 +35,7 @@ export class ResultSet {
 	 * @returns {Promise<string[]>} All search results.
 	 */
 	async all() {
-		/** @type {string[]} */
-		const executables = [];
+		/** @type {string[]} */ const executables = [];
 		for await (const path of this.stream()) if (!executables.includes(path)) executables.push(path);
 		if (executables.length) return executables;
 		throw Error(`No "${this.#command}" in (${this.#finder.paths.join(Finder.isWindows ? ";" : delimiter)}).`);
