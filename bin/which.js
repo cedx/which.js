@@ -38,7 +38,7 @@ try {
 	// Print the usage.
 	if (values.help || values.version) {
 		console.log(values.version ? pkg.version : usage.trim());
-		exit(0);
+		exit();
 	}
 
 	// Check the requirements.
