@@ -50,7 +50,7 @@ try {
 	const paths = await (values.all ? finder.all() : finder.first());
 	if (!silent) console.log(Array.isArray(paths) ? paths.join(EOL) : paths);
 }
-catch(error) {
+catch (error) {
 	if (!silent) console.error(error instanceof Error ? error.message : error);
 	exit(1);
 }
