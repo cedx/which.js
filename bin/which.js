@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 import console from "node:console";
 import {EOL} from "node:os";
-import {exit} from "node:process";
+import process from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" with {type: "json"};
 import which from "../src/index.js";
+
+// Give the process a friendly name.
+process.title = "Which for JS";
 
 // The usage information.
 const usage = `
@@ -38,7 +41,7 @@ try {
 	// Print the usage.
 	if (values.help || values.version) {
 		console.log(values.version ? pkg.version : usage.trim());
-		exit();
+		process.exit();
 	}
 
 	// Check the requirements.
@@ -52,5 +55,5 @@ try {
 }
 catch (error) {
 	if (!silent) console.error(error instanceof Error ? error.message : error);
-	exit(1);
+	process.exit(1);
 }
