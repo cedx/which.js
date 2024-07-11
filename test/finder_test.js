@@ -11,18 +11,18 @@ describe("Finder", () => {
 	describe("constructor()", () => {
 		it("should set the `paths` property to the value of the `PATH` environment variable by default", () => {
 			const pathEnv = env.PATH ?? "";
-			const paths = pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter).filter(item => item.length > 0) : [];
-			deepEqual(new Finder().paths, paths);
+			const paths = new Set(pathEnv ? pathEnv.split(Finder.isWindows ? ";" : delimiter).filter(item => item.length > 0) : []);
+			equal(new Finder().paths.symmetricDifference(paths).size, 0);
 		});
 
 		it("should set the `extensions` property to the value of the `PATHEXT` environment variable by default", () => {
 			const pathExt = env.PATHEXT ?? "";
-			const extensions = pathExt ? pathExt.split(";").map(item => item.toLowerCase()) : [".exe", ".cmd", ".bat", ".com"];
-			deepEqual(new Finder().extensions, extensions);
+			const extensions = new Set(pathExt ? pathExt.split(";").map(item => item.toLowerCase()) : [".exe", ".cmd", ".bat", ".com"]);
+			equal(new Finder().extensions.symmetricDifference(extensions).size, 0);
 		});
 
 		it("should put in lower case the list of file extensions", () =>
-			deepEqual(new Finder({extensions: [".EXE", ".JS", ".PS1"]}).extensions, [".exe", ".js", ".ps1"]));
+			equal(new Finder({extensions: [".EXE", ".JS", ".PS1"]}).extensions.symmetricDifference(new Set([".exe", ".js", ".ps1"])).size, 0));
 	});
 
 	describe("find()", () => {

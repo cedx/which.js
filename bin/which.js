@@ -4,7 +4,7 @@ import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" with {type: "json"};
-import which from "../src/index.js";
+import which from "../lib/index.js";
 
 // Give the process a friendly name.
 process.title = "Which for JS";
