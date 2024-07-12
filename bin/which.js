@@ -3,8 +3,8 @@ import console from "node:console";
 import {EOL} from "node:os";
 import process from "node:process";
 import {parseArgs} from "node:util";
-import pkg from "../package.json" with {type: "json"};
 import which from "../lib/index.js";
+import pkg from "../package.json" with {type: "json"};
 
 // Give the process a friendly name.
 process.title = "Which for JS";
