@@ -1,5 +1,5 @@
-import console from "node:console";
 import which from "@cedx/which";
+import console from "node:console";
 
 // Finds all instances of an executable.
 try {

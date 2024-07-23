@@ -1,8 +1,8 @@
+import {Finder} from "@cedx/which";
 import {equal, notEqual, ok} from "node:assert/strict";
 import {delimiter} from "node:path";
 import {env} from "node:process";
 import {describe, it} from "node:test";
-import {Finder} from "@cedx/which";
 
 /**
  * Tests the features of the {@link Finder} class.

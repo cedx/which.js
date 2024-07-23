@@ -1,6 +1,6 @@
+import type {Stats} from "node:fs";
 import {stat} from "node:fs/promises";
 import {delimiter, extname, resolve} from "node:path";
-import type {Stats} from "node:fs";
 import process from "node:process";
 
 /**

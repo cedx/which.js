@@ -1,6 +1,6 @@
+import which, {Finder} from "@cedx/which";
 import {equal, ok, rejects} from "node:assert/strict";
 import {describe, it} from "node:test";
-import which, {Finder} from "@cedx/which";
 
 /**
  * Tests the features of the {@link ResultSet} class.
