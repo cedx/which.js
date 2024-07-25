@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [9.0.0](https://github.com/cedx/which.js/compare/v8.1.1...v9.0.0)
+- Breaking change: the `extensions` and `paths` properties of the `Finder` class are now implemented as `Set<string>`.
+
 ## Version [8.1.1](https://github.com/cedx/which.js/compare/v8.1.0...v8.1.1)
 - Migrated the documentation to the [GitHub wiki](https://github.com/cedx/which.js/wiki).
 
