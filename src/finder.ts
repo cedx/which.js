@@ -108,7 +108,7 @@ export class Finder {
 	 * @returns The paths of the executables found.
 	 */
 	async *#findExecutables(directory: string, command: string): AsyncGenerator<string, void> {
-		for (const extension of ["", ...Finder.isWindows ? this.extensions : []]) {
+		for (const extension of ["", ...Finder.isWindows ? this.extensions : new Set<string>]) {
 			const resolvedPath = resolve(directory, `${command}${extension}`);
 			if (await this.isExecutable(resolvedPath)) yield resolvedPath;
 		}
