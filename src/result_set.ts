@@ -33,7 +33,7 @@ export class ResultSet {
 	async all(): Promise<string[]> {
 		const executables = new Set<string>;
 		for await (const path of this.stream()) executables.add(path);
-		if (executables.size) return Array.from(executables.values());
+		if (executables.size) return Array.from(executables);
 		throw Error(`No "${this.#command}" in (${Array.from(this.#finder.paths).join(Finder.isWindows ? ";" : delimiter)}).`);
 	}
 
