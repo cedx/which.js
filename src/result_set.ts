@@ -30,7 +30,7 @@ export class ResultSet {
 	 * Returns all instances of the searched command.
 	 * @returns All search results.
 	 */
-	async all(): Promise<string[]> {
+	async all(): Promise<Array<string>> {
 		const executables = new Set<string>;
 		for await (const path of this.stream()) executables.add(path);
 		if (executables.size) return Array.from(executables);

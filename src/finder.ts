@@ -123,10 +123,10 @@ export interface FinderOptions {
 	/**
 	 * The list of executable file extensions.
 	 */
-	extensions: string[];
+	extensions: Array<string>;
 
 	/**
 	 * The list of system paths.
 	 */
-	paths: string[];
+	paths: Array<string>;
 }
