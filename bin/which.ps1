@@ -1,3 +1,6 @@
 #!/usr/bin/env pwsh
 Set-StrictMode -Version Latest
-node "$PSScriptRoot/which.js" @args
+
+$file = "$PSScriptRoot/which.js"
+if (Test-Path "$file.map") { node --enable-source-maps $file @args }
+else { node $file @args }
