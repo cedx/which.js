@@ -48,7 +48,7 @@ try {
 	if (!positionals.length) throw Error("You must provide the name of a command to find.");
 
 	// Find the instances of the provided executable.
-	silent = values.silent ?? false;
+	({silent} = values);
 	const finder = which(positionals[0]);
 	const paths = await (values.all ? finder.all() : finder.first());
 	if (!silent) console.log(Array.isArray(paths) ? paths.join(EOL) : paths);
