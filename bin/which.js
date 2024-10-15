@@ -55,5 +55,5 @@ try {
 }
 catch (error) {
 	if (!silent) console.error(error instanceof Error ? error.message : error);
-	process.exit(1);
+	process.exit(404);
 }
