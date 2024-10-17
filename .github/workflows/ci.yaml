@@ -19,5 +19,3 @@ jobs:
         run: npm ci
       - name: Run tests
         run: node --run test
-        env:
-          NODE_ENV: test
