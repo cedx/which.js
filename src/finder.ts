@@ -22,7 +22,7 @@ export class Finder {
 	 * Creates a new finder.
 	 * @param options An object providing values to initialize this instance.
 	 */
-	constructor(options: Partial<FinderOptions> = {}) {
+	constructor(options: FinderOptions = {}) {
 		let {extensions = [], paths = []} = options;
 
 		if (!extensions.length) {
@@ -118,7 +118,7 @@ export class Finder {
 /**
  * Defines the options of a {@link Finder} instance.
  */
-export interface FinderOptions {
+export type FinderOptions = Partial<{
 
 	/**
 	 * The list of executable file extensions.
@@ -129,4 +129,4 @@ export interface FinderOptions {
 	 * The list of system paths.
 	 */
 	paths: Array<string>;
-}
+}>;

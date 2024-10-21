@@ -10,6 +10,6 @@ export * from "./result_set.js";
  * @param options The options to be passed to the finder.
  * @returns The search results.
  */
-export default function which(command: string, options: Partial<FinderOptions> = {}): ResultSet {
+export default function which(command: string, options: FinderOptions = {}): ResultSet {
 	return new ResultSet(command, new Finder(options));
 }
