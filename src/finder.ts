@@ -123,10 +123,10 @@ export type FinderOptions = Partial<{
 	/**
 	 * The list of executable file extensions.
 	 */
-	extensions: Array<string>,
+	extensions: Array<string>;
 
 	/**
 	 * The list of system paths.
 	 */
-	paths: Array<string>
+	paths: Array<string>;
 }>;
