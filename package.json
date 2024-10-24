@@ -44,7 +44,7 @@
 	],
 	"scripts": {
 		"prepack": "gulp",
-		"start": "gulp build && node bin/which.js --help",
+		"start": "node bin/which.js --help",
 		"test": "gulp test"
 	}
 }
