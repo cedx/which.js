@@ -45,7 +45,10 @@ try {
 	}
 
 	// Check the requirements.
-	if (!positionals.length) throw Error("You must provide the name of a command to find.");
+	if (!positionals.length) {
+		console.log("You must provide the name of a command to find.");
+		process.exit(400);
+	}
 
 	// Find the instances of the provided executable.
 	({silent} = values);
