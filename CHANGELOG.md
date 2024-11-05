@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [10.0.0](https://github.com/cedx/which.js/compare/v9.0.0...v10.0.0)
+- Breaking change: the `which()` function now uses a named export instead of a default export.
+- Ported the source code to [CoffeeScript](https://coffeescript.org).
+
 ## Version [9.0.0](https://github.com/cedx/which.js/compare/v8.1.1...v9.0.0)
 - Breaking change: the `extensions` and `paths` properties of the `Finder` class are now implemented as `Set<string>`.
 
