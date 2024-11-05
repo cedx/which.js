@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import "../lib/cli.js";
+
 import console from "node:console";
 import {EOL} from "node:os";
 import process from "node:process";
