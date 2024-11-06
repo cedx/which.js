@@ -49,5 +49,5 @@ describe "ResultSet", ->
 				ok executable.endsWith "/res/executable.sh"
 
 		it "should reject if the searched command is not executable or not found", ->
-			await rejects -> which("not_executable.sh", options).first()
-			await rejects -> which("foo", options).first()
+			await rejects which("not_executable.sh", options).first()
+			await rejects which("foo", options).first()
