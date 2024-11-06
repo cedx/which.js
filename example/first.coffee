@@ -1,4 +1,4 @@
-import which from "@cedx/which"
+import {which} from "@cedx/which"
 import console from "node:console"
 
 # Finds the first instance of an executable.
