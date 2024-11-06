@@ -28,7 +28,10 @@ export class Finder
 		@paths = new Set paths.map((item) -> item.replace /^"|"$/g, "").filter (item) -> item.length
 
 	# Finds the instances of an executable in the system path.
-	find: (command) -> yield from @_findExecutables directory, command for directory in @paths
+	find: (command) ->
+		await Promise.resolve()
+		yield from @_findExecutables directory, command for directory from @paths
+		return
 
 	# Gets a value indicating whether the specified file is executable.
 	isExecutable: (file) ->
@@ -64,3 +67,4 @@ export class Finder
 		for extension in ["", extensions...]
 			resolvedPath = resolve directory, "#{command}#{extension}"
 			yield resolvedPath if await @isExecutable resolvedPath
+		return
