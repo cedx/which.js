@@ -44,8 +44,8 @@ describe "Finder", ->
 		finder = new Finder
 
 		it "should return `false` if the searched command is not executable or not found", ->
-			equal await finder.isExecutable("res/not_executable.sh"), false
-			equal await finder.isExecutable("foo/bar/baz.qux"), false
+			equal await finder.isExecutable("res/not_executable.sh"), no
+			equal await finder.isExecutable("foo/bar/baz.qux"), no
 
 		it "should return `false` for a POSIX executable, when test is run on Windows", ->
 			equal await finder.isExecutable("res/executable.sh"), not Finder.isWindows

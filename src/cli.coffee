@@ -22,7 +22,7 @@ Options:
 """
 
 # Value indicating whether to silence the output.
-silent = false
+silent = no
 
 try
 	# Parse the command line arguments.
