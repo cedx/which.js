@@ -5,7 +5,7 @@ import console from "node:console"
 try
 	paths = await which("foobar").all()
 	console.log 'The "foobar" command is available at these locations:'
-	console.log "- #{path}" for path in paths
+	console.log "- #{path}" for path from paths
 
 catch error
 	console.error if error instanceof Error then error.message else error

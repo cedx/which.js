@@ -64,7 +64,7 @@ export class Finder
 	# Finds the instances of an executable in the specified directory.
 	_findExecutables: (directory, command) ->
 		extensions = if Finder.isWindows then @extensions else new Set
-		for extension in ["", extensions...]
+		for extension from ["", extensions...]
 			resolvedPath = resolve directory, "#{command}#{extension}"
 			yield resolvedPath if await @isExecutable resolvedPath
 		return
