@@ -9,7 +9,7 @@ usage = """
 Find the instances of an executable in the system path.
 
 Usage:
-	which [options] <command>
+	npx @cedx/which [options] <command>
 
 Arguments:
 	command        The name of the executable to find.
