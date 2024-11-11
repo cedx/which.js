@@ -5,10 +5,6 @@ import process from "node:process"
 # Finds the instances of an executable in the system path.
 export class Finder
 
-	# Value indicating whether the current platform is Windows.
-	Object.defineProperty @, "isWindows",
-		get: -> process.platform is "win32" or process.env.OSTYPE in ["cygwin", "msys"]
-
 	# Creates a new finder.
 	constructor: (options = {}) ->
 		{extensions = [], paths = []} = options
@@ -26,6 +22,10 @@ export class Finder
 
 		# The list of system paths.
 		@paths = new Set paths.map((item) -> item.replace /^"|"$/g, "").filter (item) -> item.length
+
+	# Value indicating whether the current platform is Windows.
+	Object.defineProperty @, "isWindows",
+		get: -> process.platform is "win32" or process.env.OSTYPE in ["cygwin", "msys"]
 
 	# Finds the instances of an executable in the system path.
 	find: (command) ->
