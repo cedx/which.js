@@ -10,11 +10,11 @@ export class Finder
 		{extensions = [], paths = []} = options
 
 		unless extensions.length
-			pathExt = process.env.PATHEXT ? ""
+			pathExt = process.env.PATHEXT or ""
 			extensions = if pathExt then pathExt.split ";" else [".exe", ".cmd", ".bat", ".com"]
 
 		unless paths.length
-			pathEnv = process.env.PATH ? ""
+			pathEnv = process.env.PATH or ""
 			paths = if pathEnv then pathEnv.split(if Finder.isWindows then ";" else delimiter) else []
 
 		# The list of executable file extensions.
