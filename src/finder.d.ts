@@ -1,20 +1,4 @@
 /**
- * Defines the options of a {@link Finder} instance.
- */
-export type FinderOptions = Partial<{
-
-	/**
-	 * The list of executable file extensions.
-	 */
-	extensions: Array<string>;
-
-	/**
-	 * The list of system paths.
-	 */
-	paths: Array<string>;
-}>;
-
-/**
  * Finds the instances of an executable in the system path.
  */
 export class Finder {
@@ -54,3 +38,19 @@ export class Finder {
 	 */
 	isExecutable(file: string): Promise<boolean>;
 }
+
+/**
+ * Defines the options of a {@link Finder} instance.
+ */
+export type FinderOptions = Partial<{
+
+	/**
+	 * The list of executable file extensions.
+	 */
+	extensions: Array<string>;
+
+	/**
+	 * The list of system paths.
+	 */
+	paths: Array<string>;
+}>;
