@@ -50,7 +50,7 @@ try
 	# Find the instances of the provided executable.
 	{silent} = values
 	finder = which positionals[0]
-	paths = await (if values.all then finder.all() else finder.first())
+	paths = await (if values.all then finder.all else finder.first)
 	console.log(if Array.isArray paths then paths.join EOL else paths) unless silent
 
 catch error

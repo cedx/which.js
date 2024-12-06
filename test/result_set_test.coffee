@@ -6,9 +6,9 @@ import {describe, it} from "node:test"
 describe "ResultSet", ->
 	options = paths: ["res"]
 
-	describe "all()", ->
+	describe "all", ->
 		it "should return the path of the `executable.cmd` file on Windows", ->
-			promise = which("executable", options).all()
+			promise = which("executable", options).all
 			unless Finder.isWindows then await rejects promise
 			else
 				executables = await promise
@@ -18,7 +18,7 @@ describe "ResultSet", ->
 				ok executables[0].endsWith "\\res\\executable.cmd"
 
 		it "should return the path of the `executable.sh` file on POSIX", ->
-			promise = which("executable.sh", options).all()
+			promise = which("executable.sh", options).all
 			if Finder.isWindows then await rejects promise
 			else
 				executables = await promise
@@ -28,12 +28,12 @@ describe "ResultSet", ->
 				ok executables[0].endsWith "/res/executable.sh"
 
 		it "should reject if the searched command is not executable or not found", ->
-			await rejects -> which("not_executable.sh", options).all()
-			await rejects -> which("foo", options).all()
+			await rejects -> which("not_executable.sh", options).all
+			await rejects -> which("foo", options).all
 
-	describe "first()", ->
+	describe "first", ->
 		it "should return the path of the `executable.cmd` file on Windows", ->
-			promise = which("executable", options).first()
+			promise = which("executable", options).first
 			unless Finder.isWindows then await rejects promise
 			else
 				executable = await promise
@@ -41,7 +41,7 @@ describe "ResultSet", ->
 				ok executable.endsWith "\\res\\executable.cmd"
 
 		it "should return the path of the `executable.sh` file on POSIX", ->
-			promise = which("executable.sh", options).first()
+			promise = which("executable.sh", options).first
 			if Finder.isWindows then await rejects promise
 			else
 				executable = await promise
@@ -49,5 +49,5 @@ describe "ResultSet", ->
 				ok executable.endsWith "/res/executable.sh"
 
 		it "should reject if the searched command is not executable or not found", ->
-			await rejects which("not_executable.sh", options).first()
-			await rejects which("foo", options).first()
+			await rejects which("not_executable.sh", options).first
+			await rejects which("foo", options).first

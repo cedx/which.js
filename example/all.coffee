@@ -3,7 +3,7 @@ import console from "node:console"
 
 # Finds all instances of an executable.
 try
-	paths = await which("foobar").all()
+	paths = await which("foobar").all
 	console.log 'The "foobar" command is available at these locations:'
 	console.log "- #{path}" for path from paths
 

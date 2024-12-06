@@ -3,7 +3,7 @@ import console from "node:console"
 
 # Finds the first instance of an executable.
 try
-	path = await which("foobar").first()
+	path = await which("foobar").first
 	console.log "The \"foobar\" command is located at: #{path}"
 
 catch error

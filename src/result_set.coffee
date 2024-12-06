@@ -14,18 +14,21 @@ export class ResultSet
 		@_finder = finder
 
 	# Returns all instances of the searched command.
-	all: ->
-		executables = new Set
-		executables.add path for await path from @stream()
-		if executables.size then Array.from executables else @_throw()
+	Object.defineProperty @prototype, "all",
+		get: ->
+			executables = new Set
+			executables.add path for await path from @stream
+			if executables.size then Array.from executables else @_throw()
 
 	# Returns the first instance of the searched command.
-	first: ->
-		{value} = await @stream().next()
-		value or @_throw()
+	Object.defineProperty @prototype, "first",
+		get: ->
+			{value} = await @stream.next()
+			value or @_throw()
 
 	# Returns a stream of instances of the searched command.
-	stream: -> @_finder.find @_command
+	Object.defineProperty @prototype, "stream",
+		get: -> @_finder.find @_command
 
 	# Throws an error indicating that the command was not found.
 	_throw: ->
