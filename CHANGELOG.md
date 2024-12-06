@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [11.0.0](https://github.com/cedx/which.js/compare/v10.0.0...v11.0.0)
+- Breaking change: the `ResultSet` methods are now implemented as properties.
+
 ## Version [10.0.0](https://github.com/cedx/which.js/compare/v9.0.0...v10.0.0)
 - Breaking change: the `which()` function now uses a named export instead of a default export.
 - Ported the source code to [CoffeeScript](https://coffeescript.org).
