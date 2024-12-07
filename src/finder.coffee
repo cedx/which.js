@@ -18,10 +18,10 @@ export class Finder
 			paths = if pathEnv then pathEnv.split(if Finder.isWindows then ";" else delimiter) else []
 
 		# The list of executable file extensions.
-		@extensions = new Set extensions.map ($) -> $.toLowerCase()
+		@extensions = new Set extensions.map (extension) -> extension.toLowerCase()
 
 		# The list of system paths.
-		@paths = new Set paths.map(($) -> $.replace /^"|"$/g, "").filter ($) -> $.length
+		@paths = new Set paths.map((item) -> item.replace /^"|"$/g, "").filter (item) -> item.length
 
 	# Value indicating whether the current platform is Windows.
 	Object.defineProperty @, "isWindows",

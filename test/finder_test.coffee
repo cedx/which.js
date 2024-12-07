@@ -9,12 +9,12 @@ describe "Finder", ->
 	describe "constructor()", ->
 		it "should set the `paths` property to the value of the `PATH` environment variable by default", ->
 			pathEnv = env.PATH or ""
-			paths = new Set if pathEnv then pathEnv.split(if Finder.isWindows then ";" else delimiter).filter ($) -> $.length else []
+			paths = new Set if pathEnv then pathEnv.split(if Finder.isWindows then ";" else delimiter).filter (item) -> item.length else []
 			equal new Finder().paths.symmetricDifference(paths).size, 0
 
 		it "should set the `extensions` property to the value of the `PATHEXT` environment variable by default", ->
 			pathExt = env.PATHEXT or ""
-			extensions = new Set if pathExt then pathExt.split(";").map ($) -> $.toLowerCase() else [".exe", ".cmd", ".bat", ".com"]
+			extensions = new Set if pathExt then pathExt.split(";").map (item) -> item.toLowerCase() else [".exe", ".cmd", ".bat", ".com"]
 			equal new Finder().extensions.symmetricDifference(extensions).size, 0
 
 		it "should put in lower case the list of file extensions", ->
