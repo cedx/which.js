@@ -40,6 +40,6 @@
 	],
 	"scripts": {
 		"start": "node bin/which.js --help",
-		"test": "gulp test"
+		"test": "cake test"
 	}
 }
