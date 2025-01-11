@@ -40,6 +40,9 @@
 		"utility",
 		"which"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"start": "node bin/which.js --help",
 		"test": "gulp test"
