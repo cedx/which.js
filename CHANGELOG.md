@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [11.1.0](https://github.com/cedx/which.js/compare/v11.0.0...v11.1.0)
+- Ported the source code to [TypeScript](https://www.typescriptlang.org).
+
 ## Version [11.0.0](https://github.com/cedx/which.js/compare/v10.0.0...v11.0.0)
 - Breaking change: the `ResultSet` methods are now implemented as properties.
 
