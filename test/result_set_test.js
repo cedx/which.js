@@ -1,4 +1,4 @@
-import which, {Finder} from "@cedx/which";
+import {Finder, which} from "@cedx/which";
 import {equal, ok, rejects} from "node:assert/strict";
 import {describe, it} from "node:test";
 

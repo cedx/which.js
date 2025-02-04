@@ -57,7 +57,7 @@ describe("Finder", () => {
 		});
 
 		it("should return `false` for a POSIX executable, when test is run on Windows", async () =>
-			equal(await finder.isExecutable("res/executable.sh"), Finder.isWindows));
+			equal(await finder.isExecutable("res/executable.sh"), !Finder.isWindows));
 
 		it("should return `false` for a Windows executable, when test is run on POSIX", async () =>
 			equal(await finder.isExecutable("res/executable.cmd"), Finder.isWindows));
