@@ -51,8 +51,8 @@ try {
 
 	// Find the instances of the provided executable.
 	({silent} = values);
-	const finder = which(positionals[0]);
-	const paths = values.all ? await finder.all : [await finder.first];
+	const resultSet = which(positionals[0]);
+	const paths = values.all ? await resultSet.all : [await resultSet.first];
 	if (!silent) console.log(paths.join(EOL));
 }
 catch (error) {
