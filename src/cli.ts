@@ -52,8 +52,8 @@ try {
 	// Find the instances of the provided executable.
 	({silent} = values);
 	const finder = which(positionals[0]);
-	const paths = await (values.all ? finder.all : finder.first);
-	if (!silent) console.log(Array.isArray(paths) ? paths.join(EOL) : paths);
+	const paths = values.all ? await finder.all : [await finder.first];
+	if (!silent) console.log(paths.join(EOL));
 }
 catch (error) {
 	if (!silent) console.error(error instanceof Error ? error.message : error);
