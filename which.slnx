@@ -1,6 +1,0 @@
-<Solution>
-	<Project Path="which.esproj">
-		<Build />
-		<Deploy />
-	</Project>
-</Solution>
