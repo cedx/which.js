@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2191419">
+	<PropertyGroup>
+		<Company>Belin.io</Company>
+		<Copyright>© Cédric Belin</Copyright>
+		<Description>Find the instances of an executable in the system path. Like the `which` Linux command.</Description>
+		<Product>Which for JS</Product>
+		<Version>11.1.0</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageJsonDirectory>$(SolutionDir)</PackageJsonDirectory>
+		<ShouldRunBuildScript>false</ShouldRunBuildScript>
+		<ShouldRunNpmInstall>false</ShouldRunNpmInstall>
+	</PropertyGroup>
+</Project>
