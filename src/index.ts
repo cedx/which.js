@@ -1,7 +1,7 @@
-import {Finder, type FinderOptions} from "./finder.js";
-import {ResultSet} from "./result_set.js";
-export * from "./finder.js";
-export * from "./result_set.js";
+import {Finder, type FinderOptions} from "./Finder.js";
+import {ResultSet} from "./ResultSet.js";
+export * from "./Finder.js";
+export * from "./ResultSet.js";
 
 /**
  * Finds the instances of the specified command in the system path.

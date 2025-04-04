@@ -1,5 +1,5 @@
 import {delimiter} from "node:path";
-import {Finder} from "./finder.js";
+import {Finder} from "./Finder.js";
 
 /**
  * Provides convenient access to the stream of search results.
