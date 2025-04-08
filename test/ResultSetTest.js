@@ -9,32 +9,32 @@ describe("ResultSet", () => {
 	describe("all", () => {
 		const options = {paths: ["res"]};
 
-		it("should return the path of the `executable.cmd` file on Windows", async () => {
-			const promise = which("executable", options).all;
+		it("should return the path of the `Executable.cmd` file on Windows", async () => {
+			const promise = which("Executable", options).all;
 			if (!Finder.isWindows) await rejects(promise);
 			else {
 				const executables = await promise;
 				ok(Array.isArray(executables));
 				equal(executables.length, 1);
 				equal(typeof executables[0], "string");
-				ok(executables[0].endsWith("\\res\\executable.cmd"));
+				ok(executables[0].endsWith("\\res\\Executable.cmd"));
 			}
 		});
 
-		it("should return the path of the `executable.sh` file on POSIX", async () => {
-			const promise = which("executable.sh", options).all;
+		it("should return the path of the `Executable.sh` file on POSIX", async () => {
+			const promise = which("Executable.sh", options).all;
 			if (Finder.isWindows) await rejects(promise);
 			else {
 				const executables = await promise;
 				ok(Array.isArray(executables));
 				equal(executables.length, 1);
 				equal(typeof executables[0], "string");
-				ok(executables[0].endsWith("/res/executable.sh"));
+				ok(executables[0].endsWith("/res/Executable.sh"));
 			}
 		});
 
 		it("should reject if the searched command is not executable or not found", async () => {
-			await rejects(() => which("not_executable.sh", options).all);
+			await rejects(() => which("NotExecutable.sh", options).all);
 			return rejects(() => which("foo", options).all);
 		});
 	});
@@ -42,28 +42,28 @@ describe("ResultSet", () => {
 	describe("first", () => {
 		const options = {paths: ["res"]};
 
-		it("should return the path of the `executable.cmd` file on Windows", async () => {
-			const promise = which("executable", options).first;
+		it("should return the path of the `Executable.cmd` file on Windows", async () => {
+			const promise = which("Executable", options).first;
 			if (!Finder.isWindows) await rejects(promise);
 			else {
 				const executable = await promise;
 				equal(typeof executable, "string");
-				ok(executable.endsWith("\\res\\executable.cmd"));
+				ok(executable.endsWith("\\res\\Executable.cmd"));
 			}
 		});
 
-		it("should return the path of the `executable.sh` file on POSIX", async () => {
-			const promise = which("executable.sh", options).first;
+		it("should return the path of the `Executable.sh` file on POSIX", async () => {
+			const promise = which("Executable.sh", options).first;
 			if (Finder.isWindows) await rejects(promise);
 			else {
 				const executable = await promise;
 				equal(typeof executable, "string");
-				ok(executable.endsWith("/res/executable.sh"));
+				ok(executable.endsWith("/res/Executable.sh"));
 			}
 		});
 
 		it("should reject if the searched command is not executable or not found", async () => {
-			await rejects(() => which("not_executable.sh", options).first);
+			await rejects(() => which("NotExecutable.sh", options).first);
 			return rejects(() => which("foo", options).first);
 		});
 	});
