@@ -6,9 +6,18 @@
 			"name": "Program",
 			"request": "launch",
 			"type": "node",
-			"console": "externalTerminal",
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/bin/Which.js",
+			"args": ["node"],
+			"skipFiles": ["<node_internals>/**"]
+		},
+		{
+			"name": "Tests",
+			"request": "launch",
+			"type": "node",
+			"cwd": "${workspaceFolder}",
+			"program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+			"args": ["test"],
 			"skipFiles": ["<node_internals>/**"]
 		}
 	]
