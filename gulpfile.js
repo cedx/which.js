@@ -39,6 +39,11 @@ export async function test() {
 	await run("node --enable-source-maps --test");
 }
 
+/** Watches for file changes. */
+export async function watch() {
+	await run("npx tsc --build src/tsconfig.json --preserveWatchOutput --sourceMap --watch");
+}
+
 /** The default task. */
 export default gulp.series(clean, build);
 
