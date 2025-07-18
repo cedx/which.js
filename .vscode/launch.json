@@ -1,24 +1,28 @@
 {
-	"$schema": "vscode://schemas/launch",
 	"version": "0.2.0",
 	"configurations": [
 		{
 			"name": "Program",
+			"preLaunchTask": "build",
 			"request": "launch",
 			"type": "node",
-			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/bin/Which.js",
-			"args": ["node"],
-			"skipFiles": ["<node_internals>/**"]
+			"outFiles": ["${workspaceFolder}/lib/**/*.js"],
+			"args": ["${input:command}"]
 		},
 		{
 			"name": "Tests",
 			"request": "launch",
 			"type": "node",
-			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
-			"args": ["test"],
-			"skipFiles": ["<node_internals>/**"]
+			"args": ["test"]
+		}
+	],
+	"inputs": [
+		{
+			"description": "The name of the executable to find.",
+			"id": "command",
+			"type": "promptString"
 		}
 	]
 }
