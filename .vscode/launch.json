@@ -3,11 +3,10 @@
 	"configurations": [
 		{
 			"name": "Program",
-			"preLaunchTask": "build",
+			"preLaunchTask": "Debug",
 			"request": "launch",
 			"type": "node",
 			"program": "${workspaceFolder}/bin/Which.js",
-			"outFiles": ["${workspaceFolder}/lib/**/*.js"],
 			"args": ["${input:command}"]
 		},
 		{

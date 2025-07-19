@@ -2,10 +2,9 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "build",
-			"group": {"kind": "build", "isDefault": true},
+			"label": "Debug",
 			"type": "gulp",
-			"task": "build"
+			"task": "debug"
 		}
 	]
 }
