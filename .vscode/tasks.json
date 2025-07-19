@@ -3,8 +3,10 @@
 	"tasks": [
 		{
 			"label": "Debug",
-			"type": "gulp",
-			"task": "debug"
+			"type": "shell",
+			"command": "gulp",
+			"args": ["debug"],
+			"problemMatcher": "$tsc"
 		}
 	]
 }
