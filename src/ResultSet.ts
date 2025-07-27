@@ -46,7 +46,7 @@ export class ResultSet {
 	/**
 	 * A stream of instances of the searched command.
 	 */
-	get stream(): AsyncGenerator<string, void> {
+	get stream(): AsyncGenerator<string, void, void> {
 		return this.#finder.find(this.#command);
 	}
 
