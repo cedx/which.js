@@ -7,7 +7,7 @@
 	"name": "@cedx/which",
 	"repository": "cedx/which.js",
 	"type": "module",
-	"version": "11.1.0",
+	"version": "11.1.1",
 	"bin": {
 		"which": "bin/Which.js"
 	},
