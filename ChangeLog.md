@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [11.1.1](https://github.com/cedx/which.js/compare/v11.1.0...v11.1.1)
+- Fixed the return type of the generator functions.
+
 ## Version [11.1.0](https://github.com/cedx/which.js/compare/v11.0.0...v11.1.0)
 - Ported the source code to [TypeScript](https://www.typescriptlang.org).
 
