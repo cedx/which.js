@@ -58,7 +58,7 @@ export class ResultSet {
 		const executables = new Set<string>;
 		for await (const path of this.stream) executables.add(path);
 		if (!executables.size) this.#throw();
-		return executables.values().toArray();
+		return Array.from(executables);
 	}
 
 	/**
