@@ -9,7 +9,7 @@
 	"type": "module",
 	"version": "11.1.1",
 	"bin": {
-		"which": "bin/Which.js"
+		"Which": "bin/Which.js"
 	},
 	"devDependencies": {
 		"@types/gulp": "^4.0.17",
