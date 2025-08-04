@@ -7,7 +7,8 @@
 			"request": "launch",
 			"type": "node",
 			"program": "${workspaceFolder}/bin/Which.js",
-			"args": ["${input:command}"]
+			"args": ["${input:command}"],
+			"env": {"NODE_ENV": "development"}
 		},
 		{
 			"name": "Tests",
