@@ -51,7 +51,7 @@ export class Finder {
 	 * @param command The command to be resolved.
 	 * @returns The paths of the executables found.
 	 */
-	async *find(command: string): AsyncGenerator<string, void, void> {
+	async *find(command: string): AsyncIterableIterator<string, void, void> {
 		for (const directory of this.paths) yield* this.#findExecutables(directory, command);
 	}
 
