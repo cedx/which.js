@@ -4,7 +4,7 @@ import {Finder} from "./Finder.js";
 /**
  * Provides convenient access to the stream of search results.
  */
-export class ResultSet {
+export class ResultSet implements AsyncIterable<string, void, void> {
 
 	/**
 	 * The searched command.
@@ -57,6 +57,15 @@ export class ResultSet {
 		for await (const path of this) executables.add(path);
 		if (!executables.size) return this.#throw();
 		return Array.from(executables);
+	}
+
+	/**
+	 * Returns first instance of the searched command.
+	 * @returns The first search result.
+	 */
+	async #first(): Promise<string> {
+		for await (const path of this) return path; // eslint-disable-line no-unreachable-loop
+		return this.#throw();
 	}
 
 	/**
