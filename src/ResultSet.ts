@@ -37,16 +37,14 @@ export class ResultSet {
 	 * The first instance of the searched command.
 	 */
 	get first(): Promise<string> {
-		return this.stream.next().then(({value}) => {
-			if (!value) this.#throw();
-			return value;
-		});
+		return this.#first();
 	}
 
 	/**
-	 * A stream of instances of the searched command.
+	 * Returns a new iterator that allows iterating the results of this set.
+	 * @returns An iterator for the results of this set.
 	 */
-	get stream(): AsyncGenerator<string, void, void> {
+	[Symbol.asyncIterator](): AsyncIterator<string, void, void> {
 		return this.#finder.find(this.#command);
 	}
 
@@ -56,8 +54,8 @@ export class ResultSet {
 	 */
 	async #all(): Promise<string[]> {
 		const executables = new Set<string>;
-		for await (const path of this.stream) executables.add(path);
-		if (!executables.size) this.#throw();
+		for await (const path of this) executables.add(path);
+		if (!executables.size) return this.#throw();
 		return Array.from(executables);
 	}
 
@@ -67,6 +65,6 @@ export class ResultSet {
 	 */
 	#throw(): never {
 		const paths = Array.from(this.#finder.paths).join(Finder.isWindows ? ";" : delimiter);
-		throw Error(`No "${this.#command}" in (${paths}).`);
+		throw new Error(`No "${this.#command}" in (${paths}).`);
 	}
 }
