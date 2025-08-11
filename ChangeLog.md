@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [12.0.0](https://github.com/cedx/which.js/compare/v11.1.1...v12.0.0)
+- Breaking change: removed the `ResultSet.stream` property.
+- The `ResultSet` class now implements the `AsyncIterable` interface.
+
 ## Version [11.1.1](https://github.com/cedx/which.js/compare/v11.1.0...v11.1.1)
 - Fixed the return type of the generator functions.
 
