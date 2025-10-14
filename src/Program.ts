@@ -1,12 +1,9 @@
 import console from "node:console";
 import {EOL} from "node:os";
-import process from "node:process";
+import {exit} from "node:process";
 import {parseArgs} from "node:util";
 import pkg from "../package.json" with {type: "json"};
 import {which} from "./Main.js";
-
-// Give the process a friendly name.
-process.title = "Which for JS";
 
 // The usage information.
 const usage = `
@@ -20,42 +17,42 @@ Arguments:
 
 Options:
 	-a, --all      List all executable instances found (instead of just the first one).
-	-s, --silent   Silence the output, just return the exit code (0 if any executable is found, otherwise 404).
+	-q, --quiet   Silence the output, just return the exit code (0 if any executable is found, otherwise 404).
 	-h, --help     Display this help.
 	-v, --version  Output the version number.
 `;
 
 // Value indicating whether to silence the output.
-let silent = false;
+let quiet = false;
 
 try {
 	// Parse the command line arguments.
 	const {positionals, values} = parseArgs({allowPositionals: true, options: {
 		all: {short: "a", type: "boolean", default: false},
 		help: {short: "h", type: "boolean", default: false},
-		silent: {short: "s", type: "boolean", default: false},
+		quiet: {short: "q", type: "boolean", default: false},
 		version: {short: "v", type: "boolean", default: false}
 	}});
 
 	// Print the usage.
 	if (values.help || values.version) {
 		console.log(values.version ? pkg.version : usage.trim().replaceAll("\t", "  "));
-		process.exit();
+		exit(0);
 	}
 
 	// Check the requirements.
 	if (!positionals.length) {
 		console.log("You must provide the name of a command to find.");
-		process.exit(400);
+		exit(400);
 	}
 
 	// Find the instances of the provided executable.
-	({silent} = values);
+	({quiet} = values);
 	const resultSet = which(positionals[0]);
 	const paths = values.all ? await resultSet.all : [await resultSet.first];
-	if (!silent) console.log(paths.join(EOL));
+	if (!quiet) console.log(paths.join(EOL));
 }
 catch (error) {
-	if (!silent) console.error(error instanceof Error ? error.message : error);
-	process.exit(404);
+	if (!quiet) console.error(error instanceof Error ? error.message : error);
+	exit(404);
 }
