@@ -98,7 +98,7 @@ export class Finder {
 		if (perms & 0o100) return uid == stats.uid;
 
 		// Root.
-		return perms & (0o100 | 0o010) ? uid == 0 : false;
+		return (perms & (0o100 | 0o010)) != 0 && uid == 0;
 	}
 
 	/**
