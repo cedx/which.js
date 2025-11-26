@@ -43,6 +43,9 @@
 		<File Path="tool/Update.ps1" />
 		<File Path="tool/Watch.ps1" />
 	</Folder>
+	<Folder Name="/Workflows/">
+		<File Path=".github/workflows/ContinuousIntegration.yaml" />
+	</Folder>
 	<Project Path="src/Which.esproj">
 		<Build />
 		<Deploy />
