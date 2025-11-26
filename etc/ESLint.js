@@ -1,6 +1,5 @@
 import js from "@eslint/js";
 import {defineConfig} from "eslint/config";
-import {join} from "node:path";
 import ts from "typescript-eslint";
 
 export default defineConfig(
@@ -10,8 +9,7 @@ export default defineConfig(
 	{
 		languageOptions: {
 			parserOptions: {
-				project: "tsconfig.json",
-				tsconfigRootDir: join(import.meta.dirname, "..")
+				project: true
 			}
 		},
 		rules: {

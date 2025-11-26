@@ -1,0 +1,13 @@
+{
+	"include": ["**/*.js"],
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"module": "NodeNext",
+		"resolveJsonModule": true,
+		"rootDir": ".",
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "ESNext"
+	}
+}
