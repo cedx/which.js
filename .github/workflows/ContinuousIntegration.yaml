@@ -13,7 +13,7 @@ jobs:
         platform: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - name: Fetch sources
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
