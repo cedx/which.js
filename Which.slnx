@@ -1,7 +1,4 @@
 <Solution>
-	<Folder Name="/Binaries/">
-		<File Path="bin/Which.js" />
-	</Folder>
 	<Folder Name="/Configuration/">
 		<File Path=".editorconfig" />
 		<File Path=".gitattributes" />
