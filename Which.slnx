@@ -1,0 +1,6 @@
+<Solution>
+	<Project Path="Which.esproj">
+		<Build />
+		<Deploy />
+	</Project>
+</Solution>
