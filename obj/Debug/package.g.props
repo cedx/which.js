@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonAuthor Condition="$(PackageJsonAuthor) == ''">Cédric Belin &lt;cedx@outlook.com&gt;</PackageJsonAuthor>
+    <PackageJsonBugs Condition="$(PackageJsonBugs) == ''">https://github.com/cedx/which.js/issues</PackageJsonBugs>
+    <PackageJsonDescription Condition="$(PackageJsonDescription) == ''">Find the instances of an executable in the system path. Like the `which` Linux command.</PackageJsonDescription>
+    <PackageJsonHomepage Condition="$(PackageJsonHomepage) == ''">https://github.com/cedx/which.js</PackageJsonHomepage>
+    <PackageJsonLicense Condition="$(PackageJsonLicense) == ''">MIT</PackageJsonLicense>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">@cedx/which</PackageJsonName>
+    <PackageJsonRepository Condition="$(PackageJsonRepository) == ''">cedx/which.js</PackageJsonRepository>
+    <PackageJsonType Condition="$(PackageJsonType) == ''">module</PackageJsonType>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">12.0.0</PackageJsonVersion>
+    <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^25.0.10</PackageJsonDevdependenciesTypesNode>
+    <PackageJsonDevdependenciesTypedoc Condition="$(PackageJsonDevdependenciesTypedoc) == ''">^0.28.16</PackageJsonDevdependenciesTypedoc>
+    <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">^5.9.3</PackageJsonDevdependenciesTypescript>
+    <PackageJsonDevdependenciesTypescriptEslint Condition="$(PackageJsonDevdependenciesTypescriptEslint) == ''">^8.54.0</PackageJsonDevdependenciesTypescriptEslint>
+    <PackageJsonEnginesNode Condition="$(PackageJsonEnginesNode) == ''">&gt;=24.0.0</PackageJsonEnginesNode>
+    <PackageJsonExportsTypes Condition="$(PackageJsonExportsTypes) == ''">./lib/Main.d.ts</PackageJsonExportsTypes>
+    <PackageJsonExportsDefault Condition="$(PackageJsonExportsDefault) == ''">./lib/Main.js</PackageJsonExportsDefault>
+    <PackageJsonFiles Condition="$(PackageJsonFiles) == ''">[
+  "lib/",
+  "src/"
+]</PackageJsonFiles>
+    <PackageJsonKeywords Condition="$(PackageJsonKeywords) == ''">[
+  "find",
+  "path",
+  "system",
+  "utility",
+  "which"
+]</PackageJsonKeywords>
+    <PackageJsonPublishconfigAccess Condition="$(PackageJsonPublishconfigAccess) == ''">public</PackageJsonPublishconfigAccess>
+    <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">pwsh Invoke.ps1 Build</PackageJsonScriptsBuild>
+    <PackageJsonScriptsClean Condition="$(PackageJsonScriptsClean) == ''">pwsh Invoke.ps1 Clean</PackageJsonScriptsClean>
+    <PackageJsonScriptsTest Condition="$(PackageJsonScriptsTest) == ''">pwsh Invoke.ps1 Test</PackageJsonScriptsTest>
+  </PropertyGroup>
+</Project>
