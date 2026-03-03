@@ -7,5 +7,5 @@ try {
 	console.log(`The "foobar" command is located at: ${path}`);
 }
 catch (error) {
-	console.error(error instanceof Error ? error.message : error);
+	console.error(Error.isError(error) ? error.message : error);
 }

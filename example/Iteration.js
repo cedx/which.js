@@ -7,5 +7,5 @@ try {
 	for await (const path of which("foobar")) console.log(`- ${path}`);
 }
 catch (error) {
-	console.error(error instanceof Error ? error.message : error);
+	console.error(Error.isError(error) ? error.message : error);
 }

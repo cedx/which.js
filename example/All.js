@@ -8,5 +8,5 @@ try {
 	for (const path of paths) console.log(`- ${path}`);
 }
 catch (error) {
-	console.error(error instanceof Error ? error.message : error);
+	console.error(Error.isError(error) ? error.message : error);
 }
