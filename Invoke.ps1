@@ -7,7 +7,6 @@ param (
 		(Get-Item "$PSScriptRoot/tool/$wordToComplete*.ps1").BaseName
 	})]
 	[ValidateScript({ Test-Path "$PSScriptRoot/tool/$_.ps1" -PathType Leaf }, ErrorMessage = "The specified command does not exist.")]
-	[ValidateScript({ Test-Path "$PSScriptRoot/tool/$_.ps1" -PathType Leaf }, ErrorMessage = "The specified command does not exist.")]
 	[string] $Command = "Default"
 )
 
